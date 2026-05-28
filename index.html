@@ -7,32 +7,33 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===== VARIABLES ===== */
-:root {
-  --orange:#FF6B2B; --orange-light:#FF8C55; --yellow:#FFD93D; --yellow-light:#FFE87A;
-  --red:#FF4757; --green:#2ED573; --green-dark:#1FAB56; --blue:#1E90FF; --purple:#7B68EE;
-  --off-white:#FFF8F0; --gray-light:#F5F0E8; --text-dark:#2D2D2D;
-  --shadow-card:0 12px 40px rgba(0,0,0,0.15); --radius:20px; --radius-sm:12px;
-  --font-display:'Fredoka One',cursive; --font-body:'Nunito',sans-serif;
+:root{
+  --orange:#FF6B2B;--yellow:#FFD93D;--yellow-light:#FFE87A;
+  --red:#FF4757;--green:#2ED573;--green-dark:#1FAB56;--blue:#1E90FF;--purple:#7B68EE;
+  --off-white:#FFF8F0;--gray-light:#F5F0E8;--text-dark:#2D2D2D;
+  --shadow-card:0 12px 40px rgba(0,0,0,0.15);--radius:20px;--radius-sm:12px;
+  --font-d:'Fredoka One',cursive;--font-b:'Nunito',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-body);min-height:100vh;overflow-x:hidden}
-button{cursor:pointer;font-family:var(--font-body);border:none}
-input,select,textarea{font-family:var(--font-body)}
+body{font-family:var(--font-b);min-height:100vh;overflow-x:hidden}
+button{cursor:pointer;font-family:var(--font-b);border:none}
+input,select,textarea{font-family:var(--font-b)}
+a{text-decoration:none}
 
-/* ===== VIEWS ===== */
+/* VIEWS */
 .view{display:none;min-height:100vh}
 .view.active{display:block}
-
-/* ===== HOME ===== */
-#view-home{
+#view-home{display:none;flex-direction:column;align-items:center;justify-content:center;
   background:linear-gradient(135deg,#FF6B2B 0%,#FF4757 30%,#7B68EE 70%,#1E90FF 100%);
-  display:none;flex-direction:column;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;padding-bottom:56px;
-}
+  position:relative;overflow:hidden;padding-bottom:56px}
 #view-home.active{display:flex}
+#view-login{display:none;flex-direction:column;align-items:center;
+  background:linear-gradient(135deg,#FF6B2B 0%,#FF4757 50%,#FF8C55 100%);padding:40px 20px 80px}
+#view-login.active{display:flex}
+
+/* BUBBLES */
 .bg-bubbles{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:0}
-.bg-bubbles span{position:absolute;display:block;background:rgba(255,255,255,0.15);border-radius:50%;animation:bubble 8s infinite;bottom:-150px}
+.bg-bubbles span{position:absolute;display:block;background:rgba(255,255,255,.15);border-radius:50%;animation:bubble 8s infinite;bottom:-150px}
 .bg-bubbles span:nth-child(1){left:10%;width:80px;height:80px;animation-duration:9s}
 .bg-bubbles span:nth-child(2){left:20%;width:30px;height:30px;animation-delay:2s;animation-duration:12s}
 .bg-bubbles span:nth-child(3){left:35%;width:60px;height:60px;animation-delay:4s}
@@ -41,31 +42,33 @@ input,select,textarea{font-family:var(--font-body)}
 .bg-bubbles span:nth-child(6){left:75%;width:40px;height:40px;animation-delay:5s;animation-duration:10s}
 .bg-bubbles span:nth-child(7){left:85%;width:70px;height:70px;animation-delay:1s;animation-duration:13s}
 .bg-bubbles span:nth-child(8){left:90%;width:20px;height:20px;animation-delay:6s}
-@keyframes bubble{0%{transform:translateY(0) rotate(0deg);opacity:1;border-radius:50%}100%{transform:translateY(-1200px) rotate(720deg);opacity:0;border-radius:50%}}
+@keyframes bubble{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(-1200px) rotate(720deg);opacity:0}}
+
+/* HOME */
 .home-container{position:relative;z-index:1;text-align:center;padding:20px;max-width:600px;width:100%}
 .logo-area{margin-bottom:40px;animation:dropIn .8s ease}
 .logo-icon{font-size:72px;margin-bottom:10px;animation:bounce 2s infinite;display:block}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.logo-title{font-family:var(--font-display);font-size:64px;color:white;text-shadow:4px 4px 0 rgba(0,0,0,.2);letter-spacing:2px}
+.logo-title{font-family:var(--font-d);font-size:64px;color:white;text-shadow:4px 4px 0 rgba(0,0,0,.2);letter-spacing:2px}
 .logo-subtitle{font-size:18px;color:rgba(255,255,255,.9);font-weight:700;margin-top:8px}
 .home-cards{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
-.card{background:white;border-radius:var(--radius);padding:32px 28px;width:240px;cursor:pointer;
+.hcard{background:white;border-radius:var(--radius);padding:32px 28px;width:240px;cursor:pointer;
   transition:all .3s cubic-bezier(.34,1.56,.64,1);
   box-shadow:0 8px 0 rgba(0,0,0,.15),0 16px 40px rgba(0,0,0,.2);
   position:relative;overflow:hidden;animation:slideUp .6s ease both}
-.card:nth-child(2){animation-delay:.15s}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:6px}
-.card-student::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
-.card-teacher::before{background:linear-gradient(90deg,var(--purple),var(--blue))}
-.card:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 16px 0 rgba(0,0,0,.12),0 24px 60px rgba(0,0,0,.25)}
-.card:active{transform:translateY(0) scale(.98)}
-.card-icon{font-size:48px;margin-bottom:12px;display:block}
-.card h2{font-family:var(--font-display);font-size:24px;color:var(--text-dark);margin-bottom:8px}
-.card p{font-size:14px;color:#666;font-weight:600}
-.card-arrow{font-size:24px;margin-top:16px;color:var(--orange);font-weight:900;transition:transform .3s}
-.card:hover .card-arrow{transform:translateX(6px)}
-.card-teacher .card-arrow{color:var(--purple)}
-.pulse-card{animation:slideUp .6s ease both,pulse 2s 1.5s infinite}
+.hcard:nth-child(2){animation-delay:.15s}
+.hcard::before{content:'';position:absolute;top:0;left:0;right:0;height:6px}
+.hcard-s::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
+.hcard-t::before{background:linear-gradient(90deg,var(--purple),var(--blue))}
+.hcard:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 16px 0 rgba(0,0,0,.12),0 24px 60px rgba(0,0,0,.25)}
+.hcard:active{transform:translateY(0) scale(.98)}
+.hcard-icon{font-size:48px;margin-bottom:12px;display:block}
+.hcard h2{font-family:var(--font-d);font-size:24px;color:var(--text-dark);margin-bottom:8px}
+.hcard p{font-size:14px;color:#666;font-weight:600}
+.hcard-arrow{font-size:24px;margin-top:16px;color:var(--orange);font-weight:900;transition:transform .3s}
+.hcard:hover .hcard-arrow{transform:translateX(6px)}
+.hcard-t .hcard-arrow{color:var(--purple)}
+.pulse{animation:slideUp .6s ease both,pulse 2s 1.5s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 8px 0 rgba(0,0,0,.15),0 16px 40px rgba(0,0,0,.2)}50%{box-shadow:0 8px 0 rgba(0,0,0,.15),0 16px 60px rgba(255,107,43,.4)}}
 .stars{position:relative;height:50px}
 .star{position:absolute;font-size:24px;animation:float 3s ease-in-out infinite}
@@ -73,1348 +76,1209 @@ input,select,textarea{font-family:var(--font-body)}
 .s4{right:20%;animation-delay:.3s}.s5{right:5%;animation-delay:.8s;font-size:28px}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
 
-/* ===== FOOTER ===== */
-.home-footer{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.3);backdrop-filter:blur(10px);
+/* FOOTER */
+.app-footer{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.3);backdrop-filter:blur(10px);
   padding:12px 24px;display:flex;justify-content:space-between;align-items:center;
-  color:white;font-weight:700;font-size:14px;z-index:10}
+  color:white;font-weight:700;font-size:14px;z-index:50}
 .rgpd-btn{background:rgba(255,255,255,.2);color:white;border:2px solid rgba(255,255,255,.4);
-  border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;transition:background .2s}
-.rgpd-btn:hover{background:rgba(255,255,255,.35)}
+  border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700}
 
-/* ===== MODALS ===== */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;
-  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);animation:fadeIn .2s ease}
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;
+  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .modal-box{background:white;border-radius:var(--radius);padding:36px;max-width:420px;width:90%;
-  text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popIn .3s cubic-bezier(.34,1.56,.64,1)}
-.modal-box h3{font-family:var(--font-display);font-size:28px;color:var(--text-dark);margin-bottom:20px}
-.modal-box.wide{max-width:720px;max-height:90vh;overflow-y:auto}
-.modal-content{text-align:left;background:var(--gray-light);border-radius:12px;padding:16px;margin-bottom:20px;font-size:14px;font-weight:600;line-height:1.6;color:#555}
+  text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:popIn .3s cubic-bezier(.34,1.56,.64,1);
+  max-height:90vh;overflow-y:auto}
+.modal-box h3{font-family:var(--font-d);font-size:28px;color:var(--text-dark);margin-bottom:20px}
+.modal-wide{max-width:680px}
+.modal-content{text-align:left;background:var(--gray-light);border-radius:12px;padding:16px;
+  margin-bottom:20px;font-size:14px;font-weight:600;line-height:1.6;color:#555}
 
 /* PIN */
-.pin-display{font-family:var(--font-display);font-size:36px;letter-spacing:16px;color:var(--orange);
+.pin-display{font-family:var(--font-d);font-size:36px;letter-spacing:16px;color:var(--orange);
   background:var(--gray-light);border-radius:var(--radius-sm);padding:16px;margin-bottom:20px;
   min-height:70px;display:flex;align-items:center;justify-content:center}
 .numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
 .numpad button{background:var(--gray-light);border-radius:var(--radius-sm);padding:18px;
-  font-family:var(--font-display);font-size:22px;color:var(--text-dark);transition:all .15s;border:3px solid transparent}
+  font-family:var(--font-d);font-size:22px;color:var(--text-dark);transition:all .15s}
 .numpad button:hover{background:var(--orange);color:white;transform:scale(1.05)}
 .numpad button:active{transform:scale(.95)}
-.btn-clear{background:var(--yellow-light)!important}
-.btn-cancel{background:#FFE0E0!important;color:var(--red)!important}
+.btn-clr{background:var(--yellow-light)!important}
+.btn-x{background:#FFE0E0!important;color:var(--red)!important}
 .pin-error{color:var(--red);font-weight:700;font-size:15px;margin-top:8px;animation:shake .4s}
 
-/* ===== LAYOUT ===== */
+/* LAYOUT */
 .app-layout{min-height:100vh;background:var(--off-white)}
 .teacher-bg{background:#F0EDF8}
-.top-bar{background:linear-gradient(135deg,var(--orange) 0%,var(--red) 100%);
-  padding:16px 24px;display:flex;align-items:center;gap:12px;
-  box-shadow:0 4px 20px rgba(255,107,43,.3);position:sticky;top:0;z-index:100}
-.top-bar.teacher-bar{background:linear-gradient(135deg,var(--purple) 0%,var(--blue) 100%);box-shadow:0 4px 20px rgba(123,104,238,.3)}
-.top-bar h1{font-family:var(--font-display);color:white;font-size:24px;flex:1}
+.top-bar{padding:16px 24px;display:flex;align-items:center;gap:12px;
+  box-shadow:0 4px 20px rgba(255,107,43,.3);position:sticky;top:0;z-index:100;
+  background:linear-gradient(135deg,var(--orange) 0%,var(--red) 100%)}
+.top-bar.tbar{background:linear-gradient(135deg,var(--purple) 0%,var(--blue) 100%);box-shadow:0 4px 20px rgba(123,104,238,.3)}
+.top-bar h1{font-family:var(--font-d);color:white;font-size:24px;flex:1}
 .back-btn{background:rgba(255,255,255,.25);color:white;border-radius:50%;width:40px;height:40px;
-  font-size:18px;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
+  font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .back-btn:hover{background:rgba(255,255,255,.4)}
-.main-content{padding:24px;max-width:800px;margin:0 auto;padding-bottom:80px}
+.main{padding:24px;max-width:800px;margin:0 auto;padding-bottom:80px}
 
-/* ===== BUTTONS ===== */
-.btn-primary{background:linear-gradient(135deg,var(--orange),var(--red));color:white;border-radius:50px;
-  padding:14px 32px;font-family:var(--font-display);font-size:18px;
-  box-shadow:0 6px 0 #cc3d00;transition:all .15s;display:inline-block;border:none}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 0 #cc3d00}
-.btn-primary:active{transform:translateY(3px);box-shadow:0 3px 0 #cc3d00}
-.btn-secondary{background:linear-gradient(135deg,var(--purple),var(--blue));color:white;border-radius:50px;
-  padding:12px 28px;font-family:var(--font-display);font-size:16px;
-  box-shadow:0 6px 0 #4a3fa0;transition:all .15s;border:none}
-.btn-secondary:hover{transform:translateY(-2px);box-shadow:0 8px 0 #4a3fa0}
-.btn-secondary:active{transform:translateY(3px);box-shadow:0 3px 0 #4a3fa0}
-.btn-green{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border-radius:50px;
-  padding:12px 28px;font-family:var(--font-display);font-size:16px;
-  box-shadow:0 6px 0 #138a40;transition:all .15s;border:none}
-.btn-green:hover{transform:translateY(-2px)}
-.btn-danger{background:linear-gradient(135deg,var(--red),#cc0000);color:white;border-radius:50px;
-  padding:10px 24px;font-family:var(--font-display);font-size:15px;border:none;
-  box-shadow:0 4px 0 #990000;transition:all .15s}
-.btn-danger:hover{transform:translateY(-2px)}
-.btn-gray{background:var(--gray-light);border-radius:50px;padding:12px 24px;font-weight:700;color:#666;font-size:15px;border:none;transition:background .2s}
-.btn-gray:hover{background:#E0D8CC}
+/* BUTTONS */
+.btn-p{background:linear-gradient(135deg,var(--orange),var(--red));color:white;border-radius:50px;
+  padding:14px 32px;font-family:var(--font-d);font-size:18px;box-shadow:0 6px 0 #cc3d00;transition:all .15s}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 0 #cc3d00}
+.btn-p:active{transform:translateY(3px);box-shadow:0 3px 0 #cc3d00}
+.btn-s{background:linear-gradient(135deg,var(--purple),var(--blue));color:white;border-radius:50px;
+  padding:12px 28px;font-family:var(--font-d);font-size:16px;box-shadow:0 6px 0 #4a3fa0;transition:all .15s}
+.btn-s:hover{transform:translateY(-2px)}
+.btn-s:active{transform:translateY(3px)}
+.btn-g{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border-radius:50px;
+  padding:12px 28px;font-family:var(--font-d);font-size:16px;box-shadow:0 6px 0 #138a40;transition:all .15s}
+.btn-g:hover{transform:translateY(-2px)}
+.btn-d{background:linear-gradient(135deg,var(--red),#cc0000);color:white;border-radius:50px;
+  padding:10px 24px;font-family:var(--font-d);font-size:15px;box-shadow:0 4px 0 #990000;transition:all .15s}
+.btn-d:hover{transform:translateY(-2px)}
+.btn-n{background:var(--gray-light);border-radius:50px;padding:12px 24px;font-weight:700;color:#666;font-size:15px}
+.btn-n:hover{background:#E0D8CC}
 
-/* ===== FORMS ===== */
-.form-group{margin-bottom:20px}
-.form-group label{display:block;font-weight:800;font-size:13px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;border:3px solid #E8E0D5;
-  border-radius:var(--radius-sm);font-size:16px;font-weight:600;background:white;color:var(--text-dark);transition:border-color .2s;outline:none}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--orange)}
-.form-group textarea{min-height:120px;resize:vertical}
+/* FORMS */
+.fg{margin-bottom:18px}
+.fg label{display:block;font-weight:800;font-size:12px;color:#666;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 16px;border:3px solid #E8E0D5;
+  border-radius:var(--radius-sm);font-size:15px;font-weight:600;background:white;color:var(--text-dark);
+  transition:border-color .2s;outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--orange)}
+.fg textarea{min-height:100px;resize:vertical;line-height:1.6}
+.code-big{font-family:var(--font-d)!important;font-size:26px!important;text-align:center;
+  text-transform:uppercase;letter-spacing:6px;background:var(--gray-light)!important}
+.code-big:focus{background:white!important}
+.name-row{display:flex;align-items:center;gap:10px}
+.name-row input{flex:1;padding:14px!important;font-family:var(--font-d)!important;font-size:22px!important;
+  text-align:center;text-transform:uppercase;letter-spacing:4px;background:var(--gray-light)!important}
+.name-row input:focus{background:white!important}
+.name-sep{font-family:var(--font-d);font-size:28px;color:var(--orange);font-weight:900}
+.id-prev{text-align:center;margin:6px 0;color:var(--purple);font-weight:800;font-size:14px}
 
-/* ===== CARDS ===== */
-.info-card{background:white;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-card);
-  margin-bottom:20px;border-top:5px solid var(--orange);position:relative;overflow:hidden}
-.info-card.purple-top{border-top-color:var(--purple)}
-.info-card.green-top{border-top-color:var(--green)}
-.info-card.blue-top{border-top-color:var(--blue)}
-.info-card h2{font-family:var(--font-display);font-size:22px;color:var(--text-dark);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+/* LOGIN CARD */
+.id-logo{text-align:center;margin-bottom:28px}
+.id-logo h1{font-family:var(--font-d);font-size:44px;color:white;text-shadow:3px 3px 0 rgba(0,0,0,.15)}
+.id-logo p{color:rgba(255,255,255,.9);font-weight:700;font-size:15px;margin-top:4px}
+.id-card{background:white;border-radius:28px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.2);width:100%;max-width:480px}
+.id-card h2{font-family:var(--font-d);font-size:22px;color:var(--text-dark);text-align:center;margin-bottom:20px}
 
-/* ===== STUDENT LOGIN ===== */
-#view-login{background:linear-gradient(135deg,#FF6B2B 0%,#FF4757 50%,#FF8C55 100%);display:none;flex-direction:column;align-items:center;padding:40px 20px 80px}
-#view-login.active{display:flex}
-.id-logo{text-align:center;margin-bottom:32px}
-.id-logo h1{font-family:var(--font-display);font-size:48px;color:white;text-shadow:3px 3px 0 rgba(0,0,0,.15)}
-.id-logo p{color:rgba(255,255,255,.9);font-weight:700;font-size:16px;margin-top:4px}
-.id-card{background:white;border-radius:28px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.2);width:100%;max-width:480px}
-.id-card h2{font-family:var(--font-display);font-size:22px;color:var(--text-dark);text-align:center;margin-bottom:24px}
-.code-input-big{width:100%;padding:20px;border:3px solid #E8E0D5;border-radius:16px;
-  font-family:var(--font-display);font-size:28px;text-align:center;text-transform:uppercase;
-  letter-spacing:8px;color:var(--text-dark);outline:none;transition:border-color .2s;background:var(--gray-light)}
-.code-input-big:focus{border-color:var(--orange);background:white}
-.name-inputs{display:flex;align-items:center;gap:10px}
-.name-inputs input{flex:1;padding:16px;border:3px solid #E8E0D5;border-radius:14px;font-family:var(--font-display);
-  font-size:24px;text-align:center;text-transform:uppercase;letter-spacing:4px;outline:none;background:var(--gray-light);transition:border-color .2s;color:var(--text-dark)}
-.name-inputs input:focus{border-color:var(--orange);background:white}
-.name-inputs .sep{font-family:var(--font-display);font-size:28px;color:var(--orange);font-weight:900}
-.id-preview{text-align:center;margin:8px 0;color:var(--purple);font-weight:800;font-size:15px}
+/* CARDS */
+.card{background:white;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-card);
+  margin-bottom:18px;border-top:5px solid var(--orange)}
+.card.purple{border-top-color:var(--purple)}
+.card.green{border-top-color:var(--green)}
+.card.blue{border-top-color:var(--blue)}
+.card.gray{border-top-color:#CCC}
+.card h2{font-family:var(--font-d);font-size:20px;color:var(--text-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px}
 
-/* ===== EXERCISE MENU ===== */
-.welcome-header{text-align:center;padding:20px 0;margin-bottom:8px}
-.welcome-header h2{font-family:var(--font-display);font-size:28px;color:var(--text-dark)}
-.student-badge{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--red));
-  color:white;border-radius:50px;padding:6px 20px;font-weight:800;font-size:15px;margin-top:6px;letter-spacing:1px}
-.exercise-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:20px 0}
-.exercise-card{background:white;border-radius:var(--radius);padding:24px 16px;text-align:center;cursor:pointer;
-  box-shadow:0 6px 0 rgba(0,0,0,.1),0 12px 30px rgba(0,0,0,.1);
-  transition:all .2s cubic-bezier(.34,1.56,.64,1);border-top:5px solid var(--orange);position:relative}
-.exercise-card.ex-2{border-top-color:var(--purple)}
-.exercise-card.ex-3{border-top-color:var(--blue)}
-.exercise-card.ex-4{border-top-color:var(--green)}
-.exercise-card:hover{transform:translateY(-6px);box-shadow:0 12px 0 rgba(0,0,0,.08),0 20px 40px rgba(0,0,0,.15)}
-.exercise-card:active{transform:translateY(1px)}
-.exercise-card .ex-icon{font-size:40px;margin-bottom:10px;display:block}
-.exercise-card h3{font-family:var(--font-display);font-size:16px;color:var(--text-dark);margin-bottom:4px}
-.exercise-card p{font-size:12px;color:#888;font-weight:600}
-.exercise-card .ex-badge{position:absolute;top:-8px;right:-8px;background:var(--green);color:white;
-  border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:900;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-
-/* ===== EXERCISE ===== */
-.exercise-header{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-.ex-title{font-family:var(--font-display);font-size:24px;color:var(--text-dark);flex:1}
-.progress-bar-wrap{width:100%;background:#E8E0D5;border-radius:50px;height:12px;margin-top:8px;overflow:hidden}
-.progress-bar-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--orange),var(--yellow));transition:width .5s ease}
-.q-counter{font-weight:800;color:#888;font-size:14px}
-.question-card{background:white;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-card);margin-bottom:20px;animation:slideUp .3s ease}
-.question-text{font-family:var(--font-display);font-size:22px;color:var(--text-dark);margin-bottom:20px;line-height:1.4;text-align:center}
-.choices{display:flex;flex-direction:column;gap:10px}
-.choice-btn{width:100%;padding:16px 20px;border-radius:var(--radius-sm);background:var(--gray-light);color:var(--text-dark);
-  text-align:left;font-size:16px;font-weight:700;border:3px solid #E8E0D5;transition:all .2s;display:flex;align-items:center;gap:10px}
-.choice-btn:hover:not(:disabled){border-color:var(--orange);background:#FFF3ED;transform:translateX(4px)}
-.choice-btn.correct{background:#E8F8EF;border-color:var(--green);color:var(--green-dark)}
-.choice-btn.wrong{background:#FFECEC;border-color:var(--red);color:var(--red)}
-.choice-btn:disabled{cursor:default}
-.choice-letter{background:var(--orange);color:white;border-radius:8px;width:32px;height:32px;
-  display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;flex-shrink:0}
-.correct .choice-letter{background:var(--green)}
-.wrong .choice-letter{background:var(--red)}
-.match-container{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.match-container h4{font-weight:800;color:#888;font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.match-item{padding:12px 16px;background:var(--gray-light);border-radius:12px;font-weight:700;font-size:15px;
-  cursor:pointer;border:3px solid transparent;transition:all .2s;text-align:center;margin-bottom:8px}
-.match-item:hover:not(.matched){border-color:var(--orange);background:#FFF3ED}
-.match-item.selected{border-color:var(--purple);background:#F0EDFF}
-.match-item.matched{background:#E8F8EF;border-color:var(--green);color:var(--green-dark);cursor:default}
-.match-item.wrong-match{background:#FFECEC;border-color:var(--red);animation:shake .4s}
-.tf-choices{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.tf-btn{padding:24px;border-radius:var(--radius);font-family:var(--font-display);font-size:24px;border:4px solid transparent;transition:all .2s}
-.tf-btn.true-btn{background:#E8F8EF;color:var(--green-dark)}
-.tf-btn.false-btn{background:#FFECEC;color:var(--red)}
-.tf-btn:hover:not(:disabled){transform:scale(1.05)}
-.tf-btn.correct{border-color:var(--green);box-shadow:0 0 0 4px rgba(46,213,115,.2)}
-.tf-btn.wrong{border-color:var(--red);box-shadow:0 0 0 4px rgba(255,71,87,.2)}
-.feedback-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
-  padding:14px 28px;border-radius:50px;font-family:var(--font-display);font-size:18px;
-  box-shadow:0 8px 30px rgba(0,0,0,.2);z-index:999;animation:toastIn .3s ease;white-space:nowrap}
-.feedback-toast.correct-toast{background:var(--green);color:white}
-.feedback-toast.wrong-toast{background:var(--red);color:white}
-@keyframes toastIn{from{transform:translateX(-50%) translateY(20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
-
-/* ===== RESULT ===== */
-.result-screen{text-align:center}
-.score-circle{width:160px;height:160px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;box-shadow:0 8px 30px rgba(0,0,0,.15);position:relative}
-.score-circle-inner{width:130px;height:130px;border-radius:50%;background:white;
-  display:flex;flex-direction:column;align-items:center;justify-content:center}
-.score-number{font-family:var(--font-display);font-size:36px;color:var(--text-dark)}
-.score-label{font-size:12px;color:#888;font-weight:700}
-.score-msg{font-family:var(--font-display);font-size:28px;color:var(--text-dark);margin-bottom:8px}
-.score-sub{color:#666;font-weight:700;margin-bottom:24px}
-.result-list{text-align:left;max-height:300px;overflow-y:auto;margin:16px 0}
-.result-item{display:flex;gap:12px;padding:10px 0;border-bottom:2px solid #F0EAE2;align-items:flex-start}
-.result-item:last-child{border-bottom:none}
-.result-text{flex:1;font-size:14px;font-weight:600;line-height:1.5}
-.result-text .q{color:#888;font-size:12px}
-.result-text .correct-ans{color:var(--green-dark);font-weight:800}
-
-/* ===== TEACHER ===== */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px;margin-bottom:24px}
-.stat-card{background:white;border-radius:var(--radius-sm);padding:20px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.stat-number{font-family:var(--font-display);font-size:32px;color:var(--purple)}
-.stat-label{font-size:12px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:1px}
-.vocab-list-item{background:white;border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:12px;
+/* STUDENT WELCOME */
+.welcome-h{text-align:center;padding:16px 0;margin-bottom:6px}
+.welcome-h h2{font-family:var(--font-d);font-size:26px;color:var(--text-dark)}
+.s-badge{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--red));
+  color:white;border-radius:50px;padding:5px 18px;font-weight:800;font-size:14px;margin-top:5px}
+.list-item{background:white;border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;
   box-shadow:0 3px 12px rgba(0,0,0,.07);display:flex;align-items:center;gap:12px;cursor:pointer;
   transition:all .2s;border-left:5px solid var(--purple)}
-.vocab-list-item:hover{transform:translateX(4px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
-.vl-info{flex:1}
-.vl-title{font-family:var(--font-display);font-size:18px;color:var(--text-dark)}
-.vl-meta{font-size:12px;color:#888;font-weight:700;margin-top:2px}
-.vl-badge{background:var(--purple);color:white;border-radius:50px;padding:4px 12px;font-size:12px;font-weight:800}
-.vocab-table{width:100%;border-collapse:collapse;margin-top:12px}
-.vocab-table th{background:var(--gray-light);padding:10px 14px;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#777;font-weight:800}
-.vocab-table td{padding:8px 14px;border-bottom:2px solid #F0EAE2;font-size:14px;font-weight:600;vertical-align:top}
-.vocab-table tr:hover td{background:#FFF8F5}
-.vocab-table input{width:100%;border:2px solid transparent;background:transparent;font-size:14px;font-weight:600;padding:4px 6px;border-radius:6px;outline:none}
-.vocab-table input:focus{border-color:var(--orange);background:white}
-.tabs{display:flex;gap:4px;background:#E8E0D5;border-radius:16px;padding:4px;margin-bottom:20px}
-.tab-btn{flex:1;padding:10px;border-radius:12px;font-weight:700;font-size:13px;color:#888;background:transparent;transition:all .2s}
-.tab-btn.active{background:white;color:var(--purple);box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.list-item:hover{transform:translateX(4px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.li-info{flex:1}
+.li-title{font-family:var(--font-d);font-size:17px;color:var(--text-dark)}
+.li-meta{font-size:12px;color:#888;font-weight:700;margin-top:2px}
+.li-badge{background:var(--purple);color:white;border-radius:50px;padding:3px 11px;font-size:12px;font-weight:800}
 
-/* ===== REPORT ===== */
-.report-preview{background:white;border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-card)}
-.report-header{text-align:center;border-bottom:3px solid var(--orange);padding-bottom:16px;margin-bottom:20px}
-.report-header h2{font-family:var(--font-display);font-size:28px;color:var(--text-dark)}
-.report-meta{font-size:14px;color:#666;margin-top:4px}
-.report-section{margin-bottom:20px}
-.report-section h3{font-family:var(--font-display);font-size:18px;color:var(--purple);margin-bottom:10px;border-left:4px solid var(--purple);padding-left:10px}
-.report-item{display:flex;gap:8px;align-items:flex-start;padding:6px 0;font-size:14px;font-weight:600}
+/* EXERCISE GRID */
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:16px 0}
+.ex-card{background:white;border-radius:var(--radius);padding:20px 14px;text-align:center;cursor:pointer;
+  box-shadow:0 6px 0 rgba(0,0,0,.1),0 12px 30px rgba(0,0,0,.1);
+  transition:all .2s cubic-bezier(.34,1.56,.64,1);border-top:5px solid var(--orange);position:relative}
+.ex-card.c2{border-top-color:var(--purple)}
+.ex-card.c3{border-top-color:var(--blue)}
+.ex-card.c4{border-top-color:var(--green)}
+.ex-card:hover{transform:translateY(-6px);box-shadow:0 12px 0 rgba(0,0,0,.08),0 20px 40px rgba(0,0,0,.15)}
+.ex-card:active{transform:translateY(1px)}
+.ex-icon{font-size:36px;margin-bottom:8px;display:block}
+.ex-card h3{font-family:var(--font-d);font-size:15px;color:var(--text-dark);margin-bottom:3px}
+.ex-card p{font-size:11px;color:#888;font-weight:600}
+.ex-done{position:absolute;top:-8px;right:-8px;background:var(--green);color:white;
+  border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:900;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 
-/* ===== MISC ===== */
-.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}
-.section-header h2{font-family:var(--font-display);font-size:22px;color:var(--text-dark)}
-.empty-state{text-align:center;padding:40px;color:#aaa}
-.empty-state .empty-icon{font-size:48px;margin-bottom:12px;display:block}
-.empty-state p{font-weight:700;font-size:16px}
-.notif{position:fixed;top:20px;right:20px;z-index:2000;background:var(--green);color:white;
-  border-radius:14px;padding:14px 20px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.2);
-  animation:slideRight .4s ease;font-size:15px;max-width:320px}
-.notif.error{background:var(--red)}
+/* EXERCISE */
+.ex-hdr{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.ex-title{font-family:var(--font-d);font-size:22px;color:var(--text-dark);flex:1}
+.prog-wrap{width:100%;background:#E8E0D5;border-radius:50px;height:10px;margin-top:6px;overflow:hidden}
+.prog-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--orange),var(--yellow));transition:width .5s}
+.q-cnt{font-weight:800;color:#888;font-size:13px}
+.q-card{background:white;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-card);margin-bottom:18px;animation:slideUp .3s ease}
+.q-text{font-family:var(--font-d);font-size:20px;color:var(--text-dark);margin-bottom:18px;line-height:1.4;text-align:center}
+.choices{display:flex;flex-direction:column;gap:9px}
+.ch-btn{width:100%;padding:14px 18px;border-radius:var(--radius-sm);background:var(--gray-light);
+  color:var(--text-dark);text-align:left;font-size:15px;font-weight:700;border:3px solid #E8E0D5;
+  transition:all .2s;display:flex;align-items:center;gap:9px}
+.ch-btn:hover:not(:disabled){border-color:var(--orange);background:#FFF3ED;transform:translateX(3px)}
+.ch-btn.ok{background:#E8F8EF;border-color:var(--green);color:var(--green-dark)}
+.ch-btn.ko{background:#FFECEC;border-color:var(--red);color:var(--red)}
+.ch-btn:disabled{cursor:default}
+.ch-ltr{background:var(--orange);color:white;border-radius:7px;width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:15px;flex-shrink:0}
+.ok .ch-ltr{background:var(--green)}.ko .ch-ltr{background:var(--red)}
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.match-wrap h4{font-weight:800;color:#888;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.m-item{padding:10px 14px;background:var(--gray-light);border-radius:10px;font-weight:700;font-size:14px;
+  cursor:pointer;border:3px solid transparent;transition:all .2s;text-align:center;margin-bottom:6px}
+.m-item:hover:not(.matched){border-color:var(--orange);background:#FFF3ED}
+.m-item.sel{border-color:var(--purple);background:#F0EDFF}
+.m-item.matched{background:#E8F8EF;border-color:var(--green);color:var(--green-dark);cursor:default}
+.m-item.bad{background:#FFECEC;border-color:var(--red);animation:shake .4s}
+.tf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tf-btn{padding:22px;border-radius:var(--radius);font-family:var(--font-d);font-size:22px;border:4px solid transparent;transition:all .2s}
+.tf-btn.tv{background:#E8F8EF;color:var(--green-dark)}
+.tf-btn.tf{background:#FFECEC;color:var(--red)}
+.tf-btn:hover:not(:disabled){transform:scale(1.04)}
+.tf-btn.ok{border-color:var(--green);box-shadow:0 0 0 4px rgba(46,213,115,.2)}
+.tf-btn.ko{border-color:var(--red);box-shadow:0 0 0 4px rgba(255,71,87,.2)}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  padding:13px 26px;border-radius:50px;font-family:var(--font-d);font-size:17px;
+  box-shadow:0 8px 30px rgba(0,0,0,.2);z-index:999;animation:toastIn .3s ease;white-space:nowrap}
+.toast-ok{background:var(--green);color:white}
+.toast-ko{background:var(--red);color:white}
+@keyframes toastIn{from{transform:translateX(-50%) translateY(20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+
+/* RESULT */
+.result-sc{text-align:center}
+.sc-circle{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;box-shadow:0 8px 30px rgba(0,0,0,.15)}
+.sc-inner{width:122px;height:122px;border-radius:50%;background:white;
+  display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sc-num{font-family:var(--font-d);font-size:32px;color:var(--text-dark)}
+.sc-lbl{font-size:11px;color:#888;font-weight:700}
+.sc-msg{font-family:var(--font-d);font-size:26px;color:var(--text-dark);margin-bottom:6px}
+.sc-sub{color:#666;font-weight:700;margin-bottom:20px}
+.res-list{text-align:left;max-height:280px;overflow-y:auto;margin:14px 0}
+.res-item{display:flex;gap:10px;padding:9px 0;border-bottom:2px solid #F0EAE2;align-items:flex-start}
+.res-item:last-child{border-bottom:none}
+.res-txt{flex:1;font-size:13px;font-weight:600;line-height:1.5}
+.res-q{color:#888;font-size:11px}
+.res-ok{color:var(--green-dark);font-weight:800}
+
+/* TEACHER */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-bottom:20px}
+.stat-c{background:white;border-radius:var(--radius-sm);padding:18px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.stat-n{font-family:var(--font-d);font-size:30px;color:var(--purple)}
+.stat-l{font-size:11px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.tabs{display:flex;gap:4px;background:#E8E0D5;border-radius:14px;padding:4px;margin-bottom:18px}
+.tab-btn{flex:1;padding:9px 6px;border-radius:10px;font-weight:700;font-size:12px;color:#888;background:transparent;transition:all .2s}
+.tab-btn.on{background:white;color:var(--purple);box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.sec-hdr h2{font-family:var(--font-d);font-size:20px;color:var(--text-dark)}
+
+/* REPORT */
+.rpt{background:white;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-card)}
+.rpt-hdr{text-align:center;border-bottom:3px solid var(--orange);padding-bottom:14px;margin-bottom:18px}
+.rpt-hdr h2{font-family:var(--font-d);font-size:26px;color:var(--text-dark)}
+.rpt-meta{font-size:13px;color:#666;margin-top:3px}
+.rpt-sec{margin-bottom:18px}
+.rpt-sec h3{font-family:var(--font-d);font-size:16px;color:var(--purple);margin-bottom:8px;
+  border-left:4px solid var(--purple);padding-left:9px}
+.rpt-item{display:flex;gap:7px;align-items:flex-start;padding:5px 0;font-size:13px;font-weight:600}
+
+/* MISC */
+.notif{position:fixed;top:20px;right:20px;z-index:300;background:var(--green);color:white;
+  border-radius:14px;padding:13px 18px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.2);
+  animation:slideRight .4s ease;font-size:14px;max-width:300px}
+.notif.err{background:var(--red)}
 @keyframes slideRight{from{transform:translateX(100px);opacity:0}to{transform:translateX(0);opacity:1}}
+.empty{text-align:center;padding:36px;color:#aaa}
+.empty .ei{font-size:44px;margin-bottom:10px;display:block}
+.empty p{font-weight:700;font-size:15px}
 
-/* ===== ANIMATIONS ===== */
+/* JSON box */
+.json-box{width:100%;padding:14px 16px;border:3px solid #E8E0D5;border-radius:var(--radius-sm);
+  font-family:'Courier New',monospace;font-size:13px;font-weight:500;background:#1A1A2E;color:#7EE8A2;
+  min-height:180px;resize:vertical;outline:none;line-height:1.7;transition:border-color .2s}
+.json-box:focus{border-color:var(--purple)}
+.json-box::placeholder{color:#4A5568;font-family:var(--font-b);font-size:13px}
+.json-status{display:flex;align-items:center;gap:8px;margin-top:8px;font-weight:700;font-size:13px}
+.json-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.prompt-box{background:#1A1A2E;border-radius:var(--radius-sm);padding:16px;font-size:12px;
+  line-height:1.7;color:#A8D8EA;font-family:'Courier New',monospace;white-space:pre-wrap;
+  word-break:break-word;max-height:220px;overflow-y:auto;position:relative}
+.copy-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.1);color:white;
+  border-radius:8px;padding:5px 10px;font-size:11px;font-weight:700;transition:background .2s}
+.copy-btn:hover{background:rgba(255,255,255,.25)}
+.step-badge{display:inline-flex;align-items:center;justify-content:center;
+  background:var(--purple);color:white;border-radius:50%;width:28px;height:28px;
+  font-family:var(--font-d);font-size:16px;flex-shrink:0;margin-right:8px}
+
+/* ANIMATIONS */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes dropIn{from{transform:translateY(-30px);opacity:0}to{transform:translateY(0);opacity:1}}
 @keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
 @keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 
-/* ===== RESPONSIVE ===== */
 @media(max-width:520px){
-  .logo-title{font-size:48px}
-  .home-cards{gap:14px}
-  .card{width:100%;max-width:300px}
-  .match-container{grid-template-columns:1fr}
-  .tf-choices{grid-template-columns:1fr}
-  .tabs .tab-btn{font-size:11px;padding:8px 4px}
+  .logo-title{font-size:44px}.home-cards{gap:12px}.hcard{width:100%;max-width:300px}
+  .match-wrap{grid-template-columns:1fr}.tf-grid{grid-template-columns:1fr}
+  .tabs .tab-btn{font-size:10px;padding:7px 3px}
 }
 @media print{
-  .top-bar,.print-controls,.home-footer,#view-report .btn-primary,#view-report .btn-gray{display:none!important}
-  body{background:white!important}
-  .main-content{padding:0!important;max-width:100%!important}
-  .report-preview{box-shadow:none!important;border-radius:0!important}
+  .top-bar,.print-hide,.app-footer{display:none!important}
+  .main{padding:0!important;max-width:100%!important}
+  .rpt{box-shadow:none!important;border-radius:0!important}
 }
-::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-track{background:#F0EAE2}
-::-webkit-scrollbar-thumb{background:var(--orange);border-radius:50px}
+::-webkit-scrollbar{width:7px}::-webkit-scrollbar-track{background:#F0EAE2}::-webkit-scrollbar-thumb{background:var(--orange);border-radius:50px}
 </style>
 </head>
 <body>
 
-<!-- ===================== VIEW: HOME ===================== -->
+<!-- ====== HOME ====== -->
 <div id="view-home" class="view active">
   <div class="bg-bubbles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <div class="home-container">
     <div class="logo-area">
-      <span class="logo-icon">🇬🇧&thinsp;🇺🇸</span>
+      <span class="logo-icon">🎮</span>
       <h1 class="logo-title">VocabPro</h1>
       <p class="logo-subtitle">Apprends le vocabulaire anglais en t'amusant !</p>
     </div>
     <div class="home-cards">
-      <div class="card card-student pulse-card" onclick="goTo('login')">
-        <span class="card-icon">🎓</span>
-        <h2>Espace Élève</h2>
-        <p>Accède à tes exercices de vocabulaire</p>
-        <div class="card-arrow">→</div>
+      <div class="hcard hcard-s pulse" onclick="goTo('login')">
+        <span class="hcard-icon">🎒</span><h2>Espace Élève</h2>
+        <p>Accède à tes exercices de vocabulaire</p><div class="hcard-arrow">→</div>
       </div>
-      <div class="card card-teacher" onclick="openTeacherPin()">
-        <span class="card-icon">📚</span>
-        <h2>Espace Prof</h2>
-        <p>Gérer les listes et paramètres</p>
-        <div class="card-arrow">→</div>
+      <div class="hcard hcard-t" onclick="openPin()">
+        <span class="hcard-icon">📚</span><h2>Espace Prof</h2>
+        <p>Gérer les listes et paramètres</p><div class="hcard-arrow">→</div>
       </div>
     </div>
-    <div class="stars">
-      <span class="star s1">⭐</span><span class="star s2">✨</span>
-      <span class="star s3">🌟</span><span class="star s4">⭐</span><span class="star s5">✨</span>
-    </div>
+    <div class="stars"><span class="star s1">⭐</span><span class="star s2">✨</span><span class="star s3">🌟</span><span class="star s4">⭐</span><span class="star s5">✨</span></div>
   </div>
 </div>
 
-<!-- ===================== VIEW: LOGIN ===================== -->
+<!-- ====== LOGIN ====== -->
 <div id="view-login" class="view">
-  <div class="id-logo">
-    <div style="font-size:52px;margin-bottom:8px;letter-spacing:4px;">🇬🇧&thinsp;🇺🇸</div>
-    <h1>VocabPro</h1>
-    <p>Connexion Élève</p>
-  </div>
+  <div class="id-logo"><div style="font-size:52px;margin-bottom:6px;">🎮</div><h1>VocabPro</h1><p>Connexion Élève</p></div>
   <div class="id-card">
-    <h2>🎓 Identifie-toi !</h2>
-    <div class="form-group">
-      <label>Code d'accès</label>
-      <input type="text" id="accessCode" class="code-input-big" placeholder="VOCAB1" maxlength="20" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
+    <h2>🎒 Identifie-toi !</h2>
+    <div class="fg"><label>Code d'accès</label>
+      <input type="text" id="accessCode" class="code-big" placeholder="VOCAB1" maxlength="20" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
     </div>
-    <div class="form-group">
-      <label>Identifiant (2 lettres prénom – 2 lettres nom)</label>
-      <div class="name-inputs">
-        <input type="text" id="loginFN" maxlength="2" placeholder="CA" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z]/g,'');updateIdPreview()">
-        <span class="sep">–</span>
-        <input type="text" id="loginLN" maxlength="2" placeholder="IE" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z]/g,'');updateIdPreview()">
+    <div class="fg"><label>Identifiant (2 lettres prénom – 2 lettres nom)</label>
+      <div class="name-row">
+        <input type="text" id="lFN" maxlength="2" placeholder="CA" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z]/g,'');updPrev()">
+        <span class="name-sep">–</span>
+        <input type="text" id="lLN" maxlength="2" placeholder="IE" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z]/g,'');updPrev()">
       </div>
-      <div class="id-preview" id="idPreview">Identifiant : __ – __</div>
+      <div class="id-prev" id="idPrev">Identifiant : __ – __</div>
     </div>
-    <div class="form-group">
-      <label>Classe (ex : 2AEPA, TAEPA, CAP1…)</label>
-      <input type="text" id="loginClasse" placeholder="2AEPA" maxlength="20" oninput="this.value=this.value.toUpperCase()">
+    <div class="fg"><label>Classe (ex : 2AEPA, TAEPA, CAP1…)</label>
+      <input type="text" id="lClasse" placeholder="2AEPA" maxlength="20" oninput="this.value=this.value.toUpperCase()">
     </div>
-    <div class="form-group">
-      <label>Niveau</label>
-      <select id="loginNiveau">
-        <option value="">— Choisir —</option>
-        <option>CAP</option>
-        <option>2nde Bac Pro</option>
-        <option>1ère Bac Pro</option>
-        <option>Terminale Bac Pro</option>
-      </select>
+    <div class="fg"><label>Niveau</label>
+      <select id="lNiveau"><option value="">— Choisir —</option><option>CAP</option><option>2nde Bac Pro</option><option>1ère Bac Pro</option><option>Terminale Bac Pro</option></select>
     </div>
-    <button class="btn-primary" style="width:100%;text-align:center;" onclick="loginStudent()">C'est parti ! 🚀</button>
-    <div style="text-align:center;margin-top:14px;">
-      <button class="btn-gray" onclick="goTo('home')" style="font-size:14px;">← Retour accueil</button>
-    </div>
+    <button class="btn-p" style="width:100%;text-align:center;" onclick="doLogin()">C'est parti ! 🚀</button>
+    <div style="text-align:center;margin-top:12px;"><button class="btn-n" onclick="goTo('home')" style="font-size:13px;">← Retour</button></div>
   </div>
 </div>
 
-<!-- ===================== VIEW: STUDENT EXERCISES ===================== -->
+<!-- ====== EXERCISES MENU ====== -->
 <div id="view-exercises" class="view app-layout">
   <div class="top-bar">
     <button class="back-btn" onclick="goTo('login')">←</button>
-    <h1>🇬🇧 VocabPro</h1>
-    <button onclick="goTo('report')" style="background:rgba(255,255,255,.25);color:white;border-radius:50px;padding:8px 16px;font-weight:700;font-size:13px;">📄 Rapport</button>
+    <h1>🎮 VocabPro</h1>
+    <button onclick="goTo('report')" style="background:rgba(255,255,255,.25);color:white;border-radius:50px;padding:7px 14px;font-weight:700;font-size:12px;">📄 Rapport</button>
   </div>
-  <div class="main-content">
-    <div class="welcome-header">
-      <h2 id="welcomeMsg">Bonjour !</h2>
-      <div class="student-badge" id="studentBadge">...</div>
-    </div>
-    <div class="info-card" id="listSelectorCard">
-      <h2>📚 Choisir une liste</h2>
-      <div id="listContainer"></div>
-    </div>
-    <div id="exercisesSection" style="display:none">
-      <div class="section-header">
-        <h2 id="listTitle" style="font-family:var(--font-display);font-size:22px;color:var(--text-dark);">Liste</h2>
-        <button class="btn-gray" onclick="backToLists()">← Listes</button>
+  <div class="main">
+    <div class="welcome-h"><h2 id="wMsg">Bonjour !</h2><div class="s-badge" id="sBadge">...</div></div>
+    <div class="card" id="listSelCard"><h2>📚 Choisir une liste</h2><div id="listCont"></div></div>
+    <div id="exSection" style="display:none">
+      <div class="sec-hdr">
+        <h2 id="listTitle" style="font-family:var(--font-d);font-size:20px;color:var(--text-dark);">Liste</h2>
+        <button class="btn-n" onclick="backToLists()">← Listes</button>
       </div>
-      <div class="exercise-grid" id="exerciseGrid"></div>
-      <div style="text-align:center;margin-top:16px;">
-        <button class="btn-primary" onclick="goTo('report')">📄 Éditer mon rapport PDF</button>
-      </div>
+      <div class="ex-grid" id="exGrid"></div>
+      <div style="text-align:center;margin-top:14px;"><button class="btn-p" onclick="goTo('report')">📄 Éditer mon rapport PDF</button></div>
     </div>
   </div>
 </div>
 
-<!-- ===================== VIEW: EXERCISE ===================== -->
+<!-- ====== EXERCISE ====== -->
 <div id="view-exercise" class="view app-layout">
   <div class="top-bar">
-    <button class="back-btn" onclick="confirmBackExercise()">←</button>
-    <h1 id="exViewTitle">Exercice</h1>
+    <button class="back-btn" onclick="showModal('backExMod')">←</button>
+    <h1 id="exVTitle">Exercice</h1>
   </div>
-  <div class="main-content" id="exerciseContent"></div>
+  <div class="main" id="exContent"></div>
 </div>
 
-<!-- ===================== VIEW: REPORT ===================== -->
+<!-- ====== REPORT ====== -->
 <div id="view-report" class="view app-layout">
   <div class="top-bar">
     <button class="back-btn" onclick="goTo('exercises')">←</button>
     <h1>📄 Mon Rapport</h1>
   </div>
-  <div class="main-content">
-    <div class="print-controls info-card" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-      <div style="flex:1">
-        <strong style="font-family:var(--font-display);font-size:18px;">Générer mon rapport PDF</strong>
-        <p style="font-size:13px;color:#888;margin-top:2px;">Sélectionne la liste à inclure</p>
-      </div>
-      <button class="btn-primary" onclick="printReport()">🖨️ Imprimer / PDF</button>
+  <div class="main">
+    <div class="card print-hide" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+      <div style="flex:1"><strong style="font-family:var(--font-d);font-size:17px;">Rapport PDF</strong>
+        <p style="font-size:12px;color:#888;margin-top:2px;">Sélectionne la liste à inclure</p></div>
+      <button class="btn-p" onclick="printReport()">🖨️ Imprimer / PDF</button>
     </div>
-    <div class="info-card">
-      <h2>📚 Liste à inclure</h2>
-      <div id="reportListPicker"></div>
-    </div>
-    <div id="reportArea"></div>
+    <div class="card print-hide"><h2>📚 Liste à inclure</h2><div id="rptPicker"></div></div>
+    <div id="rptArea"></div>
   </div>
 </div>
 
-<!-- ===================== VIEW: TEACHER ===================== -->
+<!-- ====== TEACHER ====== -->
 <div id="view-teacher" class="view app-layout teacher-bg">
-  <div class="top-bar teacher-bar">
+  <div class="top-bar tbar">
     <button class="back-btn" onclick="goTo('home')">←</button>
     <h1>📚 Espace Prof</h1>
   </div>
-  <div class="main-content">
+  <div class="main">
     <div class="tabs">
-      <button class="tab-btn active" id="tab-lists" onclick="teacherTab('lists')">📚 Listes</button>
-      <button class="tab-btn" id="tab-add" onclick="teacherTab('add')">➕ Ajouter</button>
-      <button class="tab-btn" id="tab-io" onclick="teacherTab('io')">📦 Import/Export</button>
-      <button class="tab-btn" id="tab-settings" onclick="teacherTab('settings')">⚙️ Réglages</button>
+      <button class="tab-btn on" id="tab-lists" onclick="tTab('lists')">📚 Listes</button>
+      <button class="tab-btn" id="tab-add" onclick="tTab('add')">➕ Nouvelle liste</button>
+      <button class="tab-btn" id="tab-io" onclick="tTab('io')">📦 Import/Export</button>
+      <button class="tab-btn" id="tab-cfg" onclick="tTab('cfg')">⚙️ Réglages</button>
     </div>
 
-    <!-- PANEL LISTS -->
+    <!-- LISTS -->
     <div id="panel-lists">
-      <div class="section-header">
-        <h2>📚 Listes de vocabulaire</h2>
-        <button class="btn-secondary" onclick="teacherTab('add')">+ Nouvelle</button>
-      </div>
-      <div class="stat-grid" id="statsGrid"></div>
-      <div id="vocabListsContainer"></div>
+      <div class="sec-hdr"><h2>📚 Mes listes</h2><button class="btn-s" onclick="tTab('add')">+ Nouvelle</button></div>
+      <div class="stat-grid" id="statsG"></div>
+      <div id="listsCont"></div>
     </div>
 
-    <!-- PANEL ADD -->
+    <!-- ADD — nouveau flux simplifié -->
     <div id="panel-add" style="display:none">
-      <div class="info-card purple-top">
-        <h2>➕ Nouvelle liste</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-          <div class="form-group"><label>Nom de la liste</label><input type="text" id="listName" placeholder="Ex : Chapitre 3 – Le corps humain"></div>
-          <div class="form-group"><label>Filière</label><input type="text" id="listFiliere" placeholder="Ex : AEPA, ARCU…" oninput="this.value=this.value.toUpperCase()"></div>
+
+      <!-- ÉTAPE 1 : infos de base -->
+      <div class="card purple">
+        <h2><span class="step-badge">1</span> Informations de la liste</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="fg"><label>Nom de la liste</label><input type="text" id="lName" placeholder="Ex : Chap.3 – Le corps humain"></div>
+          <div class="fg"><label>Filière</label><input type="text" id="lFiliere" placeholder="Ex : AEPA" oninput="this.value=this.value.toUpperCase()"></div>
         </div>
-        <div class="form-group">
-          <label>Niveau</label>
-          <select id="listNiveau">
-            <option value="">— Choisir un niveau —</option>
-            <option value="CAP">CAP</option>
-            <option value="2nde Bac Pro">2nde Bac Pro</option>
-            <option value="1ère Bac Pro">1ère Bac Pro</option>
-            <option value="Terminale Bac Pro">Terminale Bac Pro</option>
-          </select>
+        <div class="fg"><label>Classe(s) <span style="font-weight:600;color:#aaa;text-transform:none;font-size:11px;">— séparer par virgule si plusieurs</span></label>
+          <input type="text" id="lClasse2" placeholder="Ex : 2AEPA, 2ARCU" oninput="this.value=this.value.toUpperCase()">
         </div>
-        <div class="form-group">
-          <label>Classe(s) concernée(s) <span style="font-weight:600;color:#aaa;font-size:11px;">plusieurs classes séparées par une virgule</span></label>
-          <input type="text" id="listClasse" placeholder="Ex : 2AEPA, 2ARCU" oninput="this.value=this.value.toUpperCase()">
-        </div>
-        <p style="font-weight:800;font-size:13px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Mots de vocabulaire</p>
-        <p style="font-size:13px;color:#888;margin-bottom:4px;">
-          Colle ici ta liste depuis <strong>Excel, Word ou un simple bloc-notes</strong>.<br>
-          Format attendu par ligne : <code style="background:#EEE;border-radius:4px;padding:2px 6px;">mot français TAB traduction anglaise TAB définition (optionnel)</code><br>
-          <span style="color:#aaa;">Le séparateur peut être une tabulation (copier-coller depuis Excel) ou un point-virgule.</span>
+      </div>
+
+      <!-- ÉTAPE 2 : prompt Claude -->
+      <div class="card blue">
+        <h2><span class="step-badge" style="background:var(--blue);">2</span> Génère le JSON avec Claude</h2>
+        <p style="font-size:13px;color:#555;font-weight:600;margin-bottom:14px;line-height:1.6;">
+          Copie ce prompt, ouvre <a href="https://claude.ai" target="_blank" style="color:var(--blue);font-weight:800;">claude.ai</a>, colle-le, puis ajoute ta liste de mots à la suite.
         </p>
-        <div class="form-group" style="margin-top:10px;">
-          <label>Coller la liste ici</label>
-          <textarea id="bulkPaste" rows="10" placeholder="Exemples :&#10;le bras	arm	part of the body from shoulder to hand&#10;la jambe	leg&#10;la tête	head	upper part of the body&#10;&#10;(tabulation ou point-virgule comme séparateur)"></textarea>
+        <div style="position:relative;">
+          <div class="prompt-box" id="promptBox"></div>
+          <button class="copy-btn" onclick="copyPrompt()">📋 Copier</button>
         </div>
-        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px;">
-          <button class="btn-secondary" onclick="parseBulkPaste()" style="font-size:14px;">🔍 Analyser et prévisualiser</button>
-          <span id="parseInfo" style="font-size:13px;font-weight:700;color:#888;"></span>
-        </div>
-        <div id="bulkPreview" style="display:none;">
-          <p style="font-weight:800;font-size:13px;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Prévisualisation — tu peux corriger avant d'enregistrer</p>
-          <div style="overflow-x:auto;max-height:340px;overflow-y:auto;">
-            <table class="vocab-table"><thead><tr><th>#</th><th>🇫🇷 Français</th><th>🇬🇧 Anglais</th><th>📖 Définition (optionnel)</th><th></th></tr></thead>
-            <tbody id="wordsBody"></tbody></table>
-          </div>
-          <button class="btn-secondary" style="margin-top:10px;" onclick="addWordRow()">+ Ajouter une ligne</button>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
-          <button class="btn-primary" onclick="saveList()">💾 Enregistrer</button>
-          <button class="btn-gray" onclick="teacherTab('lists')">Annuler</button>
-        </div>
+      </div>
+
+      <!-- ÉTAPE 3 : coller le JSON -->
+      <div class="card green">
+        <h2><span class="step-badge" style="background:var(--green-dark);">3</span> Colle le JSON généré par Claude</h2>
+        <p style="font-size:13px;color:#555;font-weight:600;margin-bottom:12px;line-height:1.6;">
+          Copie la réponse JSON de Claude et colle-la ici. L'appli valide et charge les mots automatiquement.
+        </p>
+        <textarea class="json-box" id="jsonInput" rows="10" placeholder='[
+  { "fr": "le bras", "en": "arm", "definition": "part of the body from shoulder to hand" },
+  { "fr": "la jambe", "en": "leg", "definition": "" }
+]' oninput="validateJson()"></textarea>
+        <div class="json-status" id="jsonStatus"></div>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;">
+        <button class="btn-p" onclick="saveJsonList()">💾 Enregistrer la liste</button>
+        <button class="btn-n" onclick="tTab('lists')">Annuler</button>
       </div>
     </div>
 
-    <!-- PANEL IMPORT/EXPORT -->
+    <!-- IMPORT/EXPORT -->
     <div id="panel-io" style="display:none">
-      <div class="info-card green-top">
+      <div class="card green">
         <h2>📤 Exporter les listes</h2>
-        <p style="font-size:14px;color:#666;font-weight:600;margin-bottom:16px;">Télécharge un fichier JSON avec toutes tes listes. Tu pourras le réimporter sur n'importe quel appareil ou navigateur.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <button class="btn-green" onclick="exportAllLists()">📥 Exporter toutes les listes</button>
-          <button class="btn-secondary" onclick="exportSingleListPrompt()">📋 Exporter une liste…</button>
+        <p style="font-size:13px;color:#666;font-weight:600;margin-bottom:14px;">Télécharge un fichier JSON — réimportable sur n'importe quel appareil.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn-g" onclick="exportAll()">📥 Toutes les listes</button>
+          <button class="btn-s" onclick="toggleExportOne()">📋 Une seule…</button>
         </div>
-        <div id="exportSingleSelect" style="display:none;margin-top:16px;">
-          <div class="form-group"><label>Choisir la liste à exporter</label>
-          <select id="exportListSelect"></select></div>
-          <button class="btn-green" onclick="exportSelectedList()">📥 Exporter cette liste</button>
+        <div id="expOneWrap" style="display:none;margin-top:14px;">
+          <div class="fg"><label>Choisir</label><select id="expOneSel"></select></div>
+          <button class="btn-g" onclick="exportOne()">📥 Exporter</button>
         </div>
       </div>
-
-      <div class="info-card blue-top">
+      <div class="card blue">
         <h2>📦 Importer des listes</h2>
-        <p style="font-size:14px;color:#666;font-weight:600;margin-bottom:4px;">Importe un fichier JSON exporté depuis VocabPro. Les listes existantes ayant le même nom seront <strong>remplacées</strong>, les autres seront ajoutées.</p>
-        <p style="font-size:13px;color:var(--orange);font-weight:700;margin-bottom:16px;">⚠️ Vérifie le fichier avant d'importer.</p>
-        <label style="display:inline-flex;align-items:center;gap:10px;background:var(--gray-light);border-radius:12px;padding:14px 20px;cursor:pointer;font-weight:700;color:var(--text-dark);border:3px dashed #CCC;transition:border-color .2s;" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='#CCC'">
+        <p style="font-size:13px;color:#666;font-weight:600;margin-bottom:14px;">Importe un fichier JSON VocabPro. Les listes au même nom sont remplacées.</p>
+        <label style="display:inline-flex;align-items:center;gap:10px;background:var(--gray-light);border-radius:12px;padding:13px 18px;cursor:pointer;font-weight:700;color:var(--text-dark);border:3px dashed #CCC;">
           📂 Choisir un fichier JSON
-          <input type="file" accept=".json" id="importFile" style="display:none" onchange="importLists(this)">
+          <input type="file" accept=".json" id="impFile" style="display:none" onchange="doImport(this)">
         </label>
-        <div id="importPreview" style="margin-top:16px;"></div>
-      </div>
-
-      <div class="info-card" style="border-top-color:#888">
-        <h2>📋 Format du fichier JSON</h2>
-        <p style="font-size:13px;color:#666;font-weight:600;margin-bottom:10px;">Tu peux aussi créer tes listes dans un tableur (Excel/Sheets) et les exporter manuellement au format JSON suivant :</p>
-        <pre style="background:var(--gray-light);border-radius:12px;padding:16px;font-size:12px;overflow-x:auto;line-height:1.6;">[
-  {
-    "name": "Chapitre 1 – Le corps",
-    "filiere": "AEPA",
-    "classe": "2AEPA",
-    "words": [
-      { "fr": "le bras", "en": "arm", "definition": "part of the body from shoulder to hand" },
-      { "fr": "la jambe", "en": "leg", "definition": "" }
-    ]
-  }
-]</pre>
       </div>
     </div>
 
-    <!-- PANEL SETTINGS -->
-    <div id="panel-settings" style="display:none">
-      <div class="info-card purple-top">
+    <!-- CONFIG -->
+    <div id="panel-cfg" style="display:none">
+      <div class="card purple">
         <h2>⚙️ Réglages</h2>
-        <div class="form-group">
-          <label>Code d'accès élèves (actuel)</label>
-          <div style="display:flex;gap:12px;align-items:center;">
-            <input type="text" id="studentCodeDisplay" style="font-family:var(--font-display);font-size:22px;text-align:center;letter-spacing:4px;text-transform:uppercase;">
-            <button class="btn-secondary" onclick="updateStudentCode()">Modifier</button>
+        <div class="fg"><label>Code d'accès élèves</label>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <input type="text" id="sCodeDisp" style="font-family:var(--font-d);font-size:20px;text-align:center;letter-spacing:4px;text-transform:uppercase;flex:1;">
+            <button class="btn-s" onclick="updSCode()">Modifier</button>
           </div>
         </div>
-        <div class="form-group">
-          <label>Modifier le code professeur (4 chiffres)</label>
-          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-            <input type="password" id="newTeacherCode" placeholder="Nouveau code" maxlength="4" style="width:140px;text-align:center;font-size:20px;letter-spacing:4px;font-family:var(--font-display);" oninput="this.value=this.value.replace(/\D/g,'')">
-            <input type="password" id="confirmTeacherCode" placeholder="Confirmer" maxlength="4" style="width:140px;text-align:center;font-size:20px;letter-spacing:4px;font-family:var(--font-display);" oninput="this.value=this.value.replace(/\D/g,'')">
-            <button class="btn-secondary" onclick="updateTeacherCode()">Modifier</button>
+        <div class="fg"><label>Nouveau code professeur (4 chiffres)</label>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            <input type="password" id="tCode1" placeholder="Nouveau" maxlength="4" style="width:120px;text-align:center;font-size:18px;letter-spacing:4px;font-family:var(--font-d);" oninput="this.value=this.value.replace(/\D/g,'')">
+            <input type="password" id="tCode2" placeholder="Confirmer" maxlength="4" style="width:120px;text-align:center;font-size:18px;letter-spacing:4px;font-family:var(--font-d);" oninput="this.value=this.value.replace(/\D/g,'')">
+            <button class="btn-s" onclick="updTCode()">Modifier</button>
           </div>
         </div>
-        <hr style="border:none;border-top:2px solid #EEE;margin:20px 0;">
-        <div class="form-group">
-          <label style="color:var(--red);">⚠️ Zone dangereuse</label>
-          <button class="btn-danger" onclick="showModal('resetModal')">🗑️ Effacer toutes les données</button>
+        <hr style="border:none;border-top:2px solid #EEE;margin:18px 0;">
+        <div class="fg"><label style="color:var(--red);">⚠️ Zone dangereuse</label>
+          <button class="btn-d" onclick="showModal('resetMod')">🗑️ Effacer toutes les données</button>
         </div>
       </div>
-      <div class="info-card blue-top">
-        <h2>ℹ️ À propos</h2>
-        <p style="font-size:14px;color:#666;font-weight:600;line-height:1.7;">
-          <strong>VocabPro</strong> – Application de vocabulaire anglais pour lycée pro.<br>
-          Créée par <strong>C. Iemfre</strong><br>
-          Données stockées localement (localStorage). Aucun serveur externe.
-        </p>
+      <div class="card blue"><h2>ℹ️ À propos</h2>
+        <p style="font-size:13px;color:#666;font-weight:600;line-height:1.7;"><strong>VocabPro</strong> – Vocabulaire anglais lycée pro.<br>Créée par <strong>C. Iemfre</strong><br>Données stockées localement (localStorage). Aucun serveur.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="home-footer">
+<!-- ====== FOOTER ====== -->
+<footer class="app-footer">
   <span>Créé par C. Iemfre</span>
-  <button class="rgpd-btn" onclick="showModal('rgpdModal')">🔒 RGPD</button>
+  <button class="rgpd-btn" onclick="showModal('rgpdMod')">🔒 RGPD</button>
 </footer>
 
-<!-- ===================== MODALS ===================== -->
-<!-- RGPD -->
-<div class="modal-overlay" id="rgpdModal" style="display:none">
-  <div class="modal-box">
-    <h3>🔒 Politique RGPD</h3>
-    <div class="modal-content">
-      <p>Cette application stocke les données localement sur votre appareil (localStorage). Aucune donnée n'est transmise à un serveur externe.</p>
-      <p style="margin-top:8px;">Contenu RGPD à compléter ultérieurement.</p>
-    </div>
-    <button class="btn-primary" onclick="closeModal('rgpdModal')">Fermer</button>
+<!-- ====== MODALS ====== -->
+<div class="modal-overlay" id="rgpdMod" style="display:none">
+  <div class="modal-box"><h3>🔒 RGPD</h3>
+    <div class="modal-content"><p>Données stockées localement sur votre appareil (localStorage). Aucune transmission externe.</p><p style="margin-top:8px;">Contenu à compléter.</p></div>
+    <button class="btn-p" onclick="closeModal('rgpdMod')">Fermer</button>
   </div>
 </div>
 
-<!-- Teacher PIN -->
-<div class="modal-overlay" id="teacherModal" style="display:none">
-  <div class="modal-box">
-    <h3>🔑 Accès Professeur</h3>
-    <div class="pin-display" id="pinDisplay">_ _ _ _</div>
+<div class="modal-overlay" id="pinMod" style="display:none">
+  <div class="modal-box"><h3>🔑 Accès Professeur</h3>
+    <div class="pin-display" id="pinDisp">_ _ _ _</div>
     <div class="numpad">
-      <button onclick="pinPress(1)">1</button><button onclick="pinPress(2)">2</button><button onclick="pinPress(3)">3</button>
-      <button onclick="pinPress(4)">4</button><button onclick="pinPress(5)">5</button><button onclick="pinPress(6)">6</button>
-      <button onclick="pinPress(7)">7</button><button onclick="pinPress(8)">8</button><button onclick="pinPress(9)">9</button>
-      <button onclick="pinClear()" class="btn-clear">⌫</button>
-      <button onclick="pinPress(0)">0</button>
-      <button onclick="closeModal('teacherModal')" class="btn-cancel">✕</button>
+      <button onclick="pp(1)">1</button><button onclick="pp(2)">2</button><button onclick="pp(3)">3</button>
+      <button onclick="pp(4)">4</button><button onclick="pp(5)">5</button><button onclick="pp(6)">6</button>
+      <button onclick="pp(7)">7</button><button onclick="pp(8)">8</button><button onclick="pp(9)">9</button>
+      <button onclick="pc()" class="btn-clr">⌫</button>
+      <button onclick="pp(0)">0</button>
+      <button onclick="closeModal('pinMod')" class="btn-x">✕</button>
     </div>
-    <div id="pinError" class="pin-error" style="display:none">Code incorrect !</div>
+    <div id="pinErr" class="pin-error" style="display:none">Code incorrect !</div>
   </div>
 </div>
 
-<!-- Back from exercise confirm -->
-<div class="modal-overlay" id="backExModal" style="display:none">
-  <div class="modal-box">
-    <h3>⚠️ Quitter l'exercice ?</h3>
-    <p style="margin-bottom:20px;font-weight:600;color:#666;">Ta progression sera perdue.</p>
-    <div style="display:flex;gap:12px;justify-content:center;">
-      <button class="btn-danger" onclick="closeModal('backExModal');goTo('exercises')">Quitter</button>
-      <button class="btn-secondary" onclick="closeModal('backExModal')">Continuer</button>
+<div class="modal-overlay" id="backExMod" style="display:none">
+  <div class="modal-box"><h3>⚠️ Quitter l'exercice ?</h3>
+    <p style="margin-bottom:18px;font-weight:600;color:#666;">Ta progression sera perdue.</p>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="btn-d" onclick="closeModal('backExMod');goTo('exercises')">Quitter</button>
+      <button class="btn-s" onclick="closeModal('backExMod')">Continuer</button>
     </div>
   </div>
 </div>
 
-<!-- Edit list modal -->
-<div class="modal-overlay" id="editModal" style="display:none">
-  <div class="modal-box wide">
-    <h3 id="editModalTitle">✏️ Modifier la liste</h3>
+<div class="modal-overlay" id="editMod" style="display:none">
+  <div class="modal-box modal-wide">
+    <h3 id="editModTitle">✏️ Modifier</h3>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
-      <div class="form-group" style="margin:0"><label>Nom</label><input type="text" id="editName"></div>
-      <div class="form-group" style="margin:0"><label>Filière</label><input type="text" id="editFiliere" oninput="this.value=this.value.toUpperCase()"></div>
+      <div class="fg" style="margin:0"><label>Nom</label><input type="text" id="eName"></div>
+      <div class="fg" style="margin:0"><label>Filière</label><input type="text" id="eFiliere" oninput="this.value=this.value.toUpperCase()"></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
-      <div class="form-group" style="margin:0">
-        <label>Niveau</label>
-        <select id="editNiveau">
-          <option value="">— Niveau —</option>
-          <option value="CAP">CAP</option>
-          <option value="2nde Bac Pro">2nde Bac Pro</option>
-          <option value="1ère Bac Pro">1ère Bac Pro</option>
-          <option value="Terminale Bac Pro">Terminale Bac Pro</option>
-        </select>
-      </div>
-      <div class="form-group" style="margin:0"><label>Classe(s)</label><input type="text" id="editClasse" oninput="this.value=this.value.toUpperCase()" placeholder="2AEPA, TAEPA…"></div>
+    <div class="fg"><label>Classe(s)</label><input type="text" id="eClasse" oninput="this.value=this.value.toUpperCase()"></div>
+
+    <!-- JSON edit zone -->
+    <div class="fg">
+      <label>Mots (JSON) <span style="font-weight:600;color:#aaa;text-transform:none;font-size:11px;">— modifie directement ou régénère avec Claude</span></label>
+      <textarea class="json-box" id="eJsonInput" rows="10" oninput="validateEditJson()"></textarea>
+      <div class="json-status" id="eJsonStatus"></div>
     </div>
-    <div style="overflow-x:auto;max-height:40vh;overflow-y:auto;">
-      <table class="vocab-table"><thead><tr><th>#</th><th>🇫🇷 Français</th><th>🇬🇧 Anglais</th><th>📖 Définition</th><th></th></tr></thead>
-      <tbody id="editWordsBody"></tbody></table>
-    </div>
-    <button class="btn-secondary" style="margin-top:10px;margin-bottom:16px;" onclick="addEditWordRow()">+ Ajouter</button>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-      <button class="btn-primary" onclick="saveEditList()">💾 Enregistrer</button>
-      <button class="btn-danger" onclick="deleteCurrentList()">🗑️ Supprimer</button>
-      <button class="btn-gray" onclick="closeModal('editModal')">Annuler</button>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:4px;">
+      <button class="btn-p" onclick="saveEdit()">💾 Enregistrer</button>
+      <button class="btn-d" onclick="delList()">🗑️ Supprimer</button>
+      <button class="btn-n" onclick="closeModal('editMod')">Annuler</button>
     </div>
   </div>
 </div>
 
-<!-- Reset modal -->
-<div class="modal-overlay" id="resetModal" style="display:none">
-  <div class="modal-box">
-    <h3>⚠️ Effacer tout ?</h3>
-    <p style="margin-bottom:20px;font-weight:600;color:#666;">Supprime toutes les listes et résultats. Impossible à annuler !</p>
-    <div style="display:flex;gap:12px;justify-content:center;">
-      <button class="btn-danger" onclick="resetAll()">Oui, tout effacer</button>
-      <button class="btn-secondary" onclick="closeModal('resetModal')">Annuler</button>
+<div class="modal-overlay" id="resetMod" style="display:none">
+  <div class="modal-box"><h3>⚠️ Effacer tout ?</h3>
+    <p style="margin-bottom:18px;font-weight:600;color:#666;">Supprime listes et résultats. Irréversible !</p>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="btn-d" onclick="doReset()">Oui, effacer</button>
+      <button class="btn-s" onclick="closeModal('resetMod')">Annuler</button>
     </div>
   </div>
 </div>
 
-<!-- Import confirm modal -->
-<div class="modal-overlay" id="importConfirmModal" style="display:none">
-  <div class="modal-box">
-    <h3>📦 Confirmer l'import</h3>
-    <div id="importConfirmText" style="margin-bottom:20px;font-weight:600;color:#555;font-size:15px;"></div>
-    <div style="display:flex;gap:12px;justify-content:center;">
-      <button class="btn-green" onclick="confirmImport()">✅ Importer</button>
-      <button class="btn-gray" onclick="closeModal('importConfirmModal')">Annuler</button>
+<div class="modal-overlay" id="impConfMod" style="display:none">
+  <div class="modal-box"><h3>📦 Confirmer l'import</h3>
+    <div id="impConfTxt" style="margin-bottom:18px;font-weight:600;color:#555;font-size:14px;"></div>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="btn-g" onclick="doConfirmImport()">✅ Importer</button>
+      <button class="btn-n" onclick="closeModal('impConfMod')">Annuler</button>
     </div>
   </div>
 </div>
 
 <script>
-// =============================================
-// STORAGE
-// =============================================
-const VP = {
-  KEYS:{ TEACHER_CODE:'vp_teacher_code', STUDENT_CODE:'vp_student_code', VOCAB_LISTS:'vp_vocab_lists', STUDENT_RESULTS:'vp_student_results' },
-  get teacherCode(){ return localStorage.getItem(this.KEYS.TEACHER_CODE)||'0504' },
-  set teacherCode(v){ localStorage.setItem(this.KEYS.TEACHER_CODE,v) },
-  get studentCode(){ return localStorage.getItem(this.KEYS.STUDENT_CODE)||'VOCAB1' },
-  set studentCode(v){ localStorage.setItem(this.KEYS.STUDENT_CODE,v.toUpperCase()) },
-  get vocabLists(){ try{ return JSON.parse(localStorage.getItem(this.KEYS.VOCAB_LISTS))||[] }catch(e){ return [] } },
-  set vocabLists(v){ localStorage.setItem(this.KEYS.VOCAB_LISTS,JSON.stringify(v)) },
-  get studentResults(){ try{ return JSON.parse(localStorage.getItem(this.KEYS.STUDENT_RESULTS))||{} }catch(e){ return {} } },
-  set studentResults(v){ localStorage.setItem(this.KEYS.STUDENT_RESULTS,JSON.stringify(v)) },
-  saveStudentResult(sId,lId,exIdx,result){
-    const all=this.studentResults;
-    if(!all[sId])all[sId]={};
-    if(!all[sId][lId])all[sId][lId]={};
-    all[sId][lId][`ex${exIdx}`]=result;
-    this.studentResults=all;
-  },
-  getStudentResults(sId,lId){ const a=this.studentResults; return(a[sId]&&a[sId][lId])?a[sId][lId]:{} },
-  addVocabList(list){ const l=this.vocabLists; list.id=Date.now().toString(); l.push(list); this.vocabLists=l; return list },
-  updateVocabList(id,upd){ const l=this.vocabLists,i=l.findIndex(x=>x.id===id); if(i!==-1){l[i]={...l[i],...upd};this.vocabLists=l} },
-  deleteVocabList(id){ this.vocabLists=this.vocabLists.filter(l=>l.id!==id) },
-  getVocabList(id){ return this.vocabLists.find(l=>l.id===id) }
+// ==================== STORAGE ====================
+const VP={
+  K:{TC:'vp_tc',SC:'vp_sc',VL:'vp_vl',SR:'vp_sr'},
+  get tc(){return localStorage.getItem(this.K.TC)||'0504'},
+  set tc(v){localStorage.setItem(this.K.TC,v)},
+  get sc(){return localStorage.getItem(this.K.SC)||'VOCAB1'},
+  set sc(v){localStorage.setItem(this.K.SC,v.toUpperCase())},
+  get vl(){try{return JSON.parse(localStorage.getItem(this.K.VL))||[]}catch{return[]}},
+  set vl(v){localStorage.setItem(this.K.VL,JSON.stringify(v))},
+  get sr(){try{return JSON.parse(localStorage.getItem(this.K.SR))||{}}catch{return{}}},
+  set sr(v){localStorage.setItem(this.K.SR,JSON.stringify(v))},
+  saveSR(sid,lid,ei,res){const a=this.sr;if(!a[sid])a[sid]={};if(!a[sid][lid])a[sid][lid]={};a[sid][lid]['ex'+ei]=res;this.sr=a},
+  getSR(sid,lid){const a=this.sr;return(a[sid]&&a[sid][lid])?a[sid][lid]:{}},
+  addList(l){const a=this.vl;l.id=Date.now()+'';a.push(l);this.vl=a;return l},
+  updList(id,u){const a=this.vl,i=a.findIndex(x=>x.id===id);if(i!==-1){a[i]={...a[i],...u};this.vl=a}},
+  delList(id){this.vl=this.vl.filter(l=>l.id!==id)},
+  getList(id){return this.vl.find(l=>l.id===id)}
 };
 
-// =============================================
-// ROUTER
-// =============================================
-let currentView = 'home';
-function goTo(view){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('view-'+view).classList.add('active');
-  currentView = view;
+// ==================== ROUTER ====================
+function goTo(v){
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
   window.scrollTo(0,0);
-  if(view==='exercises') initExercisesView();
-  if(view==='report') initReportView();
-  if(view==='teacher') initTeacherView();
+  if(v==='exercises')initEx();
+  if(v==='report')initRpt();
+  if(v==='teacher')initTeacher();
 }
 
-// =============================================
-// HELPERS
-// =============================================
-function showModal(id){ document.getElementById(id).style.display='flex' }
-function closeModal(id){ document.getElementById(id).style.display='none' }
-function showNotif(msg,isError=false){
-  const n=document.createElement('div');
-  n.className='notif'+(isError?' error':'');
-  n.textContent=msg;
-  document.body.appendChild(n);
-  setTimeout(()=>n.remove(),3200);
+// ==================== HELPERS ====================
+function showModal(id){document.getElementById(id).style.display='flex'}
+function closeModal(id){document.getElementById(id).style.display='none'}
+function notif(msg,err=false){
+  const n=document.createElement('div');n.className='notif'+(err?' err':'');n.textContent=msg;
+  document.body.appendChild(n);setTimeout(()=>n.remove(),3000);
 }
-function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]] } return a }
+function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r}
 
-// =============================================
-// HOME – PIN
-// =============================================
-let pinValue='';
-function openTeacherPin(){ pinValue='';updatePinDisplay();document.getElementById('pinError').style.display='none';showModal('teacherModal') }
-function pinPress(n){ if(pinValue.length>=4)return; pinValue+=n; updatePinDisplay(); if(pinValue.length===4)setTimeout(checkPin,200) }
-function pinClear(){ pinValue=pinValue.slice(0,-1); updatePinDisplay() }
-function updatePinDisplay(){ const d=document.getElementById('pinDisplay'); d.textContent=[...Array(4)].map((_,i)=>pinValue[i]?'●':'_').join(' ') }
-function checkPin(){
-  if(pinValue===VP.teacherCode){ closeModal('teacherModal'); goTo('teacher') }
-  else{ document.getElementById('pinError').style.display='block'; pinValue=''; updatePinDisplay(); setTimeout(()=>{ document.getElementById('pinError').style.display='none' },2000) }
+// ==================== HOME PIN ====================
+let pin='';
+function openPin(){pin='';updPin();document.getElementById('pinErr').style.display='none';showModal('pinMod')}
+function pp(n){if(pin.length>=4)return;pin+=n;updPin();if(pin.length===4)setTimeout(chkPin,200)}
+function pc(){pin=pin.slice(0,-1);updPin()}
+function updPin(){document.getElementById('pinDisp').textContent=[...Array(4)].map((_,i)=>pin[i]?'●':'_').join(' ')}
+function chkPin(){
+  if(pin===VP.tc){closeModal('pinMod');goTo('teacher')}
+  else{document.getElementById('pinErr').style.display='block';pin='';updPin();setTimeout(()=>document.getElementById('pinErr').style.display='none',2000)}
 }
 
-// =============================================
-// LOGIN
-// =============================================
-let currentStudent = null;
-function updateIdPreview(){
-  const fn=document.getElementById('loginFN').value||'__';
-  const ln=document.getElementById('loginLN').value||'__';
-  document.getElementById('idPreview').textContent=`Identifiant : ${fn} – ${ln}`;
+// ==================== LOGIN ====================
+let curStu=null;
+function updPrev(){
+  const fn=document.getElementById('lFN').value||'__',ln=document.getElementById('lLN').value||'__';
+  document.getElementById('idPrev').textContent=`Identifiant : ${fn} – ${ln}`;
 }
-function loginStudent(){
+function doLogin(){
   const code=document.getElementById('accessCode').value.trim();
-  const fn=document.getElementById('loginFN').value.trim();
-  const ln=document.getElementById('loginLN').value.trim();
-  const classe=document.getElementById('loginClasse').value.trim();
-  const niveau=document.getElementById('loginNiveau').value;
-  if(code!==VP.studentCode){ showNotif("Code d'accès incorrect !",true); return }
-  if(fn.length<2||ln.length<2){ showNotif('Saisis 2 lettres pour le prénom et le nom !',true); return }
-  if(!classe){ showNotif('Indique ta classe !',true); return }
-  currentStudent={ id:`${fn}-${ln}`, firstName:fn, lastName:ln, classe, niveau, loginTime:Date.now() };
+  const fn=document.getElementById('lFN').value.trim();
+  const ln=document.getElementById('lLN').value.trim();
+  const classe=document.getElementById('lClasse').value.trim();
+  const niveau=document.getElementById('lNiveau').value;
+  if(code!==VP.sc){notif("Code d'accès incorrect !",true);return}
+  if(fn.length<2||ln.length<2){notif('2 lettres prénom + 2 lettres nom !',true);return}
+  if(!classe){notif('Indique ta classe !',true);return}
+  curStu={id:`${fn}-${ln}`,firstName:fn,lastName:ln,classe,niveau};
   goTo('exercises');
 }
 
-// =============================================
-// EXERCISES MENU
-// =============================================
-let currentListId = null;
-const EX_NAMES=['','QCM','Français → Anglais','Mot → Définition','Vrai / Faux'];
-const EX_ICONS=['','❓','🔗','📖','✅'];
+// ==================== EXERCISES MENU ====================
+let curListId=null;
+const EXNAMES=['','QCM','Français → Anglais','Mot → Définition','Vrai / Faux'];
+const EXICONS=['','❓','🔗','📖','✅'];
 
-function initExercisesView(){
-  if(!currentStudent){ goTo('login'); return }
-  document.getElementById('welcomeMsg').textContent=`Bienvenue, ${currentStudent.firstName}-${currentStudent.lastName} ! 👋`;
-  document.getElementById('studentBadge').textContent=`${currentStudent.classe}${currentStudent.niveau?' · '+currentStudent.niveau:''}`;
+function stuMatch(l){
+  const c=curStu.classe.toUpperCase();
+  const lf=(l.filiere||'').toUpperCase();
+  return l.classe.toUpperCase().split(',').map(s=>s.trim()).some(cl=>cl===c||c.includes(lf));
+}
+
+function initEx(){
+  if(!curStu){goTo('login');return}
+  document.getElementById('wMsg').textContent=`Bienvenue, ${curStu.firstName}-${curStu.lastName} ! 👋`;
+  document.getElementById('sBadge').textContent=`${curStu.classe}${curStu.niveau?' · '+curStu.niveau:''}`;
   loadLists();
 }
-
-function studentMatchesList(l){
-  const c=currentStudent.classe.toUpperCase();
-  const lf=(l.filiere||'').toUpperCase();
-  const lc=(l.classe||'').toUpperCase();
-  // Check if student's class matches any of the comma-separated classes
-  const classeList=lc.split(',').map(s=>s.trim());
-  return classeList.some(cl=>cl===c||c.includes(lf)||cl==='');
-}
-
 function loadLists(){
-  const matched=VP.vocabLists.filter(studentMatchesList);
-  const container=document.getElementById('listContainer');
-  document.getElementById('listSelectorCard').style.display='block';
-  document.getElementById('exercisesSection').style.display='none';
-  if(matched.length===0){
-    container.innerHTML=`<div class="empty-state"><span class="empty-icon">📭</span><p>Aucune liste pour ta classe.<br>Demande à ton prof !</p></div>`;
-    return;
-  }
-  container.innerHTML=matched.map(l=>{
-    const r=VP.getStudentResults(currentStudent.id,l.id);
-    const done=Object.keys(r).length;
-    return `<div class="vocab-list-item" onclick="selectList('${l.id}')">
-      <div class="vl-info"><div class="vl-title">${l.name}</div><div class="vl-meta">${l.filiere} · ${l.classe} · ${l.words.length} mots</div></div>
-      <span class="vl-badge">${done}/4</span><span style="font-size:20px;">→</span>
+  const ml=VP.vl.filter(stuMatch);
+  const c=document.getElementById('listCont');
+  document.getElementById('listSelCard').style.display='block';
+  document.getElementById('exSection').style.display='none';
+  if(!ml.length){c.innerHTML=`<div class="empty"><span class="ei">📭</span><p>Aucune liste pour ta classe.<br>Demande à ton prof !</p></div>`;return}
+  c.innerHTML=ml.map(l=>{
+    const r=VP.getSR(curStu.id,l.id);const done=Object.keys(r).length;
+    return`<div class="list-item" onclick="selList('${l.id}')">
+      <div class="li-info"><div class="li-title">${l.name}</div><div class="li-meta">${l.filiere} · ${l.classe} · ${l.words.length} mots</div></div>
+      <span class="li-badge">${done}/4</span><span style="font-size:18px;">→</span>
     </div>`;
   }).join('');
 }
-
-function selectList(listId){
-  currentListId=listId;
-  const list=VP.getVocabList(listId);
-  if(!list)return;
-  document.getElementById('listSelectorCard').style.display='none';
-  document.getElementById('exercisesSection').style.display='block';
+function selList(id){
+  curListId=id;const list=VP.getList(id);if(!list)return;
+  document.getElementById('listSelCard').style.display='none';
+  document.getElementById('exSection').style.display='block';
   document.getElementById('listTitle').textContent=`📚 ${list.name}`;
   renderExGrid();
 }
-
 function renderExGrid(){
-  const results=VP.getStudentResults(currentStudent.id,currentListId);
-  document.getElementById('exerciseGrid').innerHTML=[1,2,3,4].map(i=>{
-    const r=results[`ex${i}`];
-    const badge=r?`<div class="ex-badge">✓</div>`:'';
-    const score=r?`<p style="color:var(--green-dark);font-weight:800;margin-top:8px;font-size:13px;">✓ ${r.score}/${r.total} pts</p>`:'';
-    return `<div class="exercise-card ex-${i}" onclick="startExercise(${i})">
-      ${badge}<span class="ex-icon">${EX_ICONS[i]}</span>
-      <h3>${EX_NAMES[i]}</h3><p>${['','QCM anglais→français','Associe les mots','Mot et définition','Vrai ou Faux'][i]}</p>${score}
+  const res=VP.getSR(curStu.id,curListId);
+  document.getElementById('exGrid').innerHTML=[1,2,3,4].map(i=>{
+    const r=res['ex'+i];
+    return`<div class="ex-card c${i}" onclick="startEx(${i})">
+      ${r?'<div class="ex-done">✓</div>':''}
+      <span class="ex-icon">${EXICONS[i]}</span>
+      <h3>${EXNAMES[i]}</h3>
+      <p>${['','Anglais → Français','Associe les mots','Mot et définition','Vrai ou Faux'][i]}</p>
+      ${r?`<p style="color:var(--green-dark);font-weight:800;margin-top:6px;font-size:12px;">✓ ${r.score}/${r.total} pts</p>`:''}
     </div>`;
   }).join('');
 }
+function backToLists(){curListId=null;loadLists()}
+function startEx(n){curExN=n;initExercise();goTo('exercise')}
 
-function backToLists(){ currentListId=null; loadLists() }
-function startExercise(n){ currentExNum=n; initExercise(); goTo('exercise') }
-
-// =============================================
-// EXERCISE ENGINE
-// =============================================
-let currentExNum=0, exWords=[], exQuestions=[], exCurrentQ=0, exScore=0, exAnswers=[];
-let matchPairs=[], matchLeft=[], matchRight=[], selectedLeft=null, selectedRight=null, matchAnswers=[];
+// ==================== EXERCISE ENGINE ====================
+let curExN=0,exWords=[],exQs=[],exQi=0,exSc=0,exAns=[];
+let mPairs=[],mLeft=[],mRight=[],mSelL=null,mSelR=null,mAns=[];
 let toastEl=null;
 
 function initExercise(){
-  const list=VP.getVocabList(currentListId);
-  if(!list){ goTo('exercises'); return }
-  document.getElementById('exViewTitle').textContent=`${EX_ICONS[currentExNum]} ${EX_NAMES[currentExNum]}`;
-  exWords=pickWords(list.words,currentExNum);
-  exQuestions=[]; exCurrentQ=0; exScore=0; exAnswers=[];
-  matchPairs=[]; matchLeft=[]; matchRight=[]; selectedLeft=null; selectedRight=null; matchAnswers=[];
-  buildExercise(list);
+  const list=VP.getList(curListId);if(!list){goTo('exercises');return}
+  document.getElementById('exVTitle').textContent=`${EXICONS[curExN]} ${EXNAMES[curExN]}`;
+  exWords=pickW(list.words,curExN);
+  exQs=[];exQi=0;exSc=0;exAns=[];mPairs=[];mLeft=[];mRight=[];mSelL=null;mSelR=null;mAns=[];
+  buildEx(list);
+}
+function pickW(all,ei){
+  const off=Math.floor((ei-1)*all.length/4)%all.length;
+  return shuffle([...all.slice(off),...all.slice(0,off)]).slice(0,Math.min(12,all.length));
+}
+function buildEx(list){
+  if(curExN===1)bldQCM(list);
+  else if(curExN===2)bldMatchFR();
+  else if(curExN===3)bldMatchDef();
+  else bldTF(list);
 }
 
-function pickWords(all,exIdx){
-  const offset=Math.floor((exIdx-1)*all.length/4)%all.length;
-  const rotated=[...all.slice(offset),...all.slice(0,offset)];
-  return shuffle(rotated).slice(0,Math.min(12,all.length));
-}
-
-function buildExercise(list){
-  switch(currentExNum){
-    case 1: buildQCM(list); break;
-    case 2: buildMatchFR(); break;
-    case 3: buildMatchDef(); break;
-    case 4: buildTrueFalse(list); break;
-  }
-}
-
-// EX1 – QCM
-function buildQCM(list){
-  exQuestions=exWords.map(w=>{
-    const wrongs=shuffle(list.words.filter(x=>x.en!==w.en)).slice(0,3).map(x=>x.fr);
-    const choices=shuffle([w.fr,...wrongs]);
-    return{question:w.en,correct:w.fr,choices,wordEn:w.en,wordFr:w.fr};
+// QCM
+function bldQCM(list){
+  exQs=exWords.map(w=>{
+    const wr=shuffle(list.words.filter(x=>x.en!==w.en)).slice(0,3).map(x=>x.fr);
+    return{q:w.en,correct:w.fr,choices:shuffle([w.fr,...wr]),wEn:w.en,wFr:w.fr};
   });
-  renderQCM();
+  rndQCM();
 }
-function renderQCM(){
-  const q=exQuestions[exCurrentQ];
-  document.getElementById('exerciseContent').innerHTML=`
-    <div class="exercise-header"><div style="width:100%">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <span class="ex-title">❓ QCM</span><span class="q-counter">${exCurrentQ+1} / ${exQuestions.length}</span>
+function rndQCM(){
+  const q=exQs[exQi];
+  document.getElementById('exContent').innerHTML=`
+    <div class="ex-hdr"><div style="width:100%">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span class="ex-title">❓ QCM</span><span class="q-cnt">${exQi+1}/${exQs.length}</span>
       </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${(exCurrentQ/exQuestions.length)*100}%"></div></div>
+      <div class="prog-wrap"><div class="prog-fill" style="width:${(exQi/exQs.length)*100}%"></div></div>
     </div></div>
-    <div class="question-card">
-      <p style="color:#aaa;font-size:13px;font-weight:800;text-align:center;margin-bottom:8px;">Que signifie ce mot en anglais ?</p>
-      <div class="question-text">🇬🇧 ${q.question}</div>
+    <div class="q-card">
+      <p style="color:#aaa;font-size:12px;font-weight:800;text-align:center;margin-bottom:6px;">Que signifie ce mot ?</p>
+      <div class="q-text">🇬🇧 ${q.q}</div>
       <div class="choices">${q.choices.map((c,i)=>`
-        <button class="choice-btn" onclick="answerQCM(${i})" id="qc-${i}">
-          <span class="choice-letter">${String.fromCharCode(65+i)}</span>${c}
+        <button class="ch-btn" onclick="ansQCM(${i})" id="qc${i}">
+          <span class="ch-ltr">${String.fromCharCode(65+i)}</span>${c}
         </button>`).join('')}
       </div>
     </div>`;
 }
-function answerQCM(idx){
-  const q=exQuestions[exCurrentQ]; const chosen=q.choices[idx]; const ok=chosen===q.correct;
-  q.choices.forEach((_,i)=>{ const b=document.getElementById(`qc-${i}`); b.disabled=true; if(q.choices[i]===q.correct)b.classList.add('correct'); else if(i===idx&&!ok)b.classList.add('wrong') });
-  if(ok)exScore++;
-  exAnswers.push({question:`Que signifie "${q.question}" ?`,userAnswer:chosen,correctAnswer:q.correct,isCorrect:ok,wordEn:q.wordEn});
-  showToast(ok,q.correct); setTimeout(nextQ,1400);
+function ansQCM(idx){
+  const q=exQs[exQi];const ch=q.choices[idx];const ok=ch===q.correct;
+  q.choices.forEach((_,i)=>{const b=document.getElementById('qc'+i);b.disabled=true;if(q.choices[i]===q.correct)b.classList.add('ok');else if(i===idx&&!ok)b.classList.add('ko')});
+  if(ok)exSc++;
+  exAns.push({question:`Que signifie "${q.q}" ?`,userAnswer:ch,correctAnswer:q.correct,isCorrect:ok,wEn:q.wEn});
+  shToast(ok,q.correct);setTimeout(nxtQ,1400);
 }
 
-// EX2 – MATCH FR→EN
-function buildMatchFR(){
-  const rounds=[]; const sw=shuffle(exWords); for(let i=0;i<sw.length;i+=6)rounds.push(sw.slice(i,i+6));
-  matchPairs=rounds; matchAnswers=[]; renderMatchFR(0);
+// MATCH FR→EN
+function bldMatchFR(){
+  const rds=[];const sw=shuffle(exWords);for(let i=0;i<sw.length;i+=6)rds.push(sw.slice(i,i+6));
+  mPairs=rds;mAns=[];rndMFR(0);
 }
-function renderMatchFR(ri){
-  const pairs=matchPairs[ri]||[]; if(!pairs.length){exAnswers=matchAnswers;finishExercise();return}
-  const lefts=shuffle(pairs.map(p=>p.fr)); const rights=shuffle(pairs.map(p=>p.en));
-  matchLeft=lefts; matchRight=rights; selectedLeft=null; selectedRight=null;
-  const total=matchPairs.reduce((a,r)=>a+r.length,0); const done=matchPairs.slice(0,ri).reduce((a,r)=>a+r.length,0);
-  document.getElementById('exerciseContent').innerHTML=`
-    <div class="exercise-header"><div style="width:100%">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <span class="ex-title">🔗 FR→EN</span><span class="q-counter">${done+1}–${Math.min(done+pairs.length,total)} / ${total}</span>
+function rndMFR(ri){
+  const pairs=mPairs[ri]||[];if(!pairs.length){exAns=mAns;finEx();return}
+  const L=shuffle(pairs.map(p=>p.fr));const R=shuffle(pairs.map(p=>p.en));
+  mLeft=L;mRight=R;mSelL=null;mSelR=null;
+  const tot=mPairs.reduce((a,r)=>a+r.length,0);const dn=mPairs.slice(0,ri).reduce((a,r)=>a+r.length,0);
+  document.getElementById('exContent').innerHTML=`
+    <div class="ex-hdr"><div style="width:100%">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span class="ex-title">🔗 FR→EN</span><span class="q-cnt">${dn+1}–${Math.min(dn+pairs.length,tot)}/${tot}</span>
       </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${(done/total)*100}%;background:linear-gradient(90deg,var(--purple),var(--blue))"></div></div>
+      <div class="prog-wrap"><div class="prog-fill" style="width:${(dn/tot)*100}%;background:linear-gradient(90deg,var(--purple),var(--blue))"></div></div>
     </div></div>
-    <div class="question-card">
-      <p class="question-text" style="font-size:17px;">Associe chaque mot français à sa traduction !</p>
-      <div class="match-container">
-        <div><h4>🇫🇷 Français</h4>${lefts.map((w,i)=>`<div class="match-item" id="ml-${i}" onclick="selML(${i})">${w}</div>`).join('')}</div>
-        <div><h4>🇬🇧 Anglais</h4>${rights.map((w,i)=>`<div class="match-item" id="mr-${i}" onclick="selMR(${i})">${w}</div>`).join('')}</div>
+    <div class="q-card">
+      <p class="q-text" style="font-size:16px;">Associe chaque mot à sa traduction !</p>
+      <div class="match-wrap">
+        <div><h4>🇫🇷 Français</h4>${L.map((w,i)=>`<div class="m-item" id="ml${i}" onclick="slML(${i})">${w}</div>`).join('')}</div>
+        <div><h4>🇬🇧 Anglais</h4>${R.map((w,i)=>`<div class="m-item" id="mr${i}" onclick="slMR(${i})">${w}</div>`).join('')}</div>
       </div>
     </div>`;
-  window._mdata={pairs,ri};
+  window._md={pairs,ri};
 }
-function selML(idx){ if(document.getElementById(`ml-${idx}`).classList.contains('matched'))return; document.querySelectorAll('[id^="ml-"]').forEach(e=>e.classList.remove('selected')); selectedLeft=idx; document.getElementById(`ml-${idx}`).classList.add('selected'); tryMP() }
-function selMR(idx){ if(document.getElementById(`mr-${idx}`).classList.contains('matched'))return; document.querySelectorAll('[id^="mr-"]').forEach(e=>e.classList.remove('selected')); selectedRight=idx; document.getElementById(`mr-${idx}`).classList.add('selected'); tryMP() }
-function tryMP(){
-  if(selectedLeft===null||selectedRight===null)return;
-  const{pairs,ri}=window._mdata; const fr=matchLeft[selectedLeft]; const en=matchRight[selectedRight];
-  const pair=pairs.find(p=>p.fr===fr); const ok=pair&&pair.en===en;
+function slML(i){if(document.getElementById('ml'+i).classList.contains('matched'))return;document.querySelectorAll('[id^="ml"]').forEach(e=>e.classList.remove('sel'));mSelL=i;document.getElementById('ml'+i).classList.add('sel');tryM()}
+function slMR(i){if(document.getElementById('mr'+i).classList.contains('matched'))return;document.querySelectorAll('[id^="mr"]').forEach(e=>e.classList.remove('sel'));mSelR=i;document.getElementById('mr'+i).classList.add('sel');tryM()}
+function tryM(){
+  if(mSelL===null||mSelR===null)return;
+  const{pairs,ri}=window._md;const fr=mLeft[mSelL];const en=mRight[mSelR];
+  const pair=pairs.find(p=>p.fr===fr);const ok=pair&&pair.en===en;
   if(ok){
-    [`ml-${selectedLeft}`,`mr-${selectedRight}`].forEach(id=>{ document.getElementById(id).classList.remove('selected'); document.getElementById(id).classList.add('matched') });
-    exScore++; matchAnswers.push({question:`${fr} → ?`,userAnswer:en,correctAnswer:pair.en,isCorrect:true,wordEn:pair.en});
-    if(document.querySelectorAll('.match-item.matched').length>=pairs.length*2)
-      setTimeout(()=>{ if(ri+1<matchPairs.length)renderMatchFR(ri+1); else{exAnswers=matchAnswers;finishExercise()} },600);
-  } else {
-    [`ml-${selectedLeft}`,`mr-${selectedRight}`].forEach(id=>document.getElementById(id).classList.add('wrong-match'));
+    ['ml'+mSelL,'mr'+mSelR].forEach(id=>{document.getElementById(id).classList.remove('sel');document.getElementById(id).classList.add('matched')});
+    exSc++;mAns.push({question:`${fr} → ?`,userAnswer:en,correctAnswer:pair.en,isCorrect:true,wEn:pair.en});
+    if(document.querySelectorAll('.m-item.matched').length>=pairs.length*2)
+      setTimeout(()=>{if(ri+1<mPairs.length)rndMFR(ri+1);else{exAns=mAns;finEx()}},600);
+  }else{
+    ['ml'+mSelL,'mr'+mSelR].forEach(id=>document.getElementById(id).classList.add('bad'));
     const cp=pairs.find(p=>p.fr===fr);
-    matchAnswers.push({question:`${fr} → ?`,userAnswer:en,correctAnswer:cp?cp.en:'?',isCorrect:false,wordEn:cp?cp.en:''});
-    setTimeout(()=>{ document.getElementById(`ml-${selectedLeft}`)?.classList.remove('selected','wrong-match'); document.getElementById(`mr-${selectedRight}`)?.classList.remove('selected','wrong-match'); selectedLeft=null; selectedRight=null },700);
+    mAns.push({question:`${fr} → ?`,userAnswer:en,correctAnswer:cp?cp.en:'?',isCorrect:false,wEn:cp?cp.en:''});
+    setTimeout(()=>{document.getElementById('ml'+mSelL)?.classList.remove('sel','bad');document.getElementById('mr'+mSelR)?.classList.remove('sel','bad');mSelL=null;mSelR=null},700);
     return;
   }
-  selectedLeft=null; selectedRight=null;
+  mSelL=null;mSelR=null;
 }
 
-// EX3 – MATCH MOT→DEF
-function buildMatchDef(){
-  const withDef=exWords.filter(w=>w.definition&&w.definition.trim());
-  if(withDef.length<3){ buildMatchFR(); return }
-  const rounds=[]; const sw=shuffle(withDef); for(let i=0;i<sw.length;i+=5)rounds.push(sw.slice(i,Math.min(i+5,sw.length)));
-  matchPairs=rounds; matchAnswers=[]; renderMatchDef(0);
+// MATCH MOT→DEF
+function bldMatchDef(){
+  const wd=exWords.filter(w=>w.definition&&w.definition.trim());
+  if(wd.length<3){bldMatchFR();return}
+  const rds=[];const sw=shuffle(wd);for(let i=0;i<sw.length;i+=5)rds.push(sw.slice(i,Math.min(i+5,sw.length)));
+  mPairs=rds;mAns=[];rndMDef(0);
 }
-function renderMatchDef(ri){
-  const pairs=matchPairs[ri]||[]; if(!pairs.length){exAnswers=matchAnswers;finishExercise();return}
-  const lefts=shuffle(pairs.map(p=>p.en)); const rights=shuffle(pairs.map(p=>p.definition));
-  matchLeft=lefts; matchRight=rights; selectedLeft=null; selectedRight=null;
-  const total=matchPairs.reduce((a,r)=>a+r.length,0); const done=matchPairs.slice(0,ri).reduce((a,r)=>a+r.length,0);
-  document.getElementById('exerciseContent').innerHTML=`
-    <div class="exercise-header"><div style="width:100%">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <span class="ex-title">📖 Mot→Déf.</span><span class="q-counter">${done+1}–${Math.min(done+pairs.length,total)} / ${total}</span>
+function rndMDef(ri){
+  const pairs=mPairs[ri]||[];if(!pairs.length){exAns=mAns;finEx();return}
+  const L=shuffle(pairs.map(p=>p.en));const R=shuffle(pairs.map(p=>p.definition));
+  mLeft=L;mRight=R;mSelL=null;mSelR=null;
+  const tot=mPairs.reduce((a,r)=>a+r.length,0);const dn=mPairs.slice(0,ri).reduce((a,r)=>a+r.length,0);
+  document.getElementById('exContent').innerHTML=`
+    <div class="ex-hdr"><div style="width:100%">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span class="ex-title">📖 Mot→Déf.</span><span class="q-cnt">${dn+1}–${Math.min(dn+pairs.length,tot)}/${tot}</span>
       </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${(done/total)*100}%;background:linear-gradient(90deg,var(--blue),var(--purple))"></div></div>
+      <div class="prog-wrap"><div class="prog-fill" style="width:${(dn/tot)*100}%;background:linear-gradient(90deg,var(--blue),var(--purple))"></div></div>
     </div></div>
-    <div class="question-card">
-      <p class="question-text" style="font-size:17px;">Associe chaque mot à sa définition en anglais !</p>
-      <div class="match-container">
-        <div><h4>🇬🇧 Mot</h4>${lefts.map((w,i)=>`<div class="match-item" id="dl-${i}" onclick="selDL(${i})">${w}</div>`).join('')}</div>
-        <div><h4>📝 Définition</h4>${rights.map((w,i)=>`<div class="match-item" id="dr-${i}" style="font-size:13px;text-align:left;" onclick="selDR(${i})">${w}</div>`).join('')}</div>
+    <div class="q-card">
+      <p class="q-text" style="font-size:16px;">Associe chaque mot à sa définition !</p>
+      <div class="match-wrap">
+        <div><h4>🇬🇧 Mot</h4>${L.map((w,i)=>`<div class="m-item" id="dl${i}" onclick="slDL(${i})">${w}</div>`).join('')}</div>
+        <div><h4>📝 Définition</h4>${R.map((w,i)=>`<div class="m-item" id="dr${i}" style="font-size:12px;text-align:left;" onclick="slDR(${i})">${w}</div>`).join('')}</div>
       </div>
     </div>`;
-  window._mdata={pairs,ri};
+  window._md={pairs,ri};
 }
-function selDL(idx){ if(document.getElementById(`dl-${idx}`).classList.contains('matched'))return; document.querySelectorAll('[id^="dl-"]').forEach(e=>e.classList.remove('selected')); selectedLeft=idx; document.getElementById(`dl-${idx}`).classList.add('selected'); tryDP() }
-function selDR(idx){ if(document.getElementById(`dr-${idx}`).classList.contains('matched'))return; document.querySelectorAll('[id^="dr-"]').forEach(e=>e.classList.remove('selected')); selectedRight=idx; document.getElementById(`dr-${idx}`).classList.add('selected'); tryDP() }
-function tryDP(){
-  if(selectedLeft===null||selectedRight===null)return;
-  const{pairs,ri}=window._mdata; const en=matchLeft[selectedLeft]; const def=matchRight[selectedRight];
-  const pair=pairs.find(p=>p.en===en); const ok=pair&&pair.definition===def;
+function slDL(i){if(document.getElementById('dl'+i).classList.contains('matched'))return;document.querySelectorAll('[id^="dl"]').forEach(e=>e.classList.remove('sel'));mSelL=i;document.getElementById('dl'+i).classList.add('sel');tryD()}
+function slDR(i){if(document.getElementById('dr'+i).classList.contains('matched'))return;document.querySelectorAll('[id^="dr"]').forEach(e=>e.classList.remove('sel'));mSelR=i;document.getElementById('dr'+i).classList.add('sel');tryD()}
+function tryD(){
+  if(mSelL===null||mSelR===null)return;
+  const{pairs,ri}=window._md;const en=mLeft[mSelL];const def=mRight[mSelR];
+  const pair=pairs.find(p=>p.en===en);const ok=pair&&pair.definition===def;
   if(ok){
-    [`dl-${selectedLeft}`,`dr-${selectedRight}`].forEach(id=>{ document.getElementById(id).classList.remove('selected'); document.getElementById(id).classList.add('matched') });
-    exScore++; matchAnswers.push({question:`${en} → définition ?`,userAnswer:def.slice(0,50),correctAnswer:def.slice(0,50),isCorrect:true,wordEn:en});
-    if(document.querySelectorAll('.match-item.matched').length>=pairs.length*2)
-      setTimeout(()=>{ if(ri+1<matchPairs.length)renderMatchDef(ri+1); else{exAnswers=matchAnswers;finishExercise()} },600);
-  } else {
-    [`dl-${selectedLeft}`,`dr-${selectedRight}`].forEach(id=>document.getElementById(id).classList.add('wrong-match'));
-    matchAnswers.push({question:`${en} → définition ?`,userAnswer:def.slice(0,50),correctAnswer:pair?pair.definition.slice(0,50):'?',isCorrect:false,wordEn:en});
-    setTimeout(()=>{ document.getElementById(`dl-${selectedLeft}`)?.classList.remove('selected','wrong-match'); document.getElementById(`dr-${selectedRight}`)?.classList.remove('selected','wrong-match'); selectedLeft=null; selectedRight=null },700);
+    ['dl'+mSelL,'dr'+mSelR].forEach(id=>{document.getElementById(id).classList.remove('sel');document.getElementById(id).classList.add('matched')});
+    exSc++;mAns.push({question:`${en} → def ?`,userAnswer:def.slice(0,50),correctAnswer:def.slice(0,50),isCorrect:true,wEn:en});
+    if(document.querySelectorAll('.m-item.matched').length>=pairs.length*2)
+      setTimeout(()=>{if(ri+1<mPairs.length)rndMDef(ri+1);else{exAns=mAns;finEx()}},600);
+  }else{
+    ['dl'+mSelL,'dr'+mSelR].forEach(id=>document.getElementById(id).classList.add('bad'));
+    mAns.push({question:`${en} → def ?`,userAnswer:def.slice(0,50),correctAnswer:pair?pair.definition.slice(0,50):'?',isCorrect:false,wEn:en});
+    setTimeout(()=>{document.getElementById('dl'+mSelL)?.classList.remove('sel','bad');document.getElementById('dr'+mSelR)?.classList.remove('sel','bad');mSelL=null;mSelR=null},700);
     return;
   }
-  selectedLeft=null; selectedRight=null;
+  mSelL=null;mSelR=null;
 }
 
-// EX4 – VRAI/FAUX
-function buildTrueFalse(list){
-  exQuestions=shuffle(exWords).map(w=>{
-    const isT=Math.random()>.5; let stmt,correct;
-    if(isT){ stmt=`"${w.en}" means "${w.fr}" in French.`; correct=true }
-    else{ const wrong=shuffle(list.words.filter(x=>x.fr!==w.fr))[0]; stmt=`"${w.en}" means "${wrong?wrong.fr:'something else'}" in French.`; correct=false }
-    return{statement:stmt,correct,wordEn:w.en,wordFr:w.fr};
+// VRAI/FAUX
+function bldTF(list){
+  exQs=shuffle(exWords).map(w=>{
+    const iT=Math.random()>.5;let stmt,correct;
+    if(iT){stmt=`"${w.en}" means "${w.fr}" in French.`;correct=true}
+    else{const wr=shuffle(list.words.filter(x=>x.fr!==w.fr))[0];stmt=`"${w.en}" means "${wr?wr.fr:'something else'}" in French.`;correct=false}
+    return{statement:stmt,correct,wEn:w.en,wFr:w.fr};
   });
-  renderTF();
+  rndTF();
 }
-function renderTF(){
-  const q=exQuestions[exCurrentQ];
-  document.getElementById('exerciseContent').innerHTML=`
-    <div class="exercise-header"><div style="width:100%">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <span class="ex-title">✅ Vrai / Faux</span><span class="q-counter">${exCurrentQ+1} / ${exQuestions.length}</span>
+function rndTF(){
+  const q=exQs[exQi];
+  document.getElementById('exContent').innerHTML=`
+    <div class="ex-hdr"><div style="width:100%">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span class="ex-title">✅ Vrai / Faux</span><span class="q-cnt">${exQi+1}/${exQs.length}</span>
       </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${(exCurrentQ/exQuestions.length)*100}%;background:linear-gradient(90deg,var(--green),#00d2a0)"></div></div>
+      <div class="prog-wrap"><div class="prog-fill" style="width:${(exQi/exQs.length)*100}%;background:linear-gradient(90deg,var(--green),#00d2a0)"></div></div>
     </div></div>
-    <div class="question-card">
-      <p style="color:#aaa;font-size:13px;font-weight:800;text-align:center;margin-bottom:8px;">Cette affirmation est-elle correcte ?</p>
-      <div class="question-text" style="font-size:19px;">${q.statement}</div>
-      <div class="tf-choices">
-        <button class="tf-btn true-btn" id="tf-true" onclick="answerTF(true)">✅ VRAI</button>
-        <button class="tf-btn false-btn" id="tf-false" onclick="answerTF(false)">❌ FAUX</button>
+    <div class="q-card">
+      <p style="color:#aaa;font-size:12px;font-weight:800;text-align:center;margin-bottom:6px;">Cette affirmation est-elle correcte ?</p>
+      <div class="q-text" style="font-size:18px;">${q.statement}</div>
+      <div class="tf-grid">
+        <button class="tf-btn tv" id="tftrue" onclick="ansTF(true)">✅ VRAI</button>
+        <button class="tf-btn tf" id="tffalse" onclick="ansTF(false)">❌ FAUX</button>
       </div>
     </div>`;
 }
-function answerTF(ua){
-  const q=exQuestions[exCurrentQ]; const ok=ua===q.correct; if(ok)exScore++;
-  document.getElementById('tf-true').disabled=true; document.getElementById('tf-false').disabled=true;
-  if(ua){ document.getElementById('tf-true').classList.add(ok?'correct':'wrong'); if(!ok)document.getElementById('tf-false').classList.add('correct') }
-  else{ document.getElementById('tf-false').classList.add(ok?'correct':'wrong'); if(!ok)document.getElementById('tf-true').classList.add('correct') }
-  exAnswers.push({question:q.statement,userAnswer:ua?'VRAI':'FAUX',correctAnswer:q.correct?'VRAI':'FAUX',isCorrect:ok,wordEn:q.wordEn});
-  showToast(ok,ok?'✓ Correct !':q.wordEn+'='+q.wordFr); setTimeout(nextQ,1400);
+function ansTF(ua){
+  const q=exQs[exQi];const ok=ua===q.correct;if(ok)exSc++;
+  document.getElementById('tftrue').disabled=true;document.getElementById('tffalse').disabled=true;
+  if(ua){document.getElementById('tftrue').classList.add(ok?'ok':'ko');if(!ok)document.getElementById('tffalse').classList.add('ok')}
+  else{document.getElementById('tffalse').classList.add(ok?'ok':'ko');if(!ok)document.getElementById('tftrue').classList.add('ok')}
+  exAns.push({question:q.statement,userAnswer:ua?'VRAI':'FAUX',correctAnswer:q.correct?'VRAI':'FAUX',isCorrect:ok,wEn:q.wEn});
+  shToast(ok,ok?'✓ Correct !':q.wEn+'='+q.wFr);setTimeout(nxtQ,1400);
 }
 
 // SHARED
-function nextQ(){ removeToast(); exCurrentQ++; if(exCurrentQ>=exQuestions.length)finishExercise(); else{ if(currentExNum===1)renderQCM(); if(currentExNum===4)renderTF() } }
-function finishExercise(){
-  const total=(currentExNum===2||currentExNum===3)?matchPairs.reduce((a,r)=>a+r.length,0):exQuestions.length;
-  VP.saveStudentResult(currentStudent.id,currentListId,currentExNum,{score:exScore,total,answers:exAnswers,completedAt:Date.now()});
-  renderResultScreen(exScore,total,exAnswers);
+function nxtQ(){rmToast();exQi++;if(exQi>=exQs.length)finEx();else{if(curExN===1)rndQCM();if(curExN===4)rndTF()}}
+function finEx(){
+  const tot=(curExN===2||curExN===3)?mPairs.reduce((a,r)=>a+r.length,0):exQs.length;
+  VP.saveSR(curStu.id,curListId,curExN,{score:exSc,total:tot,answers:exAns,completedAt:Date.now()});
+  rndResult(exSc,tot,exAns);
 }
-function renderResultScreen(sc,total,ans){
-  const pct=Math.round((sc/total)*100);
-  const emoji=pct>=80?'🏆':pct>=60?'😊':pct>=40?'💪':'📚';
+function rndResult(sc,tot,ans){
+  const pct=Math.round((sc/tot)*100);
+  const em=pct>=80?'🏆':pct>=60?'😊':pct>=40?'💪':'📚';
   const msg=pct>=80?'Excellent !':pct>=60?'Bien joué !':pct>=40?'Continue !':"À retravailler !";
-  document.getElementById('exerciseContent').innerHTML=`
-    <div class="result-screen">
-      <div class="score-circle" style="background:conic-gradient(var(--green) ${pct}%,#E8E0D5 0%)">
-        <div class="score-circle-inner"><div class="score-number">${sc}/${total}</div><div class="score-label">points</div></div>
+  document.getElementById('exContent').innerHTML=`
+    <div class="result-sc">
+      <div class="sc-circle" style="background:conic-gradient(var(--green) ${pct}%,#E8E0D5 0%)">
+        <div class="sc-inner"><div class="sc-num">${sc}/${tot}</div><div class="sc-lbl">points</div></div>
       </div>
-      <div class="score-msg">${emoji} ${msg}</div>
-      <div class="score-sub">${pct}% de bonnes réponses</div>
-      <div class="info-card" style="text-align:left;margin-top:20px;">
-        <h2>📋 Détail des réponses</h2>
-        <div class="result-list">${ans.map(a=>`
-          <div class="result-item">
-            <span style="font-size:20px;flex-shrink:0;">${a.isCorrect?'✅':'❌'}</span>
-            <div class="result-text">
-              <div class="q">${a.question}</div>
+      <div class="sc-msg">${em} ${msg}</div>
+      <div class="sc-sub">${pct}% de bonnes réponses</div>
+      <div class="card" style="text-align:left;margin-top:18px;">
+        <h2>📋 Détail</h2>
+        <div class="res-list">${ans.map(a=>`
+          <div class="res-item">
+            <span style="font-size:18px;flex-shrink:0;">${a.isCorrect?'✅':'❌'}</span>
+            <div class="res-txt"><div class="res-q">${a.question}</div>
               <div>Ta réponse : <strong>${a.userAnswer}</strong></div>
-              ${!a.isCorrect?`<div class="correct-ans">✓ Correct : ${a.correctAnswer}</div>`:''}
+              ${!a.isCorrect?`<div class="res-ok">✓ Correct : ${a.correctAnswer}</div>`:''}
             </div>
           </div>`).join('')}
         </div>
       </div>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px;">
-        <button class="btn-primary" onclick="goTo('exercises');renderExGrid()">← Retour aux exercices</button>
-        <button class="btn-secondary" onclick="goTo('report')">📄 Voir mon rapport</button>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <button class="btn-p" onclick="goTo('exercises');renderExGrid()">← Exercices</button>
+        <button class="btn-s" onclick="goTo('report')">📄 Rapport</button>
       </div>
     </div>`;
 }
-function showToast(ok,correctAnswer){
-  removeToast(); toastEl=document.createElement('div');
-  toastEl.className=`feedback-toast ${ok?'correct-toast':'wrong-toast'}`;
-  toastEl.textContent=ok?'✅ Bravo !':`❌ Correct : ${correctAnswer}`;
-  document.body.appendChild(toastEl);
-}
-function removeToast(){ if(toastEl){toastEl.remove();toastEl=null} }
-function confirmBackExercise(){ showModal('backExModal') }
+function shToast(ok,ca){rmToast();toastEl=document.createElement('div');toastEl.className=`toast ${ok?'toast-ok':'toast-ko'}`;toastEl.textContent=ok?'✅ Bravo !':`❌ Correct : ${ca}`;document.body.appendChild(toastEl)}
+function rmToast(){if(toastEl){toastEl.remove();toastEl=null}}
 
-// =============================================
-// REPORT
-// =============================================
-let reportListId = null;
-function initReportView(){
-  if(!currentStudent){ goTo('login'); return }
-  const myLists=VP.vocabLists.filter(studentMatchesList);
-  const picker=document.getElementById('reportListPicker');
-  if(!myLists.length){ picker.innerHTML='<p style="color:#aaa;font-weight:700;">Aucune liste disponible.</p>'; return }
-  picker.innerHTML=myLists.map(l=>`
-    <div class="vocab-list-item" id="rpick-${l.id}" onclick="pickReportList('${l.id}')" style="border-left-color:var(--orange)">
-      <div class="vl-info"><div class="vl-title">${l.name}</div><div class="vl-meta">${l.filiere} · ${l.classe}</div></div>
-      <span style="font-size:16px;">→</span>
-    </div>`).join('');
-  // Auto-select currentListId if available
-  const target=currentListId&&myLists.find(l=>l.id===currentListId)?currentListId:myLists[0].id;
-  pickReportList(target);
+// ==================== REPORT ====================
+let rptListId=null;
+function initRpt(){
+  if(!curStu){goTo('login');return}
+  const ml=VP.vl.filter(stuMatch);
+  const pk=document.getElementById('rptPicker');
+  if(!ml.length){pk.innerHTML='<p style="color:#aaa;font-weight:700;">Aucune liste disponible.</p>';return}
+  pk.innerHTML=ml.map(l=>`<div class="list-item" id="rpk${l.id}" onclick="pkRpt('${l.id}')" style="border-left-color:var(--orange)">
+    <div class="li-info"><div class="li-title">${l.name}</div><div class="li-meta">${l.filiere} · ${l.classe}</div></div>
+    <span style="font-size:14px;">→</span>
+  </div>`).join('');
+  const tgt=curListId&&ml.find(l=>l.id===curListId)?curListId:ml[0].id;
+  pkRpt(tgt);
 }
-function pickReportList(id){
-  reportListId=id;
-  document.querySelectorAll('[id^="rpick-"]').forEach(el=>el.style.background='white');
-  const el=document.getElementById(`rpick-${id}`);
-  if(el)el.style.background='#FFF3ED';
-  renderReport(id);
+function pkRpt(id){
+  rptListId=id;
+  document.querySelectorAll('[id^="rpk"]').forEach(el=>el.style.background='white');
+  const el=document.getElementById('rpk'+id);if(el)el.style.background='#FFF3ED';
+  rndRpt(id);
 }
-function renderReport(listId){
-  const list=VP.getVocabList(listId); if(!list)return;
-  const results=VP.getStudentResults(currentStudent.id,listId);
+function rndRpt(lid){
+  const list=VP.getList(lid);if(!list)return;
+  const res=VP.getSR(curStu.id,lid);
   const date=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
-  let totalScore=0,totalPossible=0;
-  let exSections='';
+  let ts=0,tp=0,secs='';
   for(let i=1;i<=4;i++){
-    const r=results[`ex${i}`];
-    if(!r){ exSections+=`<div class="report-section"><h3>${EX_ICONS[i]} Exercice ${i} – ${EX_NAMES[i]}</h3><p style="color:#bbb;font-style:italic;font-size:14px;">Exercice non réalisé</p></div>`; continue }
-    totalScore+=r.score; totalPossible+=r.total;
-    const pct=Math.round((r.score/r.total)*100);
-    exSections+=`<div class="report-section">
-      <h3>${EX_ICONS[i]} Exercice ${i} – ${EX_NAMES[i]}<span style="float:right;font-size:15px;color:${pct>=60?'var(--green-dark)':'var(--red)'};">${r.score}/${r.total} (${pct}%)</span></h3>
-      ${(r.answers||[]).map(a=>`<div class="report-item"><span>${a.isCorrect?'✅':'❌'}</span>
-        <div style="flex:1;font-size:13px;"><div style="color:#888;font-size:12px;">${a.question}</div>
-        <div>Réponse : <strong>${a.userAnswer}</strong>${!a.isCorrect?` <span style="color:var(--green-dark);margin-left:6px;">✓ ${a.correctAnswer}</span>`:''}</div></div>
+    const r=res['ex'+i];
+    if(!r){secs+=`<div class="rpt-sec"><h3>${EXICONS[i]} Exercice ${i} – ${EXNAMES[i]}</h3><p style="color:#bbb;font-style:italic;font-size:13px;">Non réalisé</p></div>`;continue}
+    ts+=r.score;tp+=r.total;const pct=Math.round((r.score/r.total)*100);
+    secs+=`<div class="rpt-sec"><h3>${EXICONS[i]} Ex.${i} – ${EXNAMES[i]}<span style="float:right;font-size:14px;color:${pct>=60?'var(--green-dark)':'var(--red)'};">${r.score}/${r.total} (${pct}%)</span></h3>
+      ${(r.answers||[]).map(a=>`<div class="rpt-item"><span>${a.isCorrect?'✅':'❌'}</span>
+        <div style="flex:1;font-size:12px;"><div style="color:#888;font-size:11px;">${a.question}</div>
+        <div>Réponse : <strong>${a.userAnswer}</strong>${!a.isCorrect?` <span style="color:var(--green-dark);margin-left:5px;">✓ ${a.correctAnswer}</span>`:''}</div></div>
       </div>`).join('')}
     </div>`;
   }
-  const gPct=totalPossible>0?Math.round((totalScore/totalPossible)*100):0;
-  document.getElementById('reportArea').innerHTML=`
-    <div class="report-preview">
-      <div class="report-header"><h2>🎮 VocabPro – Rapport</h2>
-        <div class="report-meta"><strong>${currentStudent.firstName}-${currentStudent.lastName}</strong> · ${currentStudent.classe} · ${date}</div>
-        <div class="report-meta">Liste : <strong>${list.name}</strong> (${list.filiere} · ${list.classe})</div>
+  const gp=tp>0?Math.round((ts/tp)*100):0;
+  document.getElementById('rptArea').innerHTML=`
+    <div class="rpt">
+      <div class="rpt-hdr"><h2>🎮 VocabPro – Rapport</h2>
+        <div class="rpt-meta"><strong>${curStu.firstName}-${curStu.lastName}</strong> · ${curStu.classe} · ${date}</div>
+        <div class="rpt-meta">Liste : <strong>${list.name}</strong> (${list.filiere} · ${list.classe})</div>
       </div>
-      <div style="background:linear-gradient(135deg,var(--orange),var(--red));border-radius:16px;padding:20px;text-align:center;margin-bottom:24px;color:white;">
-        <div style="font-family:var(--font-display);font-size:13px;opacity:.9;margin-bottom:4px;">NOTE GLOBALE</div>
-        <div style="font-family:var(--font-display);font-size:42px;">${totalPossible>0?totalScore+'/'+totalPossible:'N/A'}</div>
-        <div style="font-size:14px;opacity:.85;">${gPct}% · ${Object.keys(results).length}/4 exercices</div>
+      <div style="background:linear-gradient(135deg,var(--orange),var(--red));border-radius:14px;padding:18px;text-align:center;margin-bottom:20px;color:white;">
+        <div style="font-family:var(--font-d);font-size:12px;opacity:.9;margin-bottom:3px;">NOTE GLOBALE</div>
+        <div style="font-family:var(--font-d);font-size:38px;">${tp>0?ts+'/'+tp:'N/A'}</div>
+        <div style="font-size:13px;opacity:.85;">${gp}% · ${Object.keys(res).length}/4 exercices</div>
       </div>
-      ${exSections}
-      <div style="text-align:center;margin-top:24px;padding-top:16px;border-top:2px solid #F0EAE2;font-size:12px;color:#aaa;">Généré par VocabPro · Créé par C. Iemfre</div>
+      ${secs}
+      <div style="text-align:center;margin-top:20px;padding-top:14px;border-top:2px solid #F0EAE2;font-size:11px;color:#aaa;">Généré par VocabPro · C. Iemfre</div>
     </div>`;
 }
-function printReport(){ if(!reportListId){showNotif("Sélectionne une liste d'abord !",true);return} window.print() }
+function printReport(){if(!rptListId){notif("Sélectionne une liste !",true);return}window.print()}
 
-// =============================================
-// TEACHER
-// =============================================
-let currentEditId=null, wordRowCount=0, editWordRowCount=0;
-function initTeacherView(){
-  document.getElementById('studentCodeDisplay').value=VP.studentCode;
-  teacherTab('lists');
+// ==================== TEACHER ====================
+let curEditId=null;
+
+// Le prompt à copier pour Claude
+const CLAUDE_PROMPT=`Tu es un assistant pour professeur d'anglais en lycée professionnel.
+Je vais te donner une liste de vocabulaire. Ta mission est de la convertir en JSON strict.
+
+FORMAT DE SORTIE — réponds UNIQUEMENT avec le tableau JSON, sans texte avant ni après, sans balises markdown :
+[
+  { "fr": "le mot ou l'expression en français", "en": "the English word or phrase", "definition": "a short definition in English (leave empty string if not relevant)" },
+  ...
+]
+
+RÈGLES :
+- Chaque entrée doit avoir les trois clés : "fr", "en", "definition"
+- "definition" doit être en anglais, courte (max 12 mots). Laisse "" si tu n'es pas sûr.
+- Ne génère rien d'autre que le JSON pur — pas d'introduction, pas de conclusion, pas de \`\`\`json
+- Respecte exactement l'orthographe des mots que je te donne
+- Si le séparateur est une tabulation, un tiret, un point-virgule ou un espace, adapte-toi
+
+Voici ma liste :
+(colle tes mots ici, dans n'importe quel format)`;
+
+function initTeacher(){
+  document.getElementById('sCodeDisp').value=VP.sc;
+  tTab('lists');
 }
-function teacherTab(tab){
-  ['lists','add','io','settings'].forEach(t=>{ document.getElementById(`panel-${t}`).style.display='none'; document.getElementById(`tab-${t}`)?.classList.remove('active') });
-  document.getElementById(`panel-${tab}`).style.display='block';
-  document.getElementById(`tab-${tab}`)?.classList.add('active');
-  if(tab==='lists'){ renderStats(); renderVocabLists() }
-  if(tab==='settings') document.getElementById('studentCodeDisplay').value=VP.studentCode;
-  if(tab==='add'){ document.getElementById('wordsBody').innerHTML=''; wordRowCount=0; document.getElementById('bulkPaste').value=''; document.getElementById('bulkPreview').style.display='none'; document.getElementById('parseInfo').textContent='' }
-  if(tab==='io') refreshExportSelect();
+
+function tTab(t){
+  ['lists','add','io','cfg'].forEach(x=>{
+    document.getElementById('panel-'+x).style.display='none';
+    document.getElementById('tab-'+x)?.classList.remove('on');
+  });
+  document.getElementById('panel-'+t).style.display='block';
+  document.getElementById('tab-'+t)?.classList.add('on');
+  if(t==='lists'){rndStats();rndLists()}
+  if(t==='cfg')document.getElementById('sCodeDisp').value=VP.sc;
+  if(t==='add'){
+    document.getElementById('lName').value='';
+    document.getElementById('lFiliere').value='';
+    document.getElementById('lClasse2').value='';
+    document.getElementById('jsonInput').value='';
+    document.getElementById('jsonStatus').innerHTML='';
+    document.getElementById('promptBox').textContent=CLAUDE_PROMPT;
+  }
+  if(t==='io')rfxExpSel();
 }
-function renderStats(){
-  const lists=VP.vocabLists; const tw=lists.reduce((a,l)=>a+l.words.length,0);
-  const filieres=[...new Set(lists.map(l=>l.filiere))].filter(Boolean);
-  document.getElementById('statsGrid').innerHTML=`
-    <div class="stat-card"><div class="stat-number">${lists.length}</div><div class="stat-label">Listes</div></div>
-    <div class="stat-card"><div class="stat-number">${tw}</div><div class="stat-label">Mots total</div></div>
-    <div class="stat-card"><div class="stat-number">${filieres.length}</div><div class="stat-label">Filières</div></div>`;
+
+function rndStats(){
+  const ls=VP.vl;const tw=ls.reduce((a,l)=>a+l.words.length,0);
+  const fs=[...new Set(ls.map(l=>l.filiere))].filter(Boolean);
+  document.getElementById('statsG').innerHTML=`
+    <div class="stat-c"><div class="stat-n">${ls.length}</div><div class="stat-l">Listes</div></div>
+    <div class="stat-c"><div class="stat-n">${tw}</div><div class="stat-l">Mots</div></div>
+    <div class="stat-c"><div class="stat-n">${fs.length}</div><div class="stat-l">Filières</div></div>`;
 }
-function renderVocabLists(){
-  const lists=VP.vocabLists; const c=document.getElementById('vocabListsContainer');
-  if(!lists.length){ c.innerHTML=`<div class="empty-state"><span class="empty-icon">📭</span><p>Aucune liste.<br>Clique sur "+ Nouvelle" !</p></div>`; return }
-  const byF={};
-  lists.forEach(l=>{ const f=l.filiere||'Autre'; if(!byF[f])byF[f]=[]; byF[f].push(l) });
+
+function rndLists(){
+  const ls=VP.vl;const c=document.getElementById('listsCont');
+  if(!ls.length){c.innerHTML=`<div class="empty"><span class="ei">📭</span><p>Aucune liste.<br>Clique sur "+ Nouvelle" !</p></div>`;return}
+  const byF={};ls.forEach(l=>{const f=l.filiere||'Autre';if(!byF[f])byF[f]=[];byF[f].push(l)});
   c.innerHTML=Object.entries(byF).map(([f,fl])=>`
-    <div style="margin-bottom:24px;">
-      <h3 style="font-family:var(--font-display);font-size:18px;color:var(--purple);margin-bottom:10px;padding-left:8px;border-left:4px solid var(--purple);">${f}</h3>
-      ${fl.map(l=>`<div class="vocab-list-item" onclick="openEditList('${l.id}')">
-        <div class="vl-info"><div class="vl-title">${l.name}</div><div class="vl-meta">${l.classe} · ${l.words.length} mots · ${l.words.filter(w=>w.definition).length} déf.</div></div>
-        <span class="vl-badge">${l.words.length}</span><span style="font-size:18px;color:#aaa;">✏️</span>
+    <div style="margin-bottom:20px;">
+      <h3 style="font-family:var(--font-d);font-size:17px;color:var(--purple);margin-bottom:8px;padding-left:8px;border-left:4px solid var(--purple);">${f}</h3>
+      ${fl.map(l=>`<div class="list-item" onclick="openEdit('${l.id}')">
+        <div class="li-info"><div class="li-title">${l.name}</div><div class="li-meta">${l.classe} · ${l.words.length} mots · ${l.words.filter(w=>w.definition).length} déf.</div></div>
+        <span class="li-badge">${l.words.length}</span><span style="font-size:16px;color:#aaa;">✏️</span>
       </div>`).join('')}
     </div>`).join('');
 }
-function addWordRow(word=null){
-  wordRowCount++;
-  const tr=document.createElement('tr'); tr.id=`wr-${wordRowCount}`;
-  tr.innerHTML=`<td style="color:#aaa;font-weight:700;width:28px;">${wordRowCount}</td>
-    <td><input type="text" value="${word?word.fr:''}" placeholder="Mot français" data-field="fr"></td>
-    <td><input type="text" value="${word?word.en:''}" placeholder="English word" data-field="en"></td>
-    <td><input type="text" value="${word?(word.definition||''):''}" placeholder="Definition (optional)" data-field="def"></td>
-    <td><button onclick="document.getElementById('wr-${wordRowCount}').remove()" style="background:#FFE0E0;color:var(--red);border-radius:8px;padding:4px 10px;font-weight:700;font-size:14px;">✕</button></td>`;
-  document.getElementById('wordsBody').appendChild(tr);
+
+// Validation JSON en direct
+function validateJson(){
+  const v=document.getElementById('jsonInput').value.trim();
+  const st=document.getElementById('jsonStatus');
+  if(!v){st.innerHTML='';return null}
+  try{
+    const d=JSON.parse(v);
+    if(!Array.isArray(d))throw new Error('Doit être un tableau []');
+    const ok=d.filter(x=>x.fr&&x.en);
+    if(!ok.length)throw new Error('Aucun mot valide (besoin de "fr" et "en")');
+    st.innerHTML=`<div class="json-dot" style="background:var(--green)"></div><span style="color:var(--green-dark);">✓ JSON valide — ${ok.length} mot(s) détecté(s)</span>`;
+    return ok;
+  }catch(e){
+    st.innerHTML=`<div class="json-dot" style="background:var(--red)"></div><span style="color:var(--red);">✗ Erreur : ${e.message}</span>`;
+    return null;
+  }
 }
-function addEditWordRow(word=null){
-  editWordRowCount++;
-  const tr=document.createElement('tr'); tr.id=`er-${editWordRowCount}`;
-  tr.innerHTML=`<td style="color:#aaa;font-weight:700;width:28px;">${editWordRowCount}</td>
-    <td><input type="text" value="${word?word.fr:''}" placeholder="Mot français" data-field="fr"></td>
-    <td><input type="text" value="${word?word.en:''}" placeholder="English word" data-field="en"></td>
-    <td><input type="text" value="${word?(word.definition||''):''}" placeholder="Definition (optional)" data-field="def"></td>
-    <td><button onclick="document.getElementById('er-${editWordRowCount}').remove()" style="background:#FFE0E0;color:var(--red);border-radius:8px;padding:4px 10px;font-weight:700;font-size:14px;">✕</button></td>`;
-  document.getElementById('editWordsBody').appendChild(tr);
+
+function validateEditJson(){
+  const v=document.getElementById('eJsonInput').value.trim();
+  const st=document.getElementById('eJsonStatus');
+  if(!v){st.innerHTML='';return null}
+  try{
+    const d=JSON.parse(v);
+    if(!Array.isArray(d))throw new Error('Doit être un tableau []');
+    const ok=d.filter(x=>x.fr&&x.en);
+    if(!ok.length)throw new Error('Aucun mot valide');
+    st.innerHTML=`<div class="json-dot" style="background:var(--green)"></div><span style="color:var(--green-dark);">✓ ${ok.length} mot(s)</span>`;
+    return ok;
+  }catch(e){
+    st.innerHTML=`<div class="json-dot" style="background:var(--red)"></div><span style="color:var(--red);">✗ ${e.message}</span>`;
+    return null;
+  }
 }
-function collectWords(tbodyId){
-  return [...document.querySelectorAll(`#${tbodyId} tr`)].map(row=>({
-    fr:row.querySelector('[data-field="fr"]')?.value.trim()||'',
-    en:row.querySelector('[data-field="en"]')?.value.trim()||'',
-    definition:row.querySelector('[data-field="def"]')?.value.trim()||''
-  })).filter(w=>w.fr&&w.en);
+
+function copyPrompt(){
+  navigator.clipboard.writeText(CLAUDE_PROMPT).then(()=>notif('✅ Prompt copié !')).catch(()=>{
+    // fallback
+    const ta=document.createElement('textarea');ta.value=CLAUDE_PROMPT;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notif('✅ Prompt copié !');
+  });
 }
-function parseBulkPaste(){
-  const raw=document.getElementById('bulkPaste').value.trim();
-  if(!raw){showNotif('Colle du texte d\'abord !',true);return}
-  const lines=raw.split(/\r?\n/).filter(l=>l.trim());
-  const parsed=lines.map(line=>{
-    // Support tab or semicolon separator
-    const parts=line.includes('\t')?line.split('\t'):line.split(';');
-    return{fr:(parts[0]||'').trim(),en:(parts[1]||'').trim(),definition:(parts[2]||'').trim()};
-  }).filter(w=>w.fr&&w.en);
-  if(!parsed.length){showNotif('Aucun mot détecté. Vérifie le format (tabulation ou point-virgule) !',true);return}
-  // Fill table
-  document.getElementById('wordsBody').innerHTML=''; wordRowCount=0;
-  parsed.forEach(w=>addWordRow(w));
-  document.getElementById('bulkPreview').style.display='block';
-  document.getElementById('parseInfo').textContent=`✅ ${parsed.length} mot(s) détecté(s)`;
-  showNotif(`✅ ${parsed.length} mots analysés — vérifie et enregistre !`);
+
+function saveJsonList(){
+  const name=document.getElementById('lName').value.trim();
+  const filiere=document.getElementById('lFiliere').value.trim();
+  const classe=document.getElementById('lClasse2').value.trim();
+  if(!name||!filiere||!classe){notif('Remplis les 3 champs d\'abord !',true);return}
+  const words=validateJson();
+  if(!words){notif('Corrige le JSON avant d\'enregistrer !',true);return}
+  if(words.length<4){notif('Au moins 4 mots requis !',true);return}
+  VP.addList({name,filiere,classe,words,createdAt:Date.now()});
+  notif(`✅ "${name}" enregistrée ! (${words.length} mots)`);
+  tTab('lists');
 }
-function saveList(){
-  const name=document.getElementById('listName').value.trim();
-  const filiere=document.getElementById('listFiliere').value.trim();
-  const niveau=document.getElementById('listNiveau').value;
-  const classe=document.getElementById('listClasse').value.trim();
-  if(!name||!filiere||!classe){showNotif('Remplis tous les champs !',true);return}
-  const words=collectWords('wordsBody');
-  if(words.length<4){showNotif('Ajoute au moins 4 mots (analyse d\'abord le texte collé) !',true);return}
-  VP.addVocabList({name,filiere,niveau,classe,words,createdAt:Date.now()});
-  showNotif(`✅ Liste "${name}" enregistrée ! (${words.length} mots)`);
-  document.getElementById('listName').value='';document.getElementById('listFiliere').value='';
-  document.getElementById('listNiveau').value='';document.getElementById('listClasse').value='';
-  document.getElementById('bulkPaste').value='';document.getElementById('bulkPreview').style.display='none';
-  document.getElementById('parseInfo').textContent='';
-  teacherTab('lists');
+
+function openEdit(id){
+  const list=VP.getList(id);if(!list)return;curEditId=id;
+  document.getElementById('editModTitle').textContent=`✏️ ${list.name}`;
+  document.getElementById('eName').value=list.name;
+  document.getElementById('eFiliere').value=list.filiere;
+  document.getElementById('eClasse').value=list.classe;
+  // Affiche le JSON des mots existants pour modification
+  const clean=list.words.map(({fr,en,definition})=>({fr,en,definition:definition||''}));
+  document.getElementById('eJsonInput').value=JSON.stringify(clean,null,2);
+  document.getElementById('eJsonStatus').innerHTML=`<div class="json-dot" style="background:var(--green)"></div><span style="color:var(--green-dark);">✓ ${clean.length} mot(s) chargé(s)</span>`;
+  showModal('editMod');
 }
-function openEditList(id){
-  const list=VP.getVocabList(id); if(!list)return; currentEditId=id;
-  document.getElementById('editModalTitle').textContent=`✏️ ${list.name}`;
-  document.getElementById('editName').value=list.name;
-  document.getElementById('editFiliere').value=list.filiere;
-  document.getElementById('editNiveau').value=list.niveau||'';
-  document.getElementById('editClasse').value=list.classe;
-  document.getElementById('editWordsBody').innerHTML=''; editWordRowCount=0;
-  list.words.forEach(w=>addEditWordRow(w)); for(let i=0;i<3;i++)addEditWordRow();
-  showModal('editModal');
+
+function saveEdit(){
+  const name=document.getElementById('eName').value.trim();
+  const filiere=document.getElementById('eFiliere').value.trim();
+  const classe=document.getElementById('eClasse').value.trim();
+  const words=validateEditJson();
+  if(!name||!filiere||!classe){notif('Remplis tous les champs !',true);return}
+  if(!words){notif('Corrige le JSON !',true);return}
+  if(words.length<4){notif('Au moins 4 mots requis !',true);return}
+  VP.updList(curEditId,{name,filiere,classe,words,updatedAt:Date.now()});
+  closeModal('editMod');notif(`✅ "${name}" mise à jour !`);rndLists();rndStats();
 }
-function saveEditList(){
-  const name=document.getElementById('editName').value.trim();
-  const filiere=document.getElementById('editFiliere').value.trim();
-  const niveau=document.getElementById('editNiveau').value;
-  const classe=document.getElementById('editClasse').value.trim();
-  const words=collectWords('editWordsBody');
-  if(!name||!filiere||!classe){showNotif('Remplis tous les champs !',true);return}
-  if(words.length<4){showNotif('Au moins 4 mots requis !',true);return}
-  VP.updateVocabList(currentEditId,{name,filiere,niveau,classe,words,updatedAt:Date.now()});
-  closeModal('editModal'); showNotif(`✅ "${name}" mise à jour !`); renderVocabLists(); renderStats();
-}
-function deleteCurrentList(){
+
+function delList(){
   if(!confirm('Supprimer cette liste ?'))return;
-  VP.deleteVocabList(currentEditId); closeModal('editModal'); showNotif('🗑️ Liste supprimée.'); renderVocabLists(); renderStats();
-}
-function updateStudentCode(){
-  const code=document.getElementById('studentCodeDisplay').value.trim().toUpperCase();
-  if(code.length<3){showNotif('Code trop court !',true);return}
-  VP.studentCode=code; showNotif(`✅ Code élèves : ${code}`);
-}
-function updateTeacherCode(){
-  const c1=document.getElementById('newTeacherCode').value.trim();
-  const c2=document.getElementById('confirmTeacherCode').value.trim();
-  if(!/^\d{4}$/.test(c1)){showNotif('4 chiffres requis !',true);return}
-  if(c1!==c2){showNotif('Les codes ne correspondent pas !',true);return}
-  VP.teacherCode=c1; document.getElementById('newTeacherCode').value=''; document.getElementById('confirmTeacherCode').value='';
-  showNotif('✅ Code prof mis à jour !');
-}
-function resetAll(){
-  Object.values(VP.KEYS).forEach(k=>localStorage.removeItem(k));
-  closeModal('resetModal'); showNotif('🗑️ Données effacées.'); setTimeout(()=>goTo('home'),1500);
+  VP.delList(curEditId);closeModal('editMod');notif('🗑️ Supprimée.');rndLists();rndStats();
 }
 
-// =============================================
-// IMPORT / EXPORT JSON
-// =============================================
-function refreshExportSelect(){
-  const sel=document.getElementById('exportListSelect');
-  sel.innerHTML=VP.vocabLists.map(l=>`<option value="${l.id}">${l.name} (${l.filiere} · ${l.classe})</option>`).join('');
+function updSCode(){
+  const c=document.getElementById('sCodeDisp').value.trim().toUpperCase();
+  if(c.length<3){notif('Code trop court !',true);return}
+  VP.sc=c;notif(`✅ Code élèves : ${c}`);
 }
 
-function exportAllLists(){
-  const lists=VP.vocabLists;
-  if(!lists.length){showNotif('Aucune liste à exporter !',true);return}
-  const data=lists.map(({name,filiere,classe,words})=>({name,filiere,classe,words}));
-  downloadJSON(data,`vocabpro_toutes_listes_${today()}.json`);
-  showNotif(`✅ ${lists.length} liste(s) exportée(s) !`);
+function updTCode(){
+  const c1=document.getElementById('tCode1').value.trim();
+  const c2=document.getElementById('tCode2').value.trim();
+  if(!/^\d{4}$/.test(c1)){notif('4 chiffres requis !',true);return}
+  if(c1!==c2){notif('Les codes ne correspondent pas !',true);return}
+  VP.tc=c1;document.getElementById('tCode1').value='';document.getElementById('tCode2').value='';
+  notif('✅ Code prof mis à jour !');
 }
 
-function exportSingleListPrompt(){
-  const lists=VP.vocabLists;
-  if(!lists.length){showNotif('Aucune liste à exporter !',true);return}
-  refreshExportSelect();
-  const div=document.getElementById('exportSingleSelect');
-  div.style.display=div.style.display==='none'?'block':'none';
+function doReset(){
+  Object.values(VP.K).forEach(k=>localStorage.removeItem(k));
+  closeModal('resetMod');notif('🗑️ Données effacées.');setTimeout(()=>goTo('home'),1500);
 }
 
-function exportSelectedList(){
-  const id=document.getElementById('exportListSelect').value;
-  const list=VP.getVocabList(id); if(!list){showNotif('Liste introuvable !',true);return}
-  const{name,filiere,classe,words}=list;
-  downloadJSON([{name,filiere,classe,words}],`vocabpro_${name.replace(/[^a-z0-9]/gi,'_').toLowerCase()}_${today()}.json`);
-  showNotif(`✅ Liste "${name}" exportée !`);
+// ==================== IMPORT/EXPORT ====================
+function rfxExpSel(){
+  document.getElementById('expOneSel').innerHTML=VP.vl.map(l=>`<option value="${l.id}">${l.name} (${l.filiere} · ${l.classe})</option>`).join('');
+}
+function exportAll(){
+  const ls=VP.vl;if(!ls.length){notif('Aucune liste !',true);return}
+  dlJSON(ls.map(({name,filiere,classe,words})=>({name,filiere,classe,words})),`vocabpro_${td()}.json`);
+  notif(`✅ ${ls.length} liste(s) exportée(s) !`);
+}
+function toggleExportOne(){
+  const d=document.getElementById('expOneWrap');rfxExpSel();
+  d.style.display=d.style.display==='none'?'block':'none';
+}
+function exportOne(){
+  const id=document.getElementById('expOneSel').value;
+  const l=VP.getList(id);if(!l){notif('Introuvable !',true);return}
+  dlJSON([{name:l.name,filiere:l.filiere,classe:l.classe,words:l.words}],`vocabpro_${l.name.replace(/[^a-z0-9]/gi,'_').toLowerCase()}_${td()}.json`);
+  notif(`✅ "${l.name}" exportée !`);
+}
+function dlJSON(data,name){
+  const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href);
 }
 
-function downloadJSON(data,filename){
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click(); URL.revokeObjectURL(a.href);
-}
-
-let pendingImportData=null;
-function importLists(input){
-  const file=input.files[0]; if(!file)return;
-  const reader=new FileReader();
-  reader.onload=e=>{
+let pendImp=null;
+function doImport(inp){
+  const file=inp.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{
     try{
       const data=JSON.parse(e.target.result);
       if(!Array.isArray(data))throw new Error('Format invalide');
-      // Validate
       const valid=data.filter(l=>l.name&&l.words&&Array.isArray(l.words)&&l.words.length>=1);
-      if(!valid.length)throw new Error('Aucune liste valide trouvée');
-      pendingImportData=valid;
-      // Show confirm
-      const existing=VP.vocabLists;
-      const toReplace=valid.filter(l=>existing.some(e=>e.name===l.name));
-      const toAdd=valid.filter(l=>!existing.some(e=>e.name===l.name));
-      document.getElementById('importConfirmText').innerHTML=`
-        <p>📦 <strong>${valid.length} liste(s)</strong> trouvée(s) dans le fichier :</p>
-        ${toAdd.length?`<p style="color:var(--green-dark);margin-top:8px;">➕ ${toAdd.length} nouvelle(s) : ${toAdd.map(l=>l.name).join(', ')}</p>`:''}
-        ${toReplace.length?`<p style="color:var(--orange);margin-top:4px;">🔄 ${toReplace.length} à remplacer : ${toReplace.map(l=>l.name).join(', ')}</p>`:''}`;
-      showModal('importConfirmModal');
-    }catch(err){ showNotif('Fichier JSON invalide : '+err.message,true) }
-    input.value='';
+      if(!valid.length)throw new Error('Aucune liste valide');
+      pendImp=valid;
+      const ex=VP.vl;
+      const toRep=valid.filter(l=>ex.some(e=>e.name===l.name));
+      const toAdd=valid.filter(l=>!ex.some(e=>e.name===l.name));
+      document.getElementById('impConfTxt').innerHTML=`
+        <p>📦 <strong>${valid.length} liste(s)</strong> dans le fichier :</p>
+        ${toAdd.length?`<p style="color:var(--green-dark);margin-top:7px;">➕ ${toAdd.length} nouvelle(s) : ${toAdd.map(l=>l.name).join(', ')}</p>`:''}
+        ${toRep.length?`<p style="color:var(--orange);margin-top:4px;">🔄 ${toRep.length} à remplacer : ${toRep.map(l=>l.name).join(', ')}</p>`:''}`;
+      showModal('impConfMod');
+    }catch(err){notif('JSON invalide : '+err.message,true)}
+    inp.value='';
   };
-  reader.readAsText(file);
+  r.readAsText(file);
 }
-
-function confirmImport(){
-  if(!pendingImportData)return;
-  const existing=VP.vocabLists;
-  pendingImportData.forEach(l=>{
-    const idx=existing.findIndex(e=>e.name===l.name);
-    if(idx!==-1){ existing[idx]={...existing[idx],...l,updatedAt:Date.now()} }
-    else{ existing.push({...l,id:Date.now().toString()+'_'+Math.random().toString(36).slice(2),createdAt:Date.now()}) }
+function doConfirmImport(){
+  if(!pendImp)return;
+  const ex=VP.vl;
+  pendImp.forEach(l=>{
+    const i=ex.findIndex(e=>e.name===l.name);
+    if(i!==-1)ex[i]={...ex[i],...l,updatedAt:Date.now()};
+    else ex.push({...l,id:Date.now()+'_'+Math.random().toString(36).slice(2),createdAt:Date.now()});
   });
-  VP.vocabLists=existing;
-  closeModal('importConfirmModal');
-  showNotif(`✅ ${pendingImportData.length} liste(s) importée(s) !`);
-  pendingImportData=null;
-  renderStats(); renderVocabLists();
+  VP.vl=ex;closeModal('impConfMod');
+  notif(`✅ ${pendImp.length} liste(s) importée(s) !`);pendImp=null;
+  rndStats();rndLists();
 }
 
-function today(){ return new Date().toISOString().slice(0,10) }
+function td(){return new Date().toISOString().slice(0,10)}
 
-// =============================================
-// INIT
-// =============================================
-document.addEventListener('DOMContentLoaded',()=>{ goTo('home') });
+// ==================== INIT ====================
+document.addEventListener('DOMContentLoaded',()=>goTo('home'));
 </script>
 </body>
 </html>
