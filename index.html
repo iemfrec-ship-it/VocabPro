@@ -439,7 +439,6 @@ a{text-decoration:none}
     <div class="tabs">
       <button class="tab-btn on" id="tab-lists" onclick="tTab('lists')">📚 Listes</button>
       <button class="tab-btn" id="tab-add" onclick="tTab('add')">➕ Nouvelle liste</button>
-      <button class="tab-btn" id="tab-io" onclick="tTab('io')">📦 Import/Export</button>
       <button class="tab-btn" id="tab-cfg" onclick="tTab('cfg')">⚙️ Réglages</button>
     </div>
 
@@ -468,12 +467,17 @@ a{text-decoration:none}
       <!-- ÉTAPE 2 : prompt Claude -->
       <div class="card blue">
         <h2><span class="step-badge" style="background:var(--blue);">2</span> Génère le JSON avec Claude</h2>
-        <p style="font-size:13px;color:#555;font-weight:600;margin-bottom:14px;line-height:1.6;">
-          Copie ce prompt, ouvre <a href="https://claude.ai" target="_blank" style="color:var(--blue);font-weight:800;">claude.ai</a>, colle-le, puis ajoute ta liste de mots à la suite.
-        </p>
+        <div style="background:#EEF4FF;border-radius:12px;padding:14px 16px;margin-bottom:14px;border-left:4px solid var(--blue);">
+          <p style="font-size:13px;color:#2D4A8A;font-weight:700;line-height:1.7;margin:0;">
+            1. Clique sur <strong>📋 Copier le prompt</strong> ci-dessous<br>
+            2. Ouvre <a href="https://claude.ai" target="_blank" style="color:var(--blue);font-weight:800;text-decoration:underline;">claude.ai ↗</a> dans un autre onglet<br>
+            3. Colle le prompt <strong>et ta liste de mots</strong> dans claude.ai (pas ici !)<br>
+            4. Claude te renvoie un JSON → copie-le et colle-le à l'étape 3
+          </p>
+        </div>
         <div style="position:relative;">
           <div class="prompt-box" id="promptBox"></div>
-          <button class="copy-btn" onclick="copyPrompt()">📋 Copier</button>
+          <button class="copy-btn" onclick="copyPrompt()">📋 Copier le prompt</button>
         </div>
       </div>
 
@@ -493,30 +497,6 @@ a{text-decoration:none}
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;">
         <button class="btn-p" onclick="saveJsonList()">💾 Enregistrer la liste</button>
         <button class="btn-n" onclick="tTab('lists')">Annuler</button>
-      </div>
-    </div>
-
-    <!-- IMPORT/EXPORT -->
-    <div id="panel-io" style="display:none">
-      <div class="card green">
-        <h2>📤 Exporter les listes</h2>
-        <p style="font-size:13px;color:#666;font-weight:600;margin-bottom:14px;">Télécharge un fichier JSON — réimportable sur n'importe quel appareil.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="btn-g" onclick="exportAll()">📥 Toutes les listes</button>
-          <button class="btn-s" onclick="toggleExportOne()">📋 Une seule…</button>
-        </div>
-        <div id="expOneWrap" style="display:none;margin-top:14px;">
-          <div class="fg"><label>Choisir</label><select id="expOneSel"></select></div>
-          <button class="btn-g" onclick="exportOne()">📥 Exporter</button>
-        </div>
-      </div>
-      <div class="card blue">
-        <h2>📦 Importer des listes</h2>
-        <p style="font-size:13px;color:#666;font-weight:600;margin-bottom:14px;">Importe un fichier JSON VocabPro. Les listes au même nom sont remplacées.</p>
-        <label style="display:inline-flex;align-items:center;gap:10px;background:var(--gray-light);border-radius:12px;padding:13px 18px;cursor:pointer;font-weight:700;color:var(--text-dark);border:3px dashed #CCC;">
-          📂 Choisir un fichier JSON
-          <input type="file" accept=".json" id="impFile" style="display:none" onchange="doImport(this)">
-        </label>
       </div>
     </div>
 
@@ -1067,7 +1047,7 @@ function initTeacher(){
 }
 
 function tTab(t){
-  ['lists','add','io','cfg'].forEach(x=>{
+  ['lists','add','cfg'].forEach(x=>{
     document.getElementById('panel-'+x).style.display='none';
     document.getElementById('tab-'+x)?.classList.remove('on');
   });
@@ -1083,7 +1063,7 @@ function tTab(t){
     document.getElementById('jsonStatus').innerHTML='';
     document.getElementById('promptBox').textContent=CLAUDE_PROMPT;
   }
-  if(t==='io')rfxExpSel();
+  
 }
 
 function rndStats(){
@@ -1212,67 +1192,6 @@ function updTCode(){
 function doReset(){
   Object.values(VP.K).forEach(k=>localStorage.removeItem(k));
   closeModal('resetMod');notif('🗑️ Données effacées.');setTimeout(()=>goTo('home'),1500);
-}
-
-// ==================== IMPORT/EXPORT ====================
-function rfxExpSel(){
-  document.getElementById('expOneSel').innerHTML=VP.vl.map(l=>`<option value="${l.id}">${l.name} (${l.filiere} · ${l.classe})</option>`).join('');
-}
-function exportAll(){
-  const ls=VP.vl;if(!ls.length){notif('Aucune liste !',true);return}
-  dlJSON(ls.map(({name,filiere,classe,words})=>({name,filiere,classe,words})),`vocabpro_${td()}.json`);
-  notif(`✅ ${ls.length} liste(s) exportée(s) !`);
-}
-function toggleExportOne(){
-  const d=document.getElementById('expOneWrap');rfxExpSel();
-  d.style.display=d.style.display==='none'?'block':'none';
-}
-function exportOne(){
-  const id=document.getElementById('expOneSel').value;
-  const l=VP.getList(id);if(!l){notif('Introuvable !',true);return}
-  dlJSON([{name:l.name,filiere:l.filiere,classe:l.classe,words:l.words}],`vocabpro_${l.name.replace(/[^a-z0-9]/gi,'_').toLowerCase()}_${td()}.json`);
-  notif(`✅ "${l.name}" exportée !`);
-}
-function dlJSON(data,name){
-  const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();URL.revokeObjectURL(a.href);
-}
-
-let pendImp=null;
-function doImport(inp){
-  const file=inp.files[0];if(!file)return;
-  const r=new FileReader();
-  r.onload=e=>{
-    try{
-      const data=JSON.parse(e.target.result);
-      if(!Array.isArray(data))throw new Error('Format invalide');
-      const valid=data.filter(l=>l.name&&l.words&&Array.isArray(l.words)&&l.words.length>=1);
-      if(!valid.length)throw new Error('Aucune liste valide');
-      pendImp=valid;
-      const ex=VP.vl;
-      const toRep=valid.filter(l=>ex.some(e=>e.name===l.name));
-      const toAdd=valid.filter(l=>!ex.some(e=>e.name===l.name));
-      document.getElementById('impConfTxt').innerHTML=`
-        <p>📦 <strong>${valid.length} liste(s)</strong> dans le fichier :</p>
-        ${toAdd.length?`<p style="color:var(--green-dark);margin-top:7px;">➕ ${toAdd.length} nouvelle(s) : ${toAdd.map(l=>l.name).join(', ')}</p>`:''}
-        ${toRep.length?`<p style="color:var(--orange);margin-top:4px;">🔄 ${toRep.length} à remplacer : ${toRep.map(l=>l.name).join(', ')}</p>`:''}`;
-      showModal('impConfMod');
-    }catch(err){notif('JSON invalide : '+err.message,true)}
-    inp.value='';
-  };
-  r.readAsText(file);
-}
-function doConfirmImport(){
-  if(!pendImp)return;
-  const ex=VP.vl;
-  pendImp.forEach(l=>{
-    const i=ex.findIndex(e=>e.name===l.name);
-    if(i!==-1)ex[i]={...ex[i],...l,updatedAt:Date.now()};
-    else ex.push({...l,id:Date.now()+'_'+Math.random().toString(36).slice(2),createdAt:Date.now()});
-  });
-  VP.vl=ex;closeModal('impConfMod');
-  notif(`✅ ${pendImp.length} liste(s) importée(s) !`);pendImp=null;
-  rndStats();rndLists();
 }
 
 function td(){return new Date().toISOString().slice(0,10)}
