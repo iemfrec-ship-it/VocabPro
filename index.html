@@ -5,17 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VocabPro – Anglais Lycée Pro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --orange:#FF6B2B;--yellow:#FFD93D;--yellow-light:#FFE87A;
   --red:#FF4757;--green:#2ED573;--green-dark:#1FAB56;--blue:#1E90FF;--purple:#7B68EE;
-  --off-white:#FFF8F0;--gray-light:#F5F0E8;--text-dark:#2D2D2D;
-  --shadow-card:0 12px 40px rgba(0,0,0,0.15);--radius:20px;--radius-sm:12px;
-  --font-d:'Fredoka One',cursive;--font-b:'Nunito',sans-serif;
+  --accent:#FF6B2B;
+  --bg:#FFF8F0;--bg2:#FFFFFF;--gray-light:#F5F0E8;--gray-mid:#E8E0D5;
+  --text-dark:#2D2D2D;--text-mid:#555555;--text-light:#999999;
+  --shadow-card:0 4px 16px rgba(0,0,0,0.09);--shadow-lg:0 12px 40px rgba(0,0,0,0.14);
+  --radius:14px;--radius-sm:8px;
+  --font-d:'Space Grotesk',sans-serif;--font-b:'Inter',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-b);min-height:100vh;overflow-x:hidden}
+body{font-family:var(--font-b);min-height:100vh;overflow-x:hidden;color:var(--text-dark);font-size:15px;line-height:1.5}
 button{cursor:pointer;font-family:var(--font-b);border:none}
 input,select,textarea{font-family:var(--font-b)}
 a{text-decoration:none}
@@ -24,7 +27,7 @@ a{text-decoration:none}
 .view{display:none;min-height:100vh}
 .view.active{display:block}
 #view-home{display:none;flex-direction:column;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#FF6B2B 0%,#FF4757 30%,#7B68EE 70%,#1E90FF 100%);
+  background:linear-gradient(135deg,#FF6B2B 0%,#FF4757 35%,#7B68EE 70%,#1E90FF 100%);
   position:relative;overflow:hidden;padding-bottom:56px}
 #view-home.active{display:flex}
 #view-login{display:none;flex-direction:column;align-items:center;
@@ -47,29 +50,29 @@ a{text-decoration:none}
 /* HOME */
 .home-container{position:relative;z-index:1;text-align:center;padding:20px;max-width:600px;width:100%}
 .logo-area{margin-bottom:40px;animation:dropIn .8s ease}
-.logo-icon{font-size:72px;margin-bottom:10px;animation:bounce 2s infinite;display:block}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.logo-title{font-family:var(--font-d);font-size:64px;color:white;text-shadow:4px 4px 0 rgba(0,0,0,.2);letter-spacing:2px}
+.logo-icon{font-size:52px;margin-bottom:10px;display:block}
+
+.logo-title{font-family:var(--font-d);font-size:48px;color:white;font-weight:700;letter-spacing:-1px}
 .logo-subtitle{font-size:18px;color:rgba(255,255,255,.9);font-weight:700;margin-top:8px}
 .home-cards{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
-.hcard{background:white;border-radius:var(--radius);padding:32px 28px;width:240px;cursor:pointer;
-  transition:all .3s cubic-bezier(.34,1.56,.64,1);
-  box-shadow:0 8px 0 rgba(0,0,0,.15),0 16px 40px rgba(0,0,0,.2);
+.hcard{background:white;border-radius:var(--radius);padding:28px 22px;width:220px;cursor:pointer;
+  transition:all .25s ease;
+  box-shadow:0 6px 24px rgba(0,0,0,.18);
   position:relative;overflow:hidden;animation:slideUp .6s ease both}
 .hcard:nth-child(2){animation-delay:.15s}
 .hcard::before{content:'';position:absolute;top:0;left:0;right:0;height:6px}
-.hcard-s::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
-.hcard-t::before{background:linear-gradient(90deg,var(--purple),var(--blue))}
-.hcard:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 16px 0 rgba(0,0,0,.12),0 24px 60px rgba(0,0,0,.25)}
+.hcard-s::before{background:linear-gradient(90deg,var(--orange),var(--yellow));height:3px}
+.hcard-t::before{background:linear-gradient(90deg,var(--purple),var(--blue));height:3px}
+.hcard:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.22)}
 .hcard:active{transform:translateY(0) scale(.98)}
-.hcard-icon{font-size:48px;margin-bottom:12px;display:block}
-.hcard h2{font-family:var(--font-d);font-size:24px;color:var(--text-dark);margin-bottom:8px}
-.hcard p{font-size:14px;color:#666;font-weight:600}
-.hcard-arrow{font-size:24px;margin-top:16px;color:var(--orange);font-weight:900;transition:transform .3s}
+.hcard-icon{font-size:36px;margin-bottom:10px;display:block}
+.hcard h2{font-family:var(--font-d);font-size:20px;color:var(--text-dark);margin-bottom:6px;font-weight:700}
+.hcard p{font-size:13px;color:var(--text-mid);font-weight:500}
+.hcard-arrow{font-size:18px;margin-top:14px;color:var(--orange);font-weight:700;transition:transform .3s}
 .hcard:hover .hcard-arrow{transform:translateX(6px)}
 .hcard-t .hcard-arrow{color:var(--purple)}
-.pulse{animation:slideUp .6s ease both,pulse 2s 1.5s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 8px 0 rgba(0,0,0,.15),0 16px 40px rgba(0,0,0,.2)}50%{box-shadow:0 8px 0 rgba(0,0,0,.15),0 16px 60px rgba(255,107,43,.4)}}
+.pulse{animation:slideUp .6s ease both}
+
 .stars{position:relative;height:50px}
 .star{position:absolute;font-size:24px;animation:float 3s ease-in-out infinite}
 .s1{left:5%}.s2{left:20%;animation-delay:.5s;font-size:32px}.s3{left:45%;animation-delay:1s;font-size:36px}
@@ -77,9 +80,9 @@ a{text-decoration:none}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-10px) rotate(5deg)}}
 
 /* FOOTER */
-.app-footer{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.3);backdrop-filter:blur(10px);
-  padding:12px 24px;display:flex;justify-content:space-between;align-items:center;
-  color:white;font-weight:700;font-size:14px;z-index:50}
+.app-footer{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.35);backdrop-filter:blur(10px);
+  padding:10px 20px;display:flex;justify-content:space-between;align-items:center;
+  color:rgba(255,255,255,.7);font-weight:500;font-size:12px;z-index:50}
 .rgpd-btn{background:rgba(255,255,255,.2);color:white;border:2px solid rgba(255,255,255,.4);
   border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700}
 
@@ -108,13 +111,13 @@ a{text-decoration:none}
 .pin-error{color:var(--red);font-weight:700;font-size:15px;margin-top:8px;animation:shake .4s}
 
 /* LAYOUT */
-.app-layout{min-height:100vh;background:var(--off-white)}
-.teacher-bg{background:#F0EDF8}
-.top-bar{padding:16px 24px;display:flex;align-items:center;gap:12px;
-  box-shadow:0 4px 20px rgba(255,107,43,.3);position:sticky;top:0;z-index:100;
+.app-layout{min-height:100vh;background:var(--bg)}
+.teacher-bg{background:#F5F4FF}
+.top-bar{padding:14px 20px;display:flex;align-items:center;gap:12px;
+  box-shadow:0 1px 0 rgba(0,0,0,.1);position:sticky;top:0;z-index:100;
   background:linear-gradient(135deg,var(--orange) 0%,var(--red) 100%)}
-.top-bar.tbar{background:linear-gradient(135deg,var(--purple) 0%,var(--blue) 100%);box-shadow:0 4px 20px rgba(123,104,238,.3)}
-.top-bar h1{font-family:var(--font-d);color:white;font-size:24px;flex:1}
+.top-bar.tbar{background:linear-gradient(135deg,var(--orange) 0%,var(--red) 100%)}
+.top-bar h1{font-family:var(--font-d);color:white;font-size:18px;flex:1;font-weight:700;letter-spacing:-0.3px}
 .back-btn{background:rgba(255,255,255,.25);color:white;border-radius:50%;width:40px;height:40px;
   font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .back-btn:hover{background:rgba(255,255,255,.4)}
@@ -122,20 +125,20 @@ a{text-decoration:none}
 
 /* BUTTONS */
 .btn-p{background:linear-gradient(135deg,var(--orange),var(--red));color:white;border-radius:50px;
-  padding:14px 32px;font-family:var(--font-d);font-size:18px;box-shadow:0 6px 0 #cc3d00;transition:all .15s}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 0 #cc3d00}
-.btn-p:active{transform:translateY(3px);box-shadow:0 3px 0 #cc3d00}
+  padding:12px 26px;font-family:var(--font-b);font-size:14px;font-weight:600;box-shadow:0 4px 0 #cc3d00;transition:all .15s}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 6px 0 #cc3d00}
+.btn-p:active{transform:translateY(2px);box-shadow:0 2px 0 #cc3d00}
 .btn-s{background:linear-gradient(135deg,var(--purple),var(--blue));color:white;border-radius:50px;
-  padding:12px 28px;font-family:var(--font-d);font-size:16px;box-shadow:0 6px 0 #4a3fa0;transition:all .15s}
-.btn-s:hover{transform:translateY(-2px)}
-.btn-s:active{transform:translateY(3px)}
+  padding:11px 22px;font-family:var(--font-b);font-size:14px;font-weight:600;box-shadow:0 4px 0 #4a3fa0;transition:all .15s}
+.btn-s:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4a3fa0}
+.btn-s:active{transform:translateY(2px)}
 .btn-g{background:linear-gradient(135deg,var(--green),var(--green-dark));color:white;border-radius:50px;
-  padding:12px 28px;font-family:var(--font-d);font-size:16px;box-shadow:0 6px 0 #138a40;transition:all .15s}
+  padding:11px 22px;font-family:var(--font-b);font-size:14px;font-weight:600;transition:all .15s}
 .btn-g:hover{transform:translateY(-2px)}
 .btn-d{background:linear-gradient(135deg,var(--red),#cc0000);color:white;border-radius:50px;
-  padding:10px 24px;font-family:var(--font-d);font-size:15px;box-shadow:0 4px 0 #990000;transition:all .15s}
+  padding:10px 20px;font-family:var(--font-b);font-size:13px;font-weight:600;box-shadow:0 4px 0 #990000;transition:all .15s}
 .btn-d:hover{transform:translateY(-2px)}
-.btn-n{background:var(--gray-light);border-radius:50px;padding:12px 24px;font-weight:700;color:#666;font-size:15px}
+.btn-n{background:var(--gray-light);border-radius:var(--radius-sm);padding:10px 20px;font-weight:600;color:var(--text-mid);font-size:13px}
 .btn-n:hover{background:#E0D8CC}
 
 /* FORMS */
@@ -158,46 +161,46 @@ a{text-decoration:none}
 
 /* LOGIN CARD */
 .id-logo{text-align:center;margin-bottom:28px}
-.id-logo h1{font-family:var(--font-d);font-size:44px;color:white;text-shadow:3px 3px 0 rgba(0,0,0,.15)}
+.id-logo h1{font-family:var(--font-d);font-size:36px;color:white;font-weight:700}
 .id-logo p{color:rgba(255,255,255,.9);font-weight:700;font-size:15px;margin-top:4px}
-.id-card{background:white;border-radius:28px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.2);width:100%;max-width:480px}
-.id-card h2{font-family:var(--font-d);font-size:22px;color:var(--text-dark);text-align:center;margin-bottom:20px}
+.id-card{background:white;border-radius:16px;padding:28px;box-shadow:var(--shadow-lg);width:100%;max-width:460px}
+.id-card h2{font-family:var(--font-d);font-size:18px;color:var(--text-dark);text-align:center;margin-bottom:18px;font-weight:700}
 
 /* CARDS */
-.card{background:white;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-card);
-  margin-bottom:18px;border-top:5px solid var(--orange)}
+.card{background:white;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-card);
+  margin-bottom:16px;border-top:3px solid var(--orange)}
 .card.purple{border-top-color:var(--purple)}
 .card.green{border-top-color:var(--green)}
 .card.blue{border-top-color:var(--blue)}
 .card.gray{border-top-color:#CCC}
-.card h2{font-family:var(--font-d);font-size:20px;color:var(--text-dark);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.card h2{font-family:var(--font-d);font-size:17px;color:var(--text-dark);margin-bottom:12px;display:flex;align-items:center;gap:8px;font-weight:700}
 
 /* STUDENT WELCOME */
 .welcome-h{text-align:center;padding:16px 0;margin-bottom:6px}
-.welcome-h h2{font-family:var(--font-d);font-size:26px;color:var(--text-dark)}
-.s-badge{display:inline-block;background:linear-gradient(135deg,var(--orange),var(--red));
-  color:white;border-radius:50px;padding:5px 18px;font-weight:800;font-size:14px;margin-top:5px}
-.list-item{background:white;border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;
-  box-shadow:0 3px 12px rgba(0,0,0,.07);display:flex;align-items:center;gap:12px;cursor:pointer;
-  transition:all .2s;border-left:5px solid var(--purple)}
+.welcome-h h2{font-family:var(--font-d);font-size:22px;color:var(--text-dark);font-weight:700}
+.s-badge{display:inline-block;background:var(--orange);
+  color:white;border-radius:6px;padding:4px 14px;font-weight:600;font-size:13px;margin-top:5px}
+.list-item{background:white;border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:8px;
+  box-shadow:var(--shadow-card);display:flex;align-items:center;gap:12px;cursor:pointer;
+  transition:all .2s;border-left:3px solid var(--purple)}
 .list-item:hover{transform:translateX(4px);box-shadow:0 6px 20px rgba(0,0,0,.12)}
 .li-info{flex:1}
-.li-title{font-family:var(--font-d);font-size:17px;color:var(--text-dark)}
+.li-title{font-family:var(--font-d);font-size:15px;color:var(--text-dark);font-weight:700}
 .li-meta{font-size:12px;color:#888;font-weight:700;margin-top:2px}
-.li-badge{background:var(--purple);color:white;border-radius:50px;padding:3px 11px;font-size:12px;font-weight:800}
+.li-badge{background:var(--purple);color:white;border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700}
 
 /* EXERCISE GRID */
 .ex-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:16px 0}
-.ex-card{background:white;border-radius:var(--radius);padding:20px 14px;text-align:center;cursor:pointer;
-  box-shadow:0 6px 0 rgba(0,0,0,.1),0 12px 30px rgba(0,0,0,.1);
-  transition:all .2s cubic-bezier(.34,1.56,.64,1);border-top:5px solid var(--orange);position:relative}
+.ex-card{background:white;border-radius:var(--radius);padding:18px 14px;text-align:center;cursor:pointer;
+  box-shadow:var(--shadow-card);
+  transition:all .2s ease;border-top:3px solid var(--orange);position:relative}
 .ex-card.c2{border-top-color:var(--purple)}
 .ex-card.c3{border-top-color:var(--blue)}
 .ex-card.c4{border-top-color:var(--green)}
-.ex-card:hover{transform:translateY(-6px);box-shadow:0 12px 0 rgba(0,0,0,.08),0 20px 40px rgba(0,0,0,.15)}
+.ex-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
 .ex-card:active{transform:translateY(1px)}
-.ex-icon{font-size:36px;margin-bottom:8px;display:block}
-.ex-card h3{font-family:var(--font-d);font-size:15px;color:var(--text-dark);margin-bottom:3px}
+.ex-icon{font-size:28px;margin-bottom:6px;display:block}
+.ex-card h3{font-family:var(--font-d);font-size:14px;color:var(--text-dark);margin-bottom:3px;font-weight:700}
 .ex-card p{font-size:11px;color:#888;font-weight:600}
 .ex-done{position:absolute;top:-8px;right:-8px;background:var(--green);color:white;
   border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;
@@ -264,11 +267,11 @@ a{text-decoration:none}
 /* TEACHER */
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-bottom:20px}
 .stat-c{background:white;border-radius:var(--radius-sm);padding:18px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.08)}
-.stat-n{font-family:var(--font-d);font-size:30px;color:var(--purple)}
+.stat-n{font-family:var(--font-d);font-size:26px;color:var(--purple);font-weight:700}
 .stat-l{font-size:11px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:1px}
-.tabs{display:flex;gap:4px;background:#E8E0D5;border-radius:14px;padding:4px;margin-bottom:18px}
-.tab-btn{flex:1;padding:9px 6px;border-radius:10px;font-weight:700;font-size:12px;color:#888;background:transparent;transition:all .2s}
-.tab-btn.on{background:white;color:var(--purple);box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.tabs{display:flex;gap:2px;background:var(--gray-light);border-radius:10px;padding:3px;margin-bottom:16px}
+.tab-btn{flex:1;padding:8px 6px;border-radius:8px;font-weight:600;font-size:12px;color:var(--text-mid);background:transparent;transition:all .2s}
+.tab-btn.on{background:white;color:var(--purple);box-shadow:0 1px 4px rgba(0,0,0,.08)}
 .sec-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
 .sec-hdr h2{font-family:var(--font-d);font-size:20px;color:var(--text-dark)}
 
@@ -337,29 +340,29 @@ a{text-decoration:none}
   <div class="bg-bubbles"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <div class="home-container">
     <div class="logo-area">
-      <span class="logo-icon">🎮</span>
+      
       <h1 class="logo-title">VocabPro</h1>
-      <p class="logo-subtitle">Apprends le vocabulaire anglais en t'amusant !</p>
+      <p class="logo-subtitle">Révision de vocabulaire — Thèmes travaillés en classe</p>
     </div>
     <div class="home-cards">
       <div class="hcard hcard-s pulse" onclick="goTo('login')">
-        <span class="hcard-icon">🎒</span><h2>Espace Élève</h2>
+        <h2>Espace Élève</h2>
         <p>Accède à tes exercices de vocabulaire</p><div class="hcard-arrow">→</div>
       </div>
       <div class="hcard hcard-t" onclick="openPin()">
-        <span class="hcard-icon">📚</span><h2>Espace Prof</h2>
+        <h2>Espace Prof</h2>
         <p>Gérer les listes et paramètres</p><div class="hcard-arrow">→</div>
       </div>
     </div>
-    <div class="stars"><span class="star s1">⭐</span><span class="star s2">✨</span><span class="star s3">🌟</span><span class="star s4">⭐</span><span class="star s5">✨</span></div>
+    
   </div>
 </div>
 
 <!-- ====== LOGIN ====== -->
 <div id="view-login" class="view">
-  <div class="id-logo"><div style="font-size:52px;margin-bottom:6px;">🎮</div><h1>VocabPro</h1><p>Connexion Élève</p></div>
+  <div class="id-logo"><h1>VocabPro</h1><p>Connexion Élève</p></div>
   <div class="id-card">
-    <h2>🎒 Identifie-toi !</h2>
+    <h2>Identifie-toi</h2>
     <div class="fg"><label>Code d'accès</label>
       <input type="text" id="accessCode" class="code-big" placeholder="VOCAB1" maxlength="20" autocomplete="off" oninput="this.value=this.value.toUpperCase()">
     </div>
@@ -371,8 +374,8 @@ a{text-decoration:none}
       </div>
       <div class="id-prev" id="idPrev">Identifiant : __ – __</div>
     </div>
-    <div class="fg"><label>Classe (ex : 2AEPA, TAEPA, CAP1…)</label>
-      <input type="text" id="lClasse" placeholder="2AEPA" maxlength="20" oninput="this.value=this.value.toUpperCase()">
+    <div class="fg"><label>Filière</label>
+      <select id="lFiliere"><option value="">— Choisir —</option><option value="AEPA">AEPA</option><option value="CVA">CVA</option><option value="MDA">MDA</option><option value="AS">AS</option></select>
     </div>
     <div class="fg"><label>Niveau</label>
       <select id="lNiveau"><option value="">— Choisir —</option><option>CAP</option><option>2nde Bac Pro</option><option>1ère Bac Pro</option><option>Terminale Bac Pro</option></select>
@@ -386,19 +389,19 @@ a{text-decoration:none}
 <div id="view-exercises" class="view app-layout">
   <div class="top-bar">
     <button class="back-btn" onclick="goTo('login')">←</button>
-    <h1>🎮 VocabPro</h1>
-    <button onclick="goTo('report')" style="background:rgba(255,255,255,.25);color:white;border-radius:50px;padding:7px 14px;font-weight:700;font-size:12px;">📄 Rapport</button>
+    <h1>VocabPro</h1>
+    <button onclick="goTo('report')" style="background:rgba(255,255,255,.25);color:white;border-radius:50px;padding:7px 14px;font-weight:700;font-size:12px;">Rapport</button>
   </div>
   <div class="main">
     <div class="welcome-h"><h2 id="wMsg">Bonjour !</h2><div class="s-badge" id="sBadge">...</div></div>
-    <div class="card" id="listSelCard"><h2>📚 Choisir une liste</h2><div id="listCont"></div></div>
+    <div class="card" id="listSelCard"><h2>Choisir une liste</h2><div id="listCont"></div></div>
     <div id="exSection" style="display:none">
       <div class="sec-hdr">
         <h2 id="listTitle" style="font-family:var(--font-d);font-size:20px;color:var(--text-dark);">Liste</h2>
         <button class="btn-n" onclick="backToLists()">← Listes</button>
       </div>
       <div class="ex-grid" id="exGrid"></div>
-      <div style="text-align:center;margin-top:14px;"><button class="btn-p" onclick="goTo('report')">📄 Éditer mon rapport PDF</button></div>
+      <div style="text-align:center;margin-top:14px;"><button class="btn-p" onclick="goTo('report')">Rapport PDF</button></div>
     </div>
   </div>
 </div>
@@ -416,15 +419,15 @@ a{text-decoration:none}
 <div id="view-report" class="view app-layout">
   <div class="top-bar">
     <button class="back-btn" onclick="goTo('exercises')">←</button>
-    <h1>📄 Mon Rapport</h1>
+    <h1>Mon Rapport</h1>
   </div>
   <div class="main">
     <div class="card print-hide" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
       <div style="flex:1"><strong style="font-family:var(--font-d);font-size:17px;">Rapport PDF</strong>
         <p style="font-size:12px;color:#888;margin-top:2px;">Sélectionne la liste à inclure</p></div>
-      <button class="btn-p" onclick="printReport()">🖨️ Imprimer / PDF</button>
+      <button class="btn-p" onclick="printReport()">Télécharger le rapport</button>
     </div>
-    <div class="card print-hide"><h2>📚 Liste à inclure</h2><div id="rptPicker"></div></div>
+    <div class="card print-hide"><h2>Liste à inclure</h2><div id="rptPicker"></div></div>
     <div id="rptArea"></div>
   </div>
 </div>
@@ -433,77 +436,25 @@ a{text-decoration:none}
 <div id="view-teacher" class="view app-layout teacher-bg">
   <div class="top-bar tbar">
     <button class="back-btn" onclick="goTo('home')">←</button>
-    <h1>📚 Espace Prof</h1>
+    <h1>Espace Prof</h1>
   </div>
   <div class="main">
     <div class="tabs">
-      <button class="tab-btn on" id="tab-lists" onclick="tTab('lists')">📚 Listes</button>
-      <button class="tab-btn" id="tab-add" onclick="tTab('add')">➕ Nouvelle liste</button>
-      <button class="tab-btn" id="tab-cfg" onclick="tTab('cfg')">⚙️ Réglages</button>
+      <button class="tab-btn on" id="tab-lists" onclick="tTab('lists')">Listes</button>
+      <button class="tab-btn" id="tab-cfg" onclick="tTab('cfg')">Réglages</button>
     </div>
 
     <!-- LISTS -->
     <div id="panel-lists">
-      <div class="sec-hdr"><h2>📚 Mes listes</h2><button class="btn-s" onclick="tTab('add')">+ Nouvelle</button></div>
+      <div class="sec-hdr"><h2>Mes listes</h2></div>
       <div class="stat-grid" id="statsG"></div>
       <div id="listsCont"></div>
-    </div>
-
-    <!-- ADD — nouveau flux simplifié -->
-    <div id="panel-add" style="display:none">
-
-      <!-- ÉTAPE 1 : infos de base -->
-      <div class="card purple">
-        <h2><span class="step-badge">1</span> Informations de la liste</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-          <div class="fg"><label>Nom de la liste</label><input type="text" id="lName" placeholder="Ex : Chap.3 – Le corps humain"></div>
-          <div class="fg"><label>Filière</label><input type="text" id="lFiliere" placeholder="Ex : AEPA" oninput="this.value=this.value.toUpperCase()"></div>
-        </div>
-        <div class="fg"><label>Classe(s) <span style="font-weight:600;color:#aaa;text-transform:none;font-size:11px;">— séparer par virgule si plusieurs</span></label>
-          <input type="text" id="lClasse2" placeholder="Ex : 2AEPA, 2ARCU" oninput="this.value=this.value.toUpperCase()">
-        </div>
-      </div>
-
-      <!-- ÉTAPE 2 : prompt Claude -->
-      <div class="card blue">
-        <h2><span class="step-badge" style="background:var(--blue);">2</span> Génère le JSON avec Claude</h2>
-        <div style="background:#EEF4FF;border-radius:12px;padding:14px 16px;margin-bottom:14px;border-left:4px solid var(--blue);">
-          <p style="font-size:13px;color:#2D4A8A;font-weight:700;line-height:1.7;margin:0;">
-            1. Clique sur <strong>📋 Copier le prompt</strong> ci-dessous<br>
-            2. Ouvre <a href="https://claude.ai" target="_blank" style="color:var(--blue);font-weight:800;text-decoration:underline;">claude.ai ↗</a> dans un autre onglet<br>
-            3. Colle le prompt <strong>et ta liste de mots</strong> dans claude.ai (pas ici !)<br>
-            4. Claude te renvoie un JSON → copie-le et colle-le à l'étape 3
-          </p>
-        </div>
-        <div style="position:relative;">
-          <div class="prompt-box" id="promptBox"></div>
-          <button class="copy-btn" onclick="copyPrompt()">📋 Copier le prompt</button>
-        </div>
-      </div>
-
-      <!-- ÉTAPE 3 : coller le JSON -->
-      <div class="card green">
-        <h2><span class="step-badge" style="background:var(--green-dark);">3</span> Colle le JSON généré par Claude</h2>
-        <p style="font-size:13px;color:#555;font-weight:600;margin-bottom:12px;line-height:1.6;">
-          Copie la réponse JSON de Claude et colle-la ici. L'appli valide et charge les mots automatiquement.
-        </p>
-        <textarea class="json-box" id="jsonInput" rows="10" placeholder='[
-  { "fr": "le bras", "en": "arm", "definition": "part of the body from shoulder to hand" },
-  { "fr": "la jambe", "en": "leg", "definition": "" }
-]' oninput="validateJson()"></textarea>
-        <div class="json-status" id="jsonStatus"></div>
-      </div>
-
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;">
-        <button class="btn-p" onclick="saveJsonList()">💾 Enregistrer la liste</button>
-        <button class="btn-n" onclick="tTab('lists')">Annuler</button>
-      </div>
     </div>
 
     <!-- CONFIG -->
     <div id="panel-cfg" style="display:none">
       <div class="card purple">
-        <h2>⚙️ Réglages</h2>
+        <h2>Réglages</h2>
         <div class="fg"><label>Code d'accès élèves</label>
           <div style="display:flex;gap:10px;align-items:center;">
             <input type="text" id="sCodeDisp" style="font-family:var(--font-d);font-size:20px;text-align:center;letter-spacing:4px;text-transform:uppercase;flex:1;">
@@ -522,7 +473,7 @@ a{text-decoration:none}
           <button class="btn-d" onclick="showModal('resetMod')">🗑️ Effacer toutes les données</button>
         </div>
       </div>
-      <div class="card blue"><h2>ℹ️ À propos</h2>
+      <div class="card blue"><h2>À propos</h2>
         <p style="font-size:13px;color:#666;font-weight:600;line-height:1.7;"><strong>VocabPro</strong> – Vocabulaire anglais lycée pro.<br>Créée par <strong>C. Iemfre</strong><br>Données stockées localement (localStorage). Aucun serveur.</p>
       </div>
     </div>
@@ -537,14 +488,14 @@ a{text-decoration:none}
 
 <!-- ====== MODALS ====== -->
 <div class="modal-overlay" id="rgpdMod" style="display:none">
-  <div class="modal-box"><h3>🔒 RGPD</h3>
+  <div class="modal-box"><h3>RGPD</h3>
     <div class="modal-content"><p>Données stockées localement sur votre appareil (localStorage). Aucune transmission externe.</p><p style="margin-top:8px;">Contenu à compléter.</p></div>
     <button class="btn-p" onclick="closeModal('rgpdMod')">Fermer</button>
   </div>
 </div>
 
 <div class="modal-overlay" id="pinMod" style="display:none">
-  <div class="modal-box"><h3>🔑 Accès Professeur</h3>
+  <div class="modal-box"><h3>Accès Professeur</h3>
     <div class="pin-display" id="pinDisp">_ _ _ _</div>
     <div class="numpad">
       <button onclick="pp(1)">1</button><button onclick="pp(2)">2</button><button onclick="pp(3)">3</button>
@@ -559,7 +510,7 @@ a{text-decoration:none}
 </div>
 
 <div class="modal-overlay" id="backExMod" style="display:none">
-  <div class="modal-box"><h3>⚠️ Quitter l'exercice ?</h3>
+  <div class="modal-box"><h3>Quitter l'exercice ?</h3>
     <p style="margin-bottom:18px;font-weight:600;color:#666;">Ta progression sera perdue.</p>
     <div style="display:flex;gap:10px;justify-content:center;">
       <button class="btn-d" onclick="closeModal('backExMod');goTo('exercises')">Quitter</button>
@@ -570,7 +521,7 @@ a{text-decoration:none}
 
 <div class="modal-overlay" id="editMod" style="display:none">
   <div class="modal-box modal-wide">
-    <h3 id="editModTitle">✏️ Modifier</h3>
+    <h3 id="editModTitle">Modifier</h3>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
       <div class="fg" style="margin:0"><label>Nom</label><input type="text" id="eName"></div>
       <div class="fg" style="margin:0"><label>Filière</label><input type="text" id="eFiliere" oninput="this.value=this.value.toUpperCase()"></div>
@@ -593,7 +544,7 @@ a{text-decoration:none}
 </div>
 
 <div class="modal-overlay" id="resetMod" style="display:none">
-  <div class="modal-box"><h3>⚠️ Effacer tout ?</h3>
+  <div class="modal-box"><h3>Effacer tout ?</h3>
     <p style="margin-bottom:18px;font-weight:600;color:#666;">Supprime listes et résultats. Irréversible !</p>
     <div style="display:flex;gap:10px;justify-content:center;">
       <button class="btn-d" onclick="doReset()">Oui, effacer</button>
@@ -613,6 +564,344 @@ a{text-decoration:none}
 </div>
 
 <script>
+
+// ==================== BUILTIN LISTS (intégrées en dur, visibles par tous) ====================
+const BUILTIN_LISTS = [
+  {
+    id:'bl_01', name:'Gap years', filiere:'AEPA', classe:'TERMINALE',
+    words:[
+      {fr:"année sabbatique",en:"gap year",definition:"a year taken off before or after studies to travel or work"},
+      {fr:"voyage sac à dos",en:"backpacking",definition:"travelling with only a backpack, usually on a low budget"},
+      {fr:"auberge de jeunesse",en:"hostel",definition:"cheap shared accommodation for travellers"},
+      {fr:"bénévolat",en:"volunteer work",definition:"unpaid work done to help others or a cause"},
+      {fr:"découverte de soi",en:"self-discovery",definition:"process of learning about your own character and values"},
+      {fr:"indépendance",en:"independence",definition:"state of being free from others' control"},
+      {fr:"immersion culturelle",en:"cultural immersion",definition:"deep involvement in another country's way of life"},
+      {fr:"voyage économique",en:"budget travel",definition:"travelling while spending as little money as possible"},
+      {fr:"aventure",en:"adventure",definition:"an exciting or unusual experience"},
+      {fr:"expérience de vie",en:"life experience",definition:"knowledge gained through living and doing things"},
+      {fr:"développement personnel",en:"personal growth",definition:"process of improving your skills and character"},
+      {fr:"à l'étranger",en:"abroad",definition:"in or to a foreign country"},
+      {fr:"programme d'échange",en:"exchange program",definition:"scheme where students study in another country"},
+      {fr:"ouverture d'esprit",en:"open-mindedness",definition:"willingness to consider different ideas and cultures"},
+      {fr:"séjour en famille d'accueil",en:"homestay",definition:"staying with a local family in a foreign country"},
+      {fr:"expédition",en:"expedition",definition:"an organised journey for a specific purpose"},
+      {fr:"zone de confort",en:"comfort zone",definition:"situation where you feel safe and not challenged"},
+      {fr:"itinéraire",en:"itinerary",definition:"a planned route or schedule for a journey"},
+      {fr:"choc culturel",en:"cultural shock",definition:"feeling of disorientation in an unfamiliar culture"},
+      {fr:"confiance",en:"confidence",definition:"belief in your own abilities"},
+      {fr:"aider",en:"to help",definition:"to make it easier for someone to do something"},
+      {fr:"liberté",en:"freedom",definition:"the right to act and live without restrictions"},
+      {fr:"compétences",en:"skills",definition:"abilities learned through practice or experience"},
+      {fr:"découverte",en:"discovery",definition:"finding or learning something for the first time"},
+      {fr:"danger",en:"danger",definition:"possibility of harm or something going wrong"},
+      {fr:"bénéfices",en:"advantages",definition:"positive aspects or benefits of something"}
+    ]
+  },
+  {
+    id:'bl_02', name:'New technologies', filiere:'AEPA', classe:'TERMINALE',
+    words:[
+      {fr:"intelligence artificielle",en:"artificial intelligence",definition:"computer systems that simulate human thinking"},
+      {fr:"réalité virtuelle",en:"virtual reality",definition:"computer-generated environment you can interact with"},
+      {fr:"cybersécurité",en:"cybersecurity",definition:"protection of computer systems from digital attacks"},
+      {fr:"appareil connecté",en:"smart device",definition:"electronic device that connects to the internet"},
+      {fr:"agent conversationnel",en:"chatbot",definition:"software that simulates conversation with humans"},
+      {fr:"téléphone intelligent",en:"smartphone",definition:"mobile phone with computer-like functions"},
+      {fr:"montre connectée",en:"smartwatch",definition:"wristwatch with smartphone and health features"},
+      {fr:"drone",en:"drone",definition:"unmanned aircraft controlled remotely"},
+      {fr:"technologie",en:"technology",definition:"application of scientific knowledge for practical use"},
+      {fr:"robot",en:"robot",definition:"machine that performs tasks automatically"},
+      {fr:"contrôle vocal",en:"voice control",definition:"technology that responds to spoken commands"},
+      {fr:"véhicule autonome",en:"autonomous vehicle",definition:"self-driving car that needs no human input"},
+      {fr:"interactif",en:"interactive",definition:"allowing two-way communication or action"},
+      {fr:"en ligne",en:"online",definition:"connected to or available through the internet"},
+      {fr:"données personnelles",en:"personal data",definition:"information that identifies a specific individual"},
+      {fr:"protéger",en:"to protect",definition:"to keep safe from harm or danger"},
+      {fr:"innovation",en:"innovation",definition:"introduction of new ideas, methods or products"}
+    ]
+  },
+  {
+    id:'bl_03', name:'Are you connected', filiere:'AEPA', classe:'SECONDE',
+    words:[
+      {fr:"publication",en:"post",definition:"content shared on a social media platform"},
+      {fr:"fil d'actualité",en:"feed",definition:"stream of updates and posts on social media"},
+      {fr:"story",en:"story",definition:"short photo or video content visible for 24 hours"},
+      {fr:"j'aime",en:"like",definition:"button to show you appreciate a post"},
+      {fr:"partage",en:"share",definition:"spreading someone else's content to your followers"},
+      {fr:"commentaire",en:"comment",definition:"written reaction left below a post"},
+      {fr:"commenter",en:"to comment",definition:"to leave a written reaction on a post"},
+      {fr:"suivre",en:"to follow",definition:"to subscribe to someone's social media account"},
+      {fr:"se désabonner",en:"to unfollow",definition:"to stop following someone's account"},
+      {fr:"profil",en:"profile",definition:"personal page showing your info and posts"},
+      {fr:"influenceur",en:"influencer",definition:"person with many followers who shapes opinions"},
+      {fr:"créateur de contenu",en:"content creator",definition:"person who produces videos, posts or articles online"},
+      {fr:"viral",en:"viral",definition:"content that spreads very quickly online"},
+      {fr:"message privé",en:"DM",definition:"private message sent directly to another user"},
+      {fr:"notification",en:"notification",definition:"alert that tells you about new activity"},
+      {fr:"avatar",en:"avatar",definition:"image or icon representing a user online"},
+      {fr:"fil de discussion",en:"thread",definition:"series of connected messages or posts"},
+      {fr:"mème",en:"meme",definition:"funny image or video widely shared online"},
+      {fr:"troll",en:"troll",definition:"person who posts offensive content to provoke others"},
+      {fr:"publication sponsorisée",en:"sponsored post",definition:"paid promotional content on social media"},
+      {fr:"community manager",en:"community manager",definition:"person who manages a brand's online presence"},
+      {fr:"connecté",en:"connected",definition:"linked to the internet or a network"},
+      {fr:"réseaux sociaux",en:"social media",definition:"websites and apps for sharing content and connecting"},
+      {fr:"filtre",en:"filter",definition:"effect applied to a photo to change its appearance"},
+      {fr:"en ligne",en:"online",definition:"connected to or available on the internet"},
+      {fr:"publicité",en:"advertisement",definition:"paid message promoting a product or service"},
+      {fr:"collaboration",en:"collab",definition:"joint project between two creators or brands"},
+      {fr:"signaler",en:"to report",definition:"to flag inappropriate content to the platform"},
+      {fr:"tendance",en:"trend",definition:"topic or style that is popular at a given moment"},
+      {fr:"faire défiler",en:"to scroll",definition:"to move up or down through content on a screen"}
+    ]
+  },
+  {
+    id:'bl_04', name:'Work placement', filiere:'AEPA', classe:'SECONDE',
+    words:[
+      {fr:"stage",en:"internship",definition:"temporary work experience in a company"},
+      {fr:"stagiaire",en:"trainee",definition:"person doing a work placement or training"},
+      {fr:"tuteur",en:"supervisor",definition:"person responsible for guiding a trainee"},
+      {fr:"lettre de motivation",en:"cover letter",definition:"letter explaining why you want a job"},
+      {fr:"CV",en:"resume",definition:"document listing your education and experience"},
+      {fr:"entretien d'embauche",en:"job interview",definition:"formal meeting to assess a job candidate"},
+      {fr:"temps plein",en:"full-time",definition:"working the standard number of hours per week"},
+      {fr:"temps partiel",en:"part-time",definition:"working fewer hours than a full-time contract"},
+      {fr:"télétravail",en:"remote work",definition:"working from home instead of the office"},
+      {fr:"bureau",en:"office",definition:"room or building where people work"},
+      {fr:"réunion",en:"meeting",definition:"gathering of people to discuss work topics"},
+      {fr:"date limite",en:"deadline",definition:"latest time by which a task must be completed"},
+      {fr:"évaluation",en:"assessment",definition:"process of judging someone's performance"},
+      {fr:"compétence",en:"skill",definition:"ability to do something well"},
+      {fr:"équipe",en:"team",definition:"group of people working together"},
+      {fr:"travail en équipe",en:"teamwork",definition:"cooperative effort by a group to achieve a goal"},
+      {fr:"réseautage",en:"networking",definition:"building professional relationships with others"},
+      {fr:"convention de stage",en:"internship agreement",definition:"official document formalising a work placement"},
+      {fr:"gratification",en:"allowance",definition:"small payment given to a trainee during a placement"},
+      {fr:"code vestimentaire",en:"dress code",definition:"rules about what clothes to wear at work"},
+      {fr:"tâche",en:"task",definition:"piece of work to be done"},
+      {fr:"mission",en:"mission",definition:"specific assignment or goal to accomplish"},
+      {fr:"projet",en:"project",definition:"planned piece of work with a specific aim"},
+      {fr:"collègue",en:"colleague",definition:"person you work with"},
+      {fr:"environnement de travail",en:"work environment",definition:"physical and social conditions of a workplace"},
+      {fr:"lettre de recommandation",en:"reference letter",definition:"letter supporting a candidate's application"}
+    ]
+  },
+  {
+    id:'bl_05', name:'Working conditions', filiere:'CVA', classe:'PREMIÈRE',
+    words:[
+      {fr:"salaire",en:"salary",definition:"fixed regular payment from an employer"},
+      {fr:"salaire minimum",en:"minimum wage",definition:"lowest legal hourly pay rate"},
+      {fr:"fiche de paie",en:"payslip",definition:"document showing earnings and deductions"},
+      {fr:"prime",en:"bonus",definition:"extra payment on top of regular salary"},
+      {fr:"avantages sociaux",en:"benefits",definition:"non-wage compensation such as health cover"},
+      {fr:"congés payés",en:"paid leave",definition:"authorised time off work with full pay"},
+      {fr:"congé maladie",en:"sick leave",definition:"time off due to illness"},
+      {fr:"congé maternité",en:"maternity leave",definition:"leave for a mother after having a baby"},
+      {fr:"congé paternité",en:"paternity leave",definition:"leave for a father after having a baby"},
+      {fr:"heures de travail",en:"working hours",definition:"time an employee is required to work"},
+      {fr:"heures supplémentaires",en:"overtime",definition:"hours worked beyond the normal schedule"},
+      {fr:"poste",en:"shift",definition:"set period of work in a rota system"},
+      {fr:"poste de nuit",en:"night shift",definition:"work period during the night"},
+      {fr:"pause",en:"break",definition:"short rest period during the working day"},
+      {fr:"pause déjeuner",en:"lunch break",definition:"break taken to eat a midday meal"},
+      {fr:"lieu de travail",en:"workplace",definition:"physical location where work is carried out"},
+      {fr:"open space",en:"open space",definition:"office with no walls between workstations"},
+      {fr:"espace de coworking",en:"coworking",definition:"shared workspace used by different companies"},
+      {fr:"syndicat",en:"trade union",definition:"organisation protecting workers' rights"},
+      {fr:"grève",en:"strike",definition:"refusal to work as a form of protest"},
+      {fr:"épuisement professionnel",en:"burnout",definition:"extreme tiredness caused by overwork"},
+      {fr:"harcèlement",en:"harassment",definition:"aggressive behaviour that causes distress at work"},
+      {fr:"discrimination",en:"discrimination",definition:"unfair treatment based on personal characteristics"},
+      {fr:"santé mentale",en:"mental health",definition:"state of psychological wellbeing"},
+      {fr:"chômage",en:"unemployment",definition:"state of being without a paid job"},
+      {fr:"promotion",en:"promotion",definition:"move to a higher position at work"},
+      {fr:"évolution de carrière",en:"career development",definition:"progress and growth in a professional field"},
+      {fr:"stressant",en:"stressful",definition:"causing anxiety or tension"},
+      {fr:"fatigant",en:"tiring",definition:"causing physical or mental exhaustion"},
+      {fr:"pression",en:"pressure",definition:"stress caused by demanding situations"},
+      {fr:"travail d'équipe",en:"teamwork",definition:"working cooperatively with others"},
+      {fr:"formation",en:"training",definition:"teaching employees specific job skills"},
+      {fr:"multi tâche",en:"multitasking",definition:"doing several tasks at the same time"},
+      {fr:"physique",en:"physical",definition:"relating to the body rather than the mind"}
+    ]
+  },
+  {
+    id:'bl_06', name:'Working conditions', filiere:'MDA', classe:'PREMIÈRE',
+    words:[
+      {fr:"salaire",en:"salary",definition:"fixed regular payment from an employer"},
+      {fr:"salaire minimum",en:"minimum wage",definition:"lowest legal hourly pay rate"},
+      {fr:"fiche de paie",en:"payslip",definition:"document showing earnings and deductions"},
+      {fr:"prime",en:"bonus",definition:"extra payment on top of regular salary"},
+      {fr:"avantages sociaux",en:"benefits",definition:"non-wage compensation such as health cover"},
+      {fr:"congés payés",en:"paid leave",definition:"authorised time off work with full pay"},
+      {fr:"congé maladie",en:"sick leave",definition:"time off due to illness"},
+      {fr:"congé maternité",en:"maternity leave",definition:"leave for a mother after having a baby"},
+      {fr:"congé paternité",en:"paternity leave",definition:"leave for a father after having a baby"},
+      {fr:"heures de travail",en:"working hours",definition:"time an employee is required to work"},
+      {fr:"heures supplémentaires",en:"overtime",definition:"hours worked beyond the normal schedule"},
+      {fr:"poste",en:"shift",definition:"set period of work in a rota system"},
+      {fr:"poste de nuit",en:"night shift",definition:"work period during the night"},
+      {fr:"pause",en:"break",definition:"short rest period during the working day"},
+      {fr:"pause déjeuner",en:"lunch break",definition:"break taken to eat a midday meal"},
+      {fr:"lieu de travail",en:"workplace",definition:"physical location where work is carried out"},
+      {fr:"open space",en:"open space",definition:"office with no walls between workstations"},
+      {fr:"espace de coworking",en:"coworking",definition:"shared workspace used by different companies"},
+      {fr:"syndicat",en:"trade union",definition:"organisation protecting workers' rights"},
+      {fr:"grève",en:"strike",definition:"refusal to work as a form of protest"},
+      {fr:"épuisement professionnel",en:"burnout",definition:"extreme tiredness caused by overwork"},
+      {fr:"harcèlement",en:"harassment",definition:"aggressive behaviour that causes distress at work"},
+      {fr:"discrimination",en:"discrimination",definition:"unfair treatment based on personal characteristics"},
+      {fr:"santé mentale",en:"mental health",definition:"state of psychological wellbeing"},
+      {fr:"chômage",en:"unemployment",definition:"state of being without a paid job"},
+      {fr:"promotion",en:"promotion",definition:"move to a higher position at work"},
+      {fr:"évolution de carrière",en:"career development",definition:"progress and growth in a professional field"},
+      {fr:"stressant",en:"stressful",definition:"causing anxiety or tension"},
+      {fr:"fatigant",en:"tiring",definition:"causing physical or mental exhaustion"},
+      {fr:"pression",en:"pressure",definition:"stress caused by demanding situations"},
+      {fr:"travail d'équipe",en:"teamwork",definition:"working cooperatively with others"},
+      {fr:"formation",en:"training",definition:"teaching employees specific job skills"},
+      {fr:"multi tâche",en:"multitasking",definition:"doing several tasks at the same time"},
+      {fr:"physique",en:"physical",definition:"relating to the body rather than the mind"}
+    ]
+  },
+  {
+    id:'bl_07', name:'Online shopping', filiere:'MDA', classe:'PREMIÈRE',
+    words:[
+      {fr:"commerce en ligne",en:"e-commerce",definition:"buying and selling goods over the internet"},
+      {fr:"boutique en ligne",en:"online store",definition:"website where you can buy products"},
+      {fr:"panier d'achat",en:"shopping cart",definition:"virtual basket holding items before purchase"},
+      {fr:"passage en caisse",en:"checkout",definition:"final step to pay for items in an online store"},
+      {fr:"paiement",en:"payment",definition:"transfer of money to buy something"},
+      {fr:"facture",en:"invoice",definition:"document requesting payment for goods or services"},
+      {fr:"reçu",en:"receipt",definition:"proof that a payment has been made"},
+      {fr:"remboursement",en:"refund",definition:"money paid back after returning a product"},
+      {fr:"retour",en:"return",definition:"sending a product back to the seller"},
+      {fr:"échange",en:"exchange",definition:"replacing a product with a different one"},
+      {fr:"livraison",en:"delivery",definition:"bringing a purchased item to the customer"},
+      {fr:"expédition",en:"shipping",definition:"process of sending goods to a buyer"},
+      {fr:"suivi de colis",en:"tracking",definition:"monitoring the location of a parcel in transit"},
+      {fr:"livraison express",en:"express delivery",definition:"faster than normal delivery option"},
+      {fr:"livraison gratuite",en:"free shipping",definition:"delivery at no extra cost to the buyer"},
+      {fr:"rupture de stock",en:"out of stock",definition:"item temporarily unavailable to buy"},
+      {fr:"liste de souhaits",en:"wishlist",definition:"saved list of products you want to buy"},
+      {fr:"réduction",en:"discount",definition:"reduction in the original price"},
+      {fr:"code promo",en:"promo code",definition:"code entered to get a discount at checkout"},
+      {fr:"vente flash",en:"flash sale",definition:"very short sale offering big discounts"},
+      {fr:"abonnement",en:"subscription",definition:"regular payment for ongoing access to a service"},
+      {fr:"points de fidélité",en:"loyalty points",definition:"rewards earned with each purchase"},
+      {fr:"avis client",en:"review",definition:"customer opinion about a product or service"},
+      {fr:"note",en:"rating",definition:"score given to a product by a customer"},
+      {fr:"vendeur",en:"seller",definition:"person or company selling products online"},
+      {fr:"paiement sécurisé",en:"secure payment",definition:"encrypted transaction to protect financial data"},
+      {fr:"confidentialité des données",en:"data privacy",definition:"protection of personal information online"},
+      {fr:"service client",en:"customer service",definition:"support provided to buyers before and after purchase"},
+      {fr:"commande",en:"order",definition:"request to buy a specific product"},
+      {fr:"historique de commandes",en:"order history",definition:"record of all past purchases"},
+      {fr:"livraison estimée",en:"estimated delivery",definition:"predicted date for receiving a parcel"},
+      {fr:"livraison le jour même",en:"same-day delivery",definition:"delivery on the same day as the order"},
+      {fr:"retrait en magasin",en:"click and collect",definition:"order online and pick up in store"},
+      {fr:"carte cadeau",en:"gift card",definition:"prepaid card used to buy products"},
+      {fr:"arnaque",en:"scam",definition:"dishonest scheme to trick people out of money"},
+      {fr:"contrefaçon",en:"counterfeit",definition:"fake copy of a genuine product"}
+    ]
+  },
+  {
+    id:'bl_08', name:'Online shopping', filiere:'CVA', classe:'PREMIÈRE',
+    words:[
+      {fr:"commerce en ligne",en:"e-commerce",definition:"buying and selling goods over the internet"},
+      {fr:"boutique en ligne",en:"online store",definition:"website where you can buy products"},
+      {fr:"panier d'achat",en:"shopping cart",definition:"virtual basket holding items before purchase"},
+      {fr:"passage en caisse",en:"checkout",definition:"final step to pay for items in an online store"},
+      {fr:"paiement",en:"payment",definition:"transfer of money to buy something"},
+      {fr:"facture",en:"invoice",definition:"document requesting payment for goods or services"},
+      {fr:"reçu",en:"receipt",definition:"proof that a payment has been made"},
+      {fr:"remboursement",en:"refund",definition:"money paid back after returning a product"},
+      {fr:"retour",en:"return",definition:"sending a product back to the seller"},
+      {fr:"échange",en:"exchange",definition:"replacing a product with a different one"},
+      {fr:"livraison",en:"delivery",definition:"bringing a purchased item to the customer"},
+      {fr:"expédition",en:"shipping",definition:"process of sending goods to a buyer"},
+      {fr:"suivi de colis",en:"tracking",definition:"monitoring the location of a parcel in transit"},
+      {fr:"livraison express",en:"express delivery",definition:"faster than normal delivery option"},
+      {fr:"livraison gratuite",en:"free shipping",definition:"delivery at no extra cost to the buyer"},
+      {fr:"rupture de stock",en:"out of stock",definition:"item temporarily unavailable to buy"},
+      {fr:"liste de souhaits",en:"wishlist",definition:"saved list of products you want to buy"},
+      {fr:"réduction",en:"discount",definition:"reduction in the original price"},
+      {fr:"code promo",en:"promo code",definition:"code entered to get a discount at checkout"},
+      {fr:"vente flash",en:"flash sale",definition:"very short sale offering big discounts"},
+      {fr:"abonnement",en:"subscription",definition:"regular payment for ongoing access to a service"},
+      {fr:"points de fidélité",en:"loyalty points",definition:"rewards earned with each purchase"},
+      {fr:"avis client",en:"review",definition:"customer opinion about a product or service"},
+      {fr:"note",en:"rating",definition:"score given to a product by a customer"},
+      {fr:"vendeur",en:"seller",definition:"person or company selling products online"},
+      {fr:"paiement sécurisé",en:"secure payment",definition:"encrypted transaction to protect financial data"},
+      {fr:"confidentialité des données",en:"data privacy",definition:"protection of personal information online"},
+      {fr:"service client",en:"customer service",definition:"support provided to buyers before and after purchase"},
+      {fr:"commande",en:"order",definition:"request to buy a specific product"},
+      {fr:"historique de commandes",en:"order history",definition:"record of all past purchases"},
+      {fr:"livraison estimée",en:"estimated delivery",definition:"predicted date for receiving a parcel"},
+      {fr:"livraison le jour même",en:"same-day delivery",definition:"delivery on the same day as the order"},
+      {fr:"retrait en magasin",en:"click and collect",definition:"order online and pick up in store"},
+      {fr:"carte cadeau",en:"gift card",definition:"prepaid card used to buy products"},
+      {fr:"arnaque",en:"scam",definition:"dishonest scheme to trick people out of money"},
+      {fr:"contrefaçon",en:"counterfeit",definition:"fake copy of a genuine product"}
+    ]
+  },
+  {
+    id:'bl_09', name:'Dream job', filiere:'CVA', classe:'PREMIÈRE',
+    words:[
+      {fr:"intéressant",en:"interesting",definition:"holding your attention and curiosity"},
+      {fr:"ennuyeux",en:"boring",definition:"not interesting or exciting"},
+      {fr:"excitant",en:"exciting",definition:"causing enthusiasm and eagerness"},
+      {fr:"stressant",en:"stressful",definition:"causing anxiety or pressure"},
+      {fr:"sympa",en:"fun",definition:"enjoyable and entertaining"},
+      {fr:"créatif",en:"creative",definition:"involving imagination and new ideas"},
+      {fr:"difficile",en:"difficult",definition:"requiring a lot of effort or skill"},
+      {fr:"facile",en:"easy",definition:"not requiring much effort"},
+      {fr:"fatigant",en:"tiring",definition:"causing physical or mental exhaustion"},
+      {fr:"relaxant",en:"relaxing",definition:"reducing stress and tension"},
+      {fr:"dynamique",en:"dynamic",definition:"full of energy and always changing"},
+      {fr:"professionnel",en:"professional",definition:"relating to a skilled paid occupation"},
+      {fr:"amical",en:"friendly",definition:"kind and pleasant to work with"},
+      {fr:"moderne",en:"modern",definition:"relating to current times and methods"},
+      {fr:"inhabituel",en:"unusual",definition:"not common or expected"},
+      {fr:"gratifiant",en:"rewarding",definition:"giving satisfaction and a sense of achievement"},
+      {fr:"challengeant",en:"challenging",definition:"testing your abilities in a positive way"},
+      {fr:"social",en:"social",definition:"involving interaction with other people"},
+      {fr:"répétitif",en:"repetitive",definition:"involving the same actions done many times"},
+      {fr:"ambitieux",en:"ambitious",definition:"having a strong desire to succeed"},
+      {fr:"stimulant",en:"stimulating",definition:"making you feel interested and enthusiastic"},
+      {fr:"éprouvant",en:"grueling",definition:"extremely demanding and exhausting"}
+    ]
+  },
+  {
+    id:'bl_10', name:'Dream job', filiere:'MDA', classe:'PREMIÈRE',
+    words:[
+      {fr:"intéressant",en:"interesting",definition:"holding your attention and curiosity"},
+      {fr:"ennuyeux",en:"boring",definition:"not interesting or exciting"},
+      {fr:"excitant",en:"exciting",definition:"causing enthusiasm and eagerness"},
+      {fr:"stressant",en:"stressful",definition:"causing anxiety or pressure"},
+      {fr:"sympa",en:"fun",definition:"enjoyable and entertaining"},
+      {fr:"créatif",en:"creative",definition:"involving imagination and new ideas"},
+      {fr:"difficile",en:"difficult",definition:"requiring a lot of effort or skill"},
+      {fr:"facile",en:"easy",definition:"not requiring much effort"},
+      {fr:"fatigant",en:"tiring",definition:"causing physical or mental exhaustion"},
+      {fr:"relaxant",en:"relaxing",definition:"reducing stress and tension"},
+      {fr:"dynamique",en:"dynamic",definition:"full of energy and always changing"},
+      {fr:"professionnel",en:"professional",definition:"relating to a skilled paid occupation"},
+      {fr:"amical",en:"friendly",definition:"kind and pleasant to work with"},
+      {fr:"moderne",en:"modern",definition:"relating to current times and methods"},
+      {fr:"inhabituel",en:"unusual",definition:"not common or expected"},
+      {fr:"gratifiant",en:"rewarding",definition:"giving satisfaction and a sense of achievement"},
+      {fr:"challengeant",en:"challenging",definition:"testing your abilities in a positive way"},
+      {fr:"social",en:"social",definition:"involving interaction with other people"},
+      {fr:"répétitif",en:"repetitive",definition:"involving the same actions done many times"},
+      {fr:"ambitieux",en:"ambitious",definition:"having a strong desire to succeed"},
+      {fr:"stimulant",en:"stimulating",definition:"making you feel interested and enthusiastic"},
+      {fr:"éprouvant",en:"grueling",definition:"extremely demanding and exhausting"}
+    ]
+  }
+];
+
 // ==================== STORAGE ====================
 const VP={
   K:{TC:'vp_tc',SC:'vp_sc',VL:'vp_vl',SR:'vp_sr'},
@@ -620,15 +909,38 @@ const VP={
   set tc(v){localStorage.setItem(this.K.TC,v)},
   get sc(){return localStorage.getItem(this.K.SC)||'VOCAB1'},
   set sc(v){localStorage.setItem(this.K.SC,v.toUpperCase())},
-  get vl(){try{return JSON.parse(localStorage.getItem(this.K.VL))||[]}catch{return[]}},
-  set vl(v){localStorage.setItem(this.K.VL,JSON.stringify(v))},
+  get vl(){
+    try{const extra=JSON.parse(localStorage.getItem(this.K.VL))||[];
+    const bids=new Set(BUILTIN_LISTS.map(l=>l.id));
+    return[...BUILTIN_LISTS,...extra.filter(l=>!bids.has(l.id))]}
+    catch{return BUILTIN_LISTS}
+  },
+  set vl(v){
+    const bids=new Set(BUILTIN_LISTS.map(l=>l.id));
+    localStorage.setItem(this.K.VL,JSON.stringify(v.filter(l=>!bids.has(l.id))))
+  },
   get sr(){try{return JSON.parse(localStorage.getItem(this.K.SR))||{}}catch{return{}}},
   set sr(v){localStorage.setItem(this.K.SR,JSON.stringify(v))},
   saveSR(sid,lid,ei,res){const a=this.sr;if(!a[sid])a[sid]={};if(!a[sid][lid])a[sid][lid]={};a[sid][lid]['ex'+ei]=res;this.sr=a},
   getSR(sid,lid){const a=this.sr;return(a[sid]&&a[sid][lid])?a[sid][lid]:{}},
-  addList(l){const a=this.vl;l.id=Date.now()+'';a.push(l);this.vl=a;return l},
-  updList(id,u){const a=this.vl,i=a.findIndex(x=>x.id===id);if(i!==-1){a[i]={...a[i],...u};this.vl=a}},
-  delList(id){this.vl=this.vl.filter(l=>l.id!==id)},
+  addList(l){
+    const extra=JSON.parse(localStorage.getItem(this.K.VL))||[];
+    l.id=Date.now()+'';extra.push(l);
+    localStorage.setItem(this.K.VL,JSON.stringify(extra));return l
+  },
+  updList(id,u){
+    const bids=new Set(BUILTIN_LISTS.map(x=>x.id));
+    if(bids.has(id)){notif('Liste intégrée : non modifiable.',true);return}
+    const extra=JSON.parse(localStorage.getItem(this.K.VL))||[];
+    const i=extra.findIndex(x=>x.id===id);
+    if(i!==-1){extra[i]={...extra[i],...u};localStorage.setItem(this.K.VL,JSON.stringify(extra))}
+  },
+  delList(id){
+    const bids=new Set(BUILTIN_LISTS.map(x=>x.id));
+    if(bids.has(id)){notif('Liste intégrée : non supprimable.',true);return}
+    const extra=JSON.parse(localStorage.getItem(this.K.VL))||[];
+    localStorage.setItem(this.K.VL,JSON.stringify(extra.filter(l=>l.id!==id)))
+  },
   getList(id){return this.vl.find(l=>l.id===id)}
 };
 
@@ -672,30 +984,53 @@ function doLogin(){
   const code=document.getElementById('accessCode').value.trim();
   const fn=document.getElementById('lFN').value.trim();
   const ln=document.getElementById('lLN').value.trim();
-  const classe=document.getElementById('lClasse').value.trim();
+  const filiere=document.getElementById('lFiliere').value.trim();
   const niveau=document.getElementById('lNiveau').value;
   if(code!==VP.sc){notif("Code d'accès incorrect !",true);return}
   if(fn.length<2||ln.length<2){notif('2 lettres prénom + 2 lettres nom !',true);return}
-  if(!classe){notif('Indique ta classe !',true);return}
-  curStu={id:`${fn}-${ln}`,firstName:fn,lastName:ln,classe,niveau};
+  if(!filiere){notif('Choisis ta filière !',true);return}
+  if(!niveau){notif('Choisis ton niveau !',true);return}
+  curStu={id:`${fn}-${ln}`,firstName:fn,lastName:ln,classe:filiere,filiere,niveau};
   goTo('exercises');
 }
 
 // ==================== EXERCISES MENU ====================
 let curListId=null;
 const EXNAMES=['','QCM','Français → Anglais','Mot → Définition','Vrai / Faux'];
-const EXICONS=['','❓','🔗','📖','✅'];
+const EXICONS=['','','','',''];
 
 function stuMatch(l){
-  const c=curStu.classe.toUpperCase();
+  const niv=(curStu.niveau||'').toUpperCase();
   const lf=(l.filiere||'').toUpperCase();
-  return l.classe.toUpperCase().split(',').map(s=>s.trim()).some(cl=>cl===c||c.includes(lf));
+  const lniv=l.classe.toUpperCase();
+  const stuFiliere=(curStu.filiere||curStu.classe||'').toUpperCase();
+
+  // Mapping dropdown → mot-clé attendu dans la liste
+  const nivMap={
+    'CAP':'CAP','2NDE BAC PRO':'SECONDE',
+    '1':'PREMIÈRE','TERMINALE BAC PRO':'TERMINALE'
+  };
+  let nivNorm='';
+  for(const[k,v]of Object.entries(nivMap)){
+    if(niv.includes(k)){nivNorm=v;break}
+  }
+  if(!nivNorm){
+    if(niv.includes('TERMINALE'))nivNorm='TERMINALE';
+    else if(niv.includes('PREMI'))nivNorm='PREMIÈRE';
+    else if(niv.includes('SECONDE')||niv.includes('2NDE'))nivNorm='SECONDE';
+    else if(niv.includes('CAP'))nivNorm='CAP';
+    else nivNorm=niv;
+  }
+
+  const filiereMatch=lf&&stuFiliere===lf;
+  const niveauMatch=lniv===nivNorm;
+  return filiereMatch && niveauMatch;
 }
 
 function initEx(){
   if(!curStu){goTo('login');return}
   document.getElementById('wMsg').textContent=`Bienvenue, ${curStu.firstName}-${curStu.lastName} ! 👋`;
-  document.getElementById('sBadge').textContent=`${curStu.classe}${curStu.niveau?' · '+curStu.niveau:''}`;
+  document.getElementById('sBadge').textContent=`${curStu.filiere||curStu.classe}${curStu.niveau?' · '+curStu.niveau:''}`;
   loadLists();
 }
 function loadLists(){
@@ -703,7 +1038,7 @@ function loadLists(){
   const c=document.getElementById('listCont');
   document.getElementById('listSelCard').style.display='block';
   document.getElementById('exSection').style.display='none';
-  if(!ml.length){c.innerHTML=`<div class="empty"><span class="ei">📭</span><p>Aucune liste pour ta classe.<br>Demande à ton prof !</p></div>`;return}
+  if(!ml.length){c.innerHTML=`<div class="empty"><p>Aucune liste pour ta classe.<br>Demande à ton prof !</p></div>`;return}
   c.innerHTML=ml.map(l=>{
     const r=VP.getSR(curStu.id,l.id);const done=Object.keys(r).length;
     return`<div class="list-item" onclick="selList('${l.id}')">
@@ -957,11 +1292,11 @@ function rndResult(sc,tot,ans){
       </div>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
         <button class="btn-p" onclick="goTo('exercises');renderExGrid()">← Exercices</button>
-        <button class="btn-s" onclick="goTo('report')">📄 Rapport</button>
+        <button class="btn-s" onclick="goTo('report')">Rapport</button>
       </div>
     </div>`;
 }
-function shToast(ok,ca){rmToast();toastEl=document.createElement('div');toastEl.className=`toast ${ok?'toast-ok':'toast-ko'}`;toastEl.textContent=ok?'✅ Bravo !':`❌ Correct : ${ca}`;document.body.appendChild(toastEl)}
+function shToast(ok,ca){rmToast();toastEl=document.createElement('div');toastEl.className=`toast ${ok?'toast-ok':'toast-ko'}`;toastEl.textContent=ok?'Bravo ! ✓':`❌ Correct : ${ca}`;document.body.appendChild(toastEl)}
 function rmToast(){if(toastEl){toastEl.remove();toastEl=null}}
 
 // ==================== REPORT ====================
@@ -1007,39 +1342,96 @@ function rndRpt(lid){
         <div class="rpt-meta"><strong>${curStu.firstName}-${curStu.lastName}</strong> · ${curStu.classe} · ${date}</div>
         <div class="rpt-meta">Liste : <strong>${list.name}</strong> (${list.filiere} · ${list.classe})</div>
       </div>
-      <div style="background:linear-gradient(135deg,var(--orange),var(--red));border-radius:14px;padding:18px;text-align:center;margin-bottom:20px;color:white;">
-        <div style="font-family:var(--font-d);font-size:12px;opacity:.9;margin-bottom:3px;">NOTE GLOBALE</div>
-        <div style="font-family:var(--font-d);font-size:38px;">${tp>0?ts+'/'+tp:'N/A'}</div>
-        <div style="font-size:13px;opacity:.85;">${gp}% · ${Object.keys(res).length}/4 exercices</div>
+      <div class="score-box" style="background:#1E1B4B;border-radius:10px;padding:16px;text-align:center;margin-bottom:20px;color:white;">
+        <div style="font-size:11px;opacity:.7;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;">Note globale</div>
+        <div style="font-family:var(--font-d);font-size:36px;font-weight:700;">${tp>0?ts+'/'+tp:'N/A'}</div>
+        <div style="font-size:13px;opacity:.8;margin-top:4px;">${gp}% · ${Object.keys(res).length}/4 exercices réalisés</div>
       </div>
       ${secs}
       <div style="text-align:center;margin-top:20px;padding-top:14px;border-top:2px solid #F0EAE2;font-size:11px;color:#aaa;">Généré par VocabPro · C. Iemfre</div>
     </div>`;
 }
-function printReport(){if(!rptListId){notif("Sélectionne une liste !",true);return}window.print()}
+function printReport(){
+  if(!rptListId){notif("Sélectionne une liste d'abord !",true);return}
+  const list=VP.getList(rptListId);
+  const stu=curStu;
+  const date=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+  const res=VP.getSR(stu.id,rptListId);
+  const ENAMES=['','QCM','Français → Anglais','Mot → Définition','Vrai / Faux'];
+
+  let ts=0,tp=0,secs='';
+  for(let i=1;i<=4;i++){
+    const r=res['ex'+i];
+    if(!r){secs+=`<div class="rpt-sec"><h3>Exercice ${i} – ${ENAMES[i]}</h3><p style="color:#aaa;font-style:italic;">Non réalisé</p></div>`;continue}
+    ts+=r.score;tp+=r.total;
+    const pct=Math.round((r.score/r.total)*100);
+    const rows=(r.answers||[]).map(a=>`
+      <div class="rpt-item">
+        <span style="color:${a.isCorrect?'#16A34A':'#DC2626'};font-weight:700;width:16px;flex-shrink:0">${a.isCorrect?'✓':'✗'}</span>
+        <div style="flex:1">
+          <div style="color:#888;font-size:11px;">${a.question}</div>
+          <div>Réponse : <strong>${a.userAnswer}</strong>${!a.isCorrect?` <span style="color:#16A34A;font-weight:700;margin-left:6px;">→ ${a.correctAnswer}</span>`:''}</div>
+        </div>
+      </div>`).join('');
+    secs+=`<div class="rpt-sec">
+      <h3>Exercice ${i} – ${ENAMES[i]} <span style="float:right;font-weight:600;color:${pct>=60?'#16A34A':'#DC2626'}">${r.score}/${r.total} (${pct}%)</span></h3>
+      ${rows}
+    </div>`;
+  }
+  const gp=tp>0?Math.round((ts/tp)*100):0;
+
+  const html=`<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Rapport – ${stu.firstName}-${stu.lastName} – ${list.name}</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,sans-serif;font-size:13px;color:#1A1A1A;max-width:780px;margin:0 auto;padding:32px 24px}
+  h2{font-size:20px;font-weight:700;margin-bottom:6px;color:#1A1A1A}
+  h3{font-size:13px;font-weight:700;margin:18px 0 8px;padding:6px 10px;background:#F5F0E8;border-left:3px solid #7B68EE;color:#2D2D2D}
+  .rpt-hdr{text-align:center;border-bottom:2px solid #FF6B2B;padding-bottom:16px;margin-bottom:20px}
+  .meta{color:#666;font-size:12px;margin-top:4px}
+  .score-box{background:#2D2D2D;color:white;border-radius:8px;padding:16px 24px;text-align:center;margin-bottom:24px;display:flex;justify-content:space-around;align-items:center}
+  .score-box .big{font-size:32px;font-weight:800}
+  .score-box .lbl{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+  .rpt-sec{margin-bottom:6px;page-break-inside:avoid}
+  .rpt-item{display:flex;gap:8px;padding:4px 6px;border-bottom:1px solid #F0EAE2;font-size:12px;align-items:flex-start}
+  .rpt-item:last-child{border:none}
+  .foot{text-align:center;margin-top:28px;font-size:10px;color:#aaa;border-top:1px solid #eee;padding-top:10px}
+  @media print{
+    body{padding:16px;font-size:11px}
+    h3{font-size:12px}
+    .score-box{padding:10px}
+    .score-box .big{font-size:24px}
+  }
+</style>
+</head>
+<body>
+  <div class="rpt-hdr">
+    <h2>VocabPro — Rapport d'exercices</h2>
+    <div class="meta"><strong>${stu.firstName}-${stu.lastName}</strong> &nbsp;·&nbsp; ${stu.filiere||stu.classe} &nbsp;·&nbsp; ${stu.niveau} &nbsp;·&nbsp; ${date}</div>
+    <div class="meta">Liste : <strong>${list.name}</strong> &nbsp;·&nbsp; ${list.filiere} ${list.classe}</div>
+  </div>
+  <div class="score-box">
+    <div><div class="lbl">Note globale</div><div class="big">${tp>0?ts+'/'+tp:'—'}</div></div>
+    <div><div class="lbl">Réussite</div><div class="big">${gp}%</div></div>
+    <div><div class="lbl">Exercices</div><div class="big">${Object.keys(res).length}/4</div></div>
+  </div>
+  ${secs}
+  <div class="foot">Généré par VocabPro &nbsp;·&nbsp; C. Iemfre &nbsp;·&nbsp; ${date}</div>
+</body>
+</html>`;
+
+  const w=window.open('','_blank','width=900,height=700');
+  w.document.write(html);
+  w.document.close();
+  w.onload=()=>{w.focus();w.print()};
+}
 
 // ==================== TEACHER ====================
 let curEditId=null;
-
-// Le prompt à copier pour Claude
-const CLAUDE_PROMPT=`Tu es un assistant pour professeur d'anglais en lycée professionnel.
-Je vais te donner une liste de vocabulaire. Ta mission est de la convertir en JSON strict.
-
-FORMAT DE SORTIE — réponds UNIQUEMENT avec le tableau JSON, sans texte avant ni après, sans balises markdown :
-[
-  { "fr": "le mot ou l'expression en français", "en": "the English word or phrase", "definition": "a short definition in English (leave empty string if not relevant)" },
-  ...
-]
-
-RÈGLES :
-- Chaque entrée doit avoir les trois clés : "fr", "en", "definition"
-- "definition" doit être en anglais, courte (max 12 mots). Laisse "" si tu n'es pas sûr.
-- Ne génère rien d'autre que le JSON pur — pas d'introduction, pas de conclusion, pas de \`\`\`json
-- Respecte exactement l'orthographe des mots que je te donne
-- Si le séparateur est une tabulation, un tiret, un point-virgule ou un espace, adapte-toi
-
-Voici ma liste :
-(colle tes mots ici, dans n'importe quel format)`;
+function td(){return new Date().toISOString().slice(0,10)}
 
 function initTeacher(){
   document.getElementById('sCodeDisp').value=VP.sc;
@@ -1047,27 +1439,23 @@ function initTeacher(){
 }
 
 function tTab(t){
-  ['lists','add','cfg'].forEach(x=>{
-    document.getElementById('panel-'+x).style.display='none';
-    document.getElementById('tab-'+x)?.classList.remove('on');
+  ['lists','cfg'].forEach(x=>{
+    const p=document.getElementById('panel-'+x);
+    const b=document.getElementById('tab-'+x);
+    if(p)p.style.display='none';
+    if(b)b.classList.remove('on');
   });
-  document.getElementById('panel-'+t).style.display='block';
-  document.getElementById('tab-'+t)?.classList.add('on');
+  const p=document.getElementById('panel-'+t);
+  const b=document.getElementById('tab-'+t);
+  if(p)p.style.display='block';
+  if(b)b.classList.add('on');
   if(t==='lists'){rndStats();rndLists()}
   if(t==='cfg')document.getElementById('sCodeDisp').value=VP.sc;
-  if(t==='add'){
-    document.getElementById('lName').value='';
-    document.getElementById('lFiliere').value='';
-    document.getElementById('lClasse2').value='';
-    document.getElementById('jsonInput').value='';
-    document.getElementById('jsonStatus').innerHTML='';
-    document.getElementById('promptBox').textContent=CLAUDE_PROMPT;
-  }
-  
 }
 
 function rndStats(){
-  const ls=VP.vl;const tw=ls.reduce((a,l)=>a+l.words.length,0);
+  const ls=VP.vl;
+  const tw=ls.reduce((a,l)=>a+l.words.length,0);
   const fs=[...new Set(ls.map(l=>l.filiere))].filter(Boolean);
   document.getElementById('statsG').innerHTML=`
     <div class="stat-c"><div class="stat-n">${ls.length}</div><div class="stat-l">Listes</div></div>
@@ -1077,107 +1465,27 @@ function rndStats(){
 
 function rndLists(){
   const ls=VP.vl;const c=document.getElementById('listsCont');
-  if(!ls.length){c.innerHTML=`<div class="empty"><span class="ei">📭</span><p>Aucune liste.<br>Clique sur "+ Nouvelle" !</p></div>`;return}
+  if(!ls.length){c.innerHTML=`<div class="empty"><p>Aucune liste.</p></div>`;return}
   const byF={};ls.forEach(l=>{const f=l.filiere||'Autre';if(!byF[f])byF[f]=[];byF[f].push(l)});
   c.innerHTML=Object.entries(byF).map(([f,fl])=>`
     <div style="margin-bottom:20px;">
-      <h3 style="font-family:var(--font-d);font-size:17px;color:var(--purple);margin-bottom:8px;padding-left:8px;border-left:4px solid var(--purple);">${f}</h3>
-      ${fl.map(l=>`<div class="list-item" onclick="openEdit('${l.id}')">
-        <div class="li-info"><div class="li-title">${l.name}</div><div class="li-meta">${l.classe} · ${l.words.length} mots · ${l.words.filter(w=>w.definition).length} déf.</div></div>
-        <span class="li-badge">${l.words.length}</span><span style="font-size:16px;color:#aaa;">✏️</span>
-      </div>`).join('')}
+      <h3 style="font-family:var(--font-d);font-size:16px;color:var(--purple);margin-bottom:8px;
+        padding-left:8px;border-left:4px solid var(--purple);">${f}</h3>
+      ${fl.map(l=>`
+        <div class="list-item" style="cursor:default;">
+          <div class="li-info">
+            <div class="li-title">${l.name}</div>
+            <div class="li-meta">${l.classe} · ${l.words.length} mots</div>
+          </div>
+          <span class="li-badge">${l.words.length}</span>
+        </div>`).join('')}
     </div>`).join('');
-}
-
-// Validation JSON en direct
-function validateJson(){
-  const v=document.getElementById('jsonInput').value.trim();
-  const st=document.getElementById('jsonStatus');
-  if(!v){st.innerHTML='';return null}
-  try{
-    const d=JSON.parse(v);
-    if(!Array.isArray(d))throw new Error('Doit être un tableau []');
-    const ok=d.filter(x=>x.fr&&x.en);
-    if(!ok.length)throw new Error('Aucun mot valide (besoin de "fr" et "en")');
-    st.innerHTML=`<div class="json-dot" style="background:var(--green)"></div><span style="color:var(--green-dark);">✓ JSON valide — ${ok.length} mot(s) détecté(s)</span>`;
-    return ok;
-  }catch(e){
-    st.innerHTML=`<div class="json-dot" style="background:var(--red)"></div><span style="color:var(--red);">✗ Erreur : ${e.message}</span>`;
-    return null;
-  }
-}
-
-function validateEditJson(){
-  const v=document.getElementById('eJsonInput').value.trim();
-  const st=document.getElementById('eJsonStatus');
-  if(!v){st.innerHTML='';return null}
-  try{
-    const d=JSON.parse(v);
-    if(!Array.isArray(d))throw new Error('Doit être un tableau []');
-    const ok=d.filter(x=>x.fr&&x.en);
-    if(!ok.length)throw new Error('Aucun mot valide');
-    st.innerHTML=`<div class="json-dot" style="background:var(--green)"></div><span style="color:var(--green-dark);">✓ ${ok.length} mot(s)</span>`;
-    return ok;
-  }catch(e){
-    st.innerHTML=`<div class="json-dot" style="background:var(--red)"></div><span style="color:var(--red);">✗ ${e.message}</span>`;
-    return null;
-  }
-}
-
-function copyPrompt(){
-  navigator.clipboard.writeText(CLAUDE_PROMPT).then(()=>notif('✅ Prompt copié !')).catch(()=>{
-    // fallback
-    const ta=document.createElement('textarea');ta.value=CLAUDE_PROMPT;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();notif('✅ Prompt copié !');
-  });
-}
-
-function saveJsonList(){
-  const name=document.getElementById('lName').value.trim();
-  const filiere=document.getElementById('lFiliere').value.trim();
-  const classe=document.getElementById('lClasse2').value.trim();
-  if(!name||!filiere||!classe){notif('Remplis les 3 champs d\'abord !',true);return}
-  const words=validateJson();
-  if(!words){notif('Corrige le JSON avant d\'enregistrer !',true);return}
-  if(words.length<4){notif('Au moins 4 mots requis !',true);return}
-  VP.addList({name,filiere,classe,words,createdAt:Date.now()});
-  notif(`✅ "${name}" enregistrée ! (${words.length} mots)`);
-  tTab('lists');
-}
-
-function openEdit(id){
-  const list=VP.getList(id);if(!list)return;curEditId=id;
-  document.getElementById('editModTitle').textContent=`✏️ ${list.name}`;
-  document.getElementById('eName').value=list.name;
-  document.getElementById('eFiliere').value=list.filiere;
-  document.getElementById('eClasse').value=list.classe;
-  // Affiche le JSON des mots existants pour modification
-  const clean=list.words.map(({fr,en,definition})=>({fr,en,definition:definition||''}));
-  document.getElementById('eJsonInput').value=JSON.stringify(clean,null,2);
-  document.getElementById('eJsonStatus').innerHTML=`<div class="json-dot" style="background:var(--green)"></div><span style="color:var(--green-dark);">✓ ${clean.length} mot(s) chargé(s)</span>`;
-  showModal('editMod');
-}
-
-function saveEdit(){
-  const name=document.getElementById('eName').value.trim();
-  const filiere=document.getElementById('eFiliere').value.trim();
-  const classe=document.getElementById('eClasse').value.trim();
-  const words=validateEditJson();
-  if(!name||!filiere||!classe){notif('Remplis tous les champs !',true);return}
-  if(!words){notif('Corrige le JSON !',true);return}
-  if(words.length<4){notif('Au moins 4 mots requis !',true);return}
-  VP.updList(curEditId,{name,filiere,classe,words,updatedAt:Date.now()});
-  closeModal('editMod');notif(`✅ "${name}" mise à jour !`);rndLists();rndStats();
-}
-
-function delList(){
-  if(!confirm('Supprimer cette liste ?'))return;
-  VP.delList(curEditId);closeModal('editMod');notif('🗑️ Supprimée.');rndLists();rndStats();
 }
 
 function updSCode(){
   const c=document.getElementById('sCodeDisp').value.trim().toUpperCase();
   if(c.length<3){notif('Code trop court !',true);return}
-  VP.sc=c;notif(`✅ Code élèves : ${c}`);
+  VP.sc=c;notif('Code élèves mis à jour : '+c);
 }
 
 function updTCode(){
@@ -1185,16 +1493,16 @@ function updTCode(){
   const c2=document.getElementById('tCode2').value.trim();
   if(!/^\d{4}$/.test(c1)){notif('4 chiffres requis !',true);return}
   if(c1!==c2){notif('Les codes ne correspondent pas !',true);return}
-  VP.tc=c1;document.getElementById('tCode1').value='';document.getElementById('tCode2').value='';
-  notif('✅ Code prof mis à jour !');
+  VP.tc=c1;
+  document.getElementById('tCode1').value='';
+  document.getElementById('tCode2').value='';
+  notif('Code prof mis à jour !');
 }
 
 function doReset(){
   Object.values(VP.K).forEach(k=>localStorage.removeItem(k));
-  closeModal('resetMod');notif('🗑️ Données effacées.');setTimeout(()=>goTo('home'),1500);
+  closeModal('resetMod');notif('Données effacées.');setTimeout(()=>goTo('home'),1500);
 }
-
-function td(){return new Date().toISOString().slice(0,10)}
 
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded',()=>goTo('home'));
